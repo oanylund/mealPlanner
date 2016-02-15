@@ -14,6 +14,10 @@ class LagUkeStore {
         thursday: {
           explainNone: 'Tacoleftovers',
           comment: 'Øl i kjøleskapet'
+        },
+        sunday: {
+          explainNone: 'Ole er borte',
+          comment: 'Pizza i frysern'
         }
       }
     }
@@ -27,6 +31,12 @@ class LagUkeStore {
         console.log(err.reason)
       }
     })
+  }
+  onDeleteDay(day) {
+    delete this.newWeek.days[day]
+  }
+  onDeleteDays() {
+    this.newWeek.days = {}
   }
 }
 

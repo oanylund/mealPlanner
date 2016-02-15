@@ -1,20 +1,28 @@
 import React, { PropTypes } from 'react'
 import LagUkeActions from '../../../actions/LagUkeActions'
-import { Panel, Input, Button } from 'react-bootstrap'
+import { Input, Button } from 'react-bootstrap'
 
 const DagForm = (props) => {
+  let translateDays = props.translateDays
+  const daysLeft = Object.keys(translateDays).filter( (day) => {
+    return !props.alreadyAdded.includes(day)
+  })
+  const options = daysLeft.map( (day) => {
+    return(
+      <option key={day+'O'} value={day}>{translateDays[day]}</option>
+    )
+  })
+
   return (
-    <Panel>
+    <div className='Dagform-box'>
+      { props.hideForm ? <i className='fa fa-close fa-CloseBtn' onClick={props.hideForm} /> : '' }
       <fieldset>
         <legend className='Dagform-legend'>Legg til dag</legend>
         <Input type="select" label="Velg dag">
-          <option value="select">Tirsdag</option>
-          <option value="other">Onsdag</option>
-          <option value="other">Torsdag</option>
+          {options}
         </Input>
       </fieldset>
-
-    </Panel>
+    </div>
   )
 
 }

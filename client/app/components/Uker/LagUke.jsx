@@ -11,6 +11,16 @@ import AltContainer from 'alt-container'
 import LagUkeStore from '../../stores/LagUkeStore'
 import LagUkeActions from '../../actions/LagUkeActions'
 
+const translateDays = {
+  monday: 'Mandag',
+  tuesday: 'Tirsdag',
+  wednesday: 'Onsdag',
+  thursday:  'Torsdag',
+  friday:    'Fredag',
+  saturday:  'Lørdag',
+  sunday:   'Søndag',
+}
+
 class LagUke extends React.Component {
   constructor(props) {
     super(props)
@@ -18,25 +28,35 @@ class LagUke extends React.Component {
       showAddForm: false
     }
     this.showAddForm = this.showAddForm.bind(this)
+    this.hideAddForm = this.hideAddForm.bind(this)
   }
   showAddForm(state) {
     this.setState({showAddForm: true})
   }
+  hideAddForm(state) {
+    this.setState({showAddForm: false})
+  }
   render() {
     const newWeek = this.props.newWeek
     const dayList = _.map(newWeek.days, (day,dayString) => {
-          return (
-            <Col key={dayString + 'C'} md={6} lg={4}>
-              <Dag key={dayString + 'D'} title={dayString} description={day.explainNone}
-                descriptionGrey={day.comment}
-                imgUrl='/images/taco.jpg'/>
-            </Col>
-          )
+      return (
+        <Col key={dayString + 'C'} md={6} lg={4}>
+          <Dag key={dayString + 'D'} title={translateDays[dayString]} description={day.explainNone}
+            descriptionGrey={day.comment}
+            closeHandler={LagUkeActions.deleteDay.bind(null,dayString)}
+            imgUrl='/images/taco.jpg'/>
+        </Col>
+      )
     })
-    
-    const addForm = this.state.showAddForm ? <DagForm day='Tirsdag'/> :
-    <Button bsStyle="primary" onClick={this.showAddForm.bind(null,this.state.showAddForm)} block><i className='fa fa-plus'/></Button> ;
 
+    const addDayEnabled = (Object.keys(newWeek.days).length < 7) ? true : false;
+    const resetEnabled = Object.keys(newWeek.days).length ? false : true;
+    
+    const addForm = this.state.showAddForm ?
+    <DagForm alreadyAdded={Object.keys(newWeek.days)}
+      hideForm={this.hideAddForm}
+      translateDays={translateDays}/> :
+    <Button bsStyle="primary" onClick={this.showAddForm.bind(null,this.state.showAddForm)} block><i className='fa fa-plus'/></Button> ;
 
     return (
       <div className='marginSquare'>
@@ -51,12 +71,12 @@ class LagUke extends React.Component {
             <Col md={12}><p>Dager</p></Col>
           </Row>
           <Row>
-            {dayList}
+            { Object.keys(newWeek.days).length ? dayList :
+            <Col md={12}><p style={{fontSize:11}}>Trykk + knappen for å legge en middag til en av ukedagene.</p></Col>}
           </Row>
           <Row>
             <Col md={12}>
-              {this.state.showAddForm}
-              {addForm}
+              { addDayEnabled ? addForm : ''}
             </Col>
           </Row>
           <Row>
@@ -65,7 +85,7 @@ class LagUke extends React.Component {
                 <Button bsStyle='success' block>Lag uke</Button>
               </Col>
               <Col sm={6}>
-                <AlertBtn/>
+                <AlertBtn disabled={resetEnabled} />
               </Col>
             </div>
           </Row>

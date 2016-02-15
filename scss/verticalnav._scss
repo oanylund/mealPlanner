@@ -1,9 +1,3 @@
-$backColor: white;
-$subBackColor: none;
-$hoverColor: white;
-$fontColor: black;
-$fontHoverColor: #008cba;
-
 $margin-top: 20px;
 $nav-width: 120px;
 

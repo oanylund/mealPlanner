@@ -6,7 +6,7 @@ const showImgElement = (props) => {
     <div className='dashWidgetBox'>
       <img className='dashWidgetImg' src={img} alt="" />
       <div className='dashWidgetBody'>
-        { props.closeHandler ? <i className='fa fa-close' onClick={props.closeHandler} /> : '' }
+        { props.closeHandler ? <i className='fa fa-close fa-CloseBtn' onClick={props.closeHandler} /> : '' }
         <h3>{props.title}</h3>
         <span>{props.description}</span><br/>
         {props.descriptionGrey ? <span className='grey'>{props.descriptionGrey}</span> : '' }

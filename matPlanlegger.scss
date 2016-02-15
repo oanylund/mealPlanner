@@ -1,5 +1,11 @@
 // compileCompressed: ./$1.css
 
+$backColor: white;
+$subBackColor: none;
+$hoverColor: white;
+$fontColor: black;
+$fontHoverColor: #008cba;
+
 body,html {
   height: 100%;
   padding:0;
