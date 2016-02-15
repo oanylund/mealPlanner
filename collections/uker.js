@@ -20,37 +20,37 @@ DagSchema = new SimpleSchema({
 })
 
 DagerSchema = new SimpleSchema({
-  tirsdag: {
+  tuesday: {
     type: DagSchema,
     label: 'tirsdag',
     optional: true
   },
-  onsdag: {
+  wednesday: {
     type: DagSchema,
     label: 'onsdag',
     optional: true
   },
-  torsdag: {
+  thursday: {
     type: DagSchema,
     label: 'torsdag',
     optional: true
   },
-  fredag: {
+  friday: {
     type: DagSchema,
     label: 'fredag',
     optional: true
   },
-  lørdag: {
+  saturday: {
     type: DagSchema,
     label: 'lørdag',
     optional: true
   },
-  søndag: {
+  sunday: {
     type: DagSchema,
     label: 'søndag',
     optional: true
   },
-  mandag: {
+  monday: {
     type: DagSchema,
     label: 'mandag',
     optional: true
@@ -69,7 +69,7 @@ UkerSchema = new SimpleSchema({
     type: Number,
     label: 'Ukenummer'
   },
-  dager: {
+  days: {
     type: DagerSchema
   }
 })
