@@ -1,0 +1,36 @@
+// compileCompressed: ./$1.css
+
+body,html {
+  height: 100%;
+  padding:0;
+  margin:0;
+}
+html {
+  min-width: 740px;
+}
+
+*:focus {
+  outline: 0;
+}
+
+// Main Components
+#root {
+  height: 100%;
+}
+
+#mealWrapper {
+  background-color: #c8c8c8;
+  display: flex;
+  min-height: 100%;
+
+  #mainContent {
+    flex-grow: 1;
+    background-image: url('/images/confectionaryDark.png');
+  }
+}
+
+@import "./scss/shared._scss";
+@import "./scss/sidebar._scss";
+@import "./scss/verticalnav._scss";
+@import "./scss/uke/dagform._scss";
+@import "./scss/uke/dag._scss";
