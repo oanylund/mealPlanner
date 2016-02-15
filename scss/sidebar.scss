@@ -1,0 +1,23 @@
+// main: ../matPlanlegger.scss
+
+#leftNav {
+  font-family: open_sansregular;
+  flex: 0 0 160px;
+  background-color: white;
+
+  .fixedNav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  header {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 3px;
+    padding: 5px;
+  }
+}

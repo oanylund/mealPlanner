@@ -12,20 +12,20 @@ import LagUkeStore from '../../stores/LagUkeStore'
 import LagUkeActions from '../../actions/LagUkeActions'
 
 const translateDays = {
-  monday: 'Mandag',
   tuesday: 'Tirsdag',
   wednesday: 'Onsdag',
   thursday:  'Torsdag',
   friday:    'Fredag',
   saturday:  'Lørdag',
   sunday:   'Søndag',
+  monday: 'Mandag',
 }
 
 class LagUke extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showAddForm: false
+      showAddForm: true
     }
     this.showAddForm = this.showAddForm.bind(this)
     this.hideAddForm = this.hideAddForm.bind(this)
@@ -51,7 +51,7 @@ class LagUke extends React.Component {
 
     const addDayEnabled = (Object.keys(newWeek.days).length < 7) ? true : false;
     const resetEnabled = Object.keys(newWeek.days).length ? false : true;
-    
+
     const addForm = this.state.showAddForm ?
     <DagForm alreadyAdded={Object.keys(newWeek.days)}
       hideForm={this.hideAddForm}

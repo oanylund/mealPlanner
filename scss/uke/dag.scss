@@ -1,0 +1,41 @@
+// main: ../../matPlanlegger.scss
+
+$box: 125px;
+
+.dashWidgetBox {
+  margin-bottom: 15px;
+  font-family: open_sansregular;
+  font-size: 1.4rem;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.1);
+  background-color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  height: $box;
+  .dashWidgetImg {
+    height: $box;
+    width: $box;
+  }
+  .dashWidgetBody {
+    flex:1;
+    padding: 10px;
+    position: relative;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px dotted #DDD;
+    }
+    .grey {
+      color: #9e9e9e;
+      font-size: 1.2rem;
+    }
+    a {
+      &:visited {
+        text-decoration: none;
+      }
+      position: absolute;;
+      bottom: 5;
+      right: 10;
+    }
+  }
+}
