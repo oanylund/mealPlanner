@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react'
 import { Grid, Row, Col, Button, ButtonToolbar } from 'react-bootstrap'
+import _ from 'underscore'
 
 import DagForm from './LagUke/DagForm.jsx'
-import DagListe from './LagUke/DagListe.jsx'
+import Dag from './LagUke/Dag.jsx'
 import VelgUke from './LagUke/VelgUke.jsx'
 import AlertBtn from './LagUke/AlertBtn.jsx'
 
@@ -13,48 +14,49 @@ import LagUkeActions from '../../actions/LagUkeActions'
 class LagUke extends React.Component {
   constructor(props) {
     super(props)
-
+    this.state = {
+      showAddForm: false
+    }
+    this.showAddForm = this.showAddForm.bind(this)
+  }
+  showAddForm(state) {
+    this.setState({showAddForm: true})
   }
   render() {
-    let newWeek = this.props.newWeek
+    const newWeek = this.props.newWeek
+    const dayList = _.map(newWeek.days, (day,dayString) => {
+          return (
+            <Col key={dayString + 'C'} md={6} lg={4}>
+              <Dag key={dayString + 'D'} title={dayString} description={day.explainNone}
+                descriptionGrey={day.comment}
+                imgUrl='/images/taco.jpg'/>
+            </Col>
+          )
+    })
+    
+    const addForm = this.state.showAddForm ? <DagForm day='Tirsdag'/> :
+    <Button bsStyle="primary" onClick={this.showAddForm.bind(null,this.state.showAddForm)} block><i className='fa fa-plus'/></Button> ;
+
+
     return (
       <div className='marginSquare'>
         <Grid fluid>
-          <Row>
-            <Col>
-              <h2 style={{marginBottom:30,marginTop:0}}>Lag ny ukeplan</h2>
-            </Col>
-          </Row>
+          <Row><Col><h2 style={{marginBottom:30,marginTop:0}}>Lag ny ukeplan</h2></Col></Row>
           <Row>
             <Col md={4}>
               <VelgUke year={newWeek.year} week={newWeek.week}/>
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
-              <p>Dager</p>
-            </Col>
+            <Col md={12}><p>Dager</p></Col>
           </Row>
           <Row>
-            <Col md={6} lg={4}>
-              <Dag title='Tirsdag' description='Taco'
-                closeHandler={alert.bind(null,'test')}
-                imgUrl='/images/taco.jpg'/>
-            </Col>
-            <Col md={6} lg={4}>
-              <Dag title='Onsdag' description='Laks' descriptionGrey='Ta opp laks fra frysern'/>
-            </Col>
-            <Col md={6} lg={4}>
-              <Dag title='Torsdag' description='Moussaka' imgUrl='/images/mosaka.jpg'/>
-            </Col>
-            <Col md={6} lg={4}>
-              <Dag title='Fredag' description='Biff' imgUrl='/images/steak.jpg'/>
-            </Col>
+            {dayList}
           </Row>
           <Row>
             <Col md={12}>
-              <Button bsStyle="primary" block><i className='fa fa-plus'/></Button>
-              {/*<DagForm day='Tirsdag'/>*/}
+              {this.state.showAddForm}
+              {addForm}
             </Col>
           </Row>
           <Row>

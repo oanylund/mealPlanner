@@ -1,18 +1,18 @@
 Uker = new Mongo.Collection("uker");
 
 DagSchema = new SimpleSchema({
-  middagId: {
+  dinnerId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
     label: 'middagId',
     optional: true
   },
-  ForklarIngen: {
+  explainNone: {
     type: String,
     label: 'Begrunnelse for ingen middag',
     optional: true
   },
-  kommentar: {
+  comment: {
     type: String,
     label: 'Kommentar til middag',
     optional: true

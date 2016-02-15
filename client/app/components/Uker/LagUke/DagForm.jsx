@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import LagUkeActions from '../../../actions/LagUkeActions'
-import { Panel, Input } from 'react-bootstrap'
+import { Panel, Input, Button } from 'react-bootstrap'
 
 const DagForm = (props) => {
   return (
@@ -16,18 +16,7 @@ const DagForm = (props) => {
 
     </Panel>
   )
+
 }
 
 export default DagForm
-
-// <div className="Dagform-Container">
-//   <span>{props.day}</span>
-//   <div>
-//     <div>
-//       <button type="button">Legg til Middag</button>
-//     </div>
-//     <div>
-//     <span></span>
-//     </div>
-//   </div>
-// </div>

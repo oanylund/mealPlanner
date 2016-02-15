@@ -9,7 +9,13 @@ class LagUkeStore {
   constructor() {
     this.newWeek = {
       year: new Date().getFullYear(),
-      week: moment().week()
+      week: moment().week(),
+      days: {
+        thursday: {
+          explainNone: 'Tacoleftovers',
+          comment: 'Øl i kjøleskapet'
+        }
+      }
     }
     this.bindActions(LagUkeActions);
   }

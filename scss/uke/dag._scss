@@ -36,6 +36,7 @@ $box: 125px;
       margin-bottom: 10px;
       padding-bottom: 5px;
       border-bottom: 1px dotted #DDD;
+      text-transform: capitalize;
     }
     .grey {
       color: #9e9e9e;
