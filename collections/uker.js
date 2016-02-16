@@ -18,6 +18,10 @@ DagSchema = new SimpleSchema({
     type: String,
     label: 'Kommentar til middag',
     optional: true
+  },
+  imgUrl: {
+    type: String,
+    label: 'Bilde for framvisning'
   }
 })
 
@@ -61,7 +65,7 @@ DagerSchema = new SimpleSchema({
 
 UkerSchema = new SimpleSchema({
   _id: {
-    type: Number, // WW( week etc 34) YYYY( year etc 2015) ---> _id: WWYYYY
+    type: String, // WW( week etc 34) YYYY( year etc 2015) ---> _id: WWYYYY
   },
   year: {
     type: Number,

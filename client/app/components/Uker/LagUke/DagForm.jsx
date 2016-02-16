@@ -44,7 +44,6 @@ class DagForm extends React.Component {
         <option key={day+'O'} value={day}>{translateDays[day]}</option>
       )
     })
-
     return (
       <div className='Dagform-box'>
         { this.props.hideForm ? <i className='fa fa-close fa-CloseBtn' onClick={this.props.hideForm} /> : '' }

@@ -1,11 +1,9 @@
 Meteor.methods({
-  addWeek: function( week ) {
-    try {
-      check( week, Uker.simpleSchema() );
+  checkWeekExists: function( weekYear ) {
+    let result = Uker.find({_id: weekYear}, {fields: {_id: 1}, limit:1}).count()
+    if(result) {
+      return true
     }
-    catch(err) {
-      console.log(err.message);
-    }
-    // Handle our insert.
+    return false
   }
 });

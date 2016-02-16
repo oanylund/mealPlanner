@@ -16,6 +16,7 @@
 %closeBtn {
   $size: 18px;
   $offwall: 10px;
+  font-size: 1.4rem;
   @extend %flexCenterChild;
   width: $size;
   height: $size;

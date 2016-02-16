@@ -51,6 +51,7 @@ class LagUke extends React.Component {
 
     const addDayEnabled = (Object.keys(newWeek.days).length < 7) ? true : false;
     const resetEnabled = Object.keys(newWeek.days).length ? false : true;
+    const addWeekEnabled = resetEnabled || this.props.weekExists;
 
     const addForm = this.state.showAddForm ?
     <DagForm alreadyAdded={Object.keys(newWeek.days)}
@@ -64,7 +65,7 @@ class LagUke extends React.Component {
           <Row><Col><h2 style={{marginBottom:30,marginTop:0}}>Lag ny ukeplan</h2></Col></Row>
           <Row>
             <Col md={4}>
-              <VelgUke year={newWeek.year} week={newWeek.week}/>
+              <VelgUke year={newWeek.year} week={newWeek.week} weekExists={this.props.weekExists}/>
             </Col>
           </Row>
           <Row>
@@ -89,7 +90,7 @@ class LagUke extends React.Component {
           <Row>
             <div style={{marginTop:15}}>
               <Col sm={6}>
-                <Button disabled={resetEnabled} bsStyle='success' block>Lag uke</Button>
+                <Button disabled={addWeekEnabled} bsStyle='success' block>Lag uke</Button>
               </Col>
               <Col sm={6}>
                 <AlertBtn disabled={resetEnabled} />
