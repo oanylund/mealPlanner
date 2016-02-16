@@ -1,11 +1,7 @@
 import alt from "../alt"
 // import moment from 'moment'
 import LagUkeActions from '../actions/LagUkeActions'
-// import nb from 'moment/locale/nb'
 
-// moment.locale('nb', nb )
-// year: new Date().getFullYear(),
-// week: moment().week(),
 class LagUkeStore {
   constructor() {
     this.newWeek = {
