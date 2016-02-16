@@ -32,6 +32,7 @@ class LagUkeStore {
     this.newWeek.days[dayObj.day] = {
       title: dayObj.title,
       comment: dayObj.comment,
+      isDinner: dayObj.isDinner,
       imgUrl: dayObj.imgUrl
     }
   }
