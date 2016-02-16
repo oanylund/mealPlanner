@@ -1,27 +1,21 @@
 Uker = new Mongo.Collection("uker");
 
 DagSchema = new SimpleSchema({
-  dinnerId: {
+  middagId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
     label: 'middagId',
     optional: true
   },
-  isDinner: {
-    type: Boolean
-  },
-  title: {
+  ForklarIngen: {
     type: String,
-    label: 'Begrunnelse for ingen middag, eller middagstittel',
+    label: 'Begrunnelse for ingen middag',
+    optional: true
   },
-  comment: {
+  kommentar: {
     type: String,
     label: 'Kommentar til middag',
     optional: true
-  },
-  imgUrl: {
-    type: String,
-    label: 'Bilde for framvisning'
   }
 })
 
@@ -65,7 +59,7 @@ DagerSchema = new SimpleSchema({
 
 UkerSchema = new SimpleSchema({
   _id: {
-    type: String, // WW( week etc 34) YYYY( year etc 2015) ---> _id: WWYYYY
+    type: Number, // WW( week etc 34) YYYY( year etc 2015) ---> _id: WWYYYY
   },
   year: {
     type: Number,

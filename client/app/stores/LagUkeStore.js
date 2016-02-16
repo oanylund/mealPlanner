@@ -1,43 +1,26 @@
 import alt from "../alt"
-// import moment from 'moment'
+import moment from 'moment'
 import LagUkeActions from '../actions/LagUkeActions'
-// import nb from 'moment/locale/nb'
+import nb from 'moment/locale/nb'
 
-// moment.locale('nb', nb )
-// year: new Date().getFullYear(),
-// week: moment().week(),
+moment.locale('nb', nb )
+
 class LagUkeStore {
   constructor() {
     this.newWeek = {
-      year: 0,
-      week: 0,
-      days: {}
+      year: new Date().getFullYear(),
+      week: moment().week()
     }
-    this.weekExists = false
-    this.bindActions(LagUkeActions)
+    this.bindActions(LagUkeActions);
   }
   onWeekChange(weekYear) {
     this.newWeek.year = weekYear.year
     this.newWeek.week = weekYear.week
-  }
-  onWeekChangeResponse(exists) {
-    this.weekExists = exists
-  }
-  onDeleteDay(day) {
-    delete this.newWeek.days[day]
-  }
-  onDeleteDays() {
-    this.newWeek.days = {}
-  }
-  onAddDay(dayObj) {
-    if(!dayObj.isDinner) {
-      dayObj.imgUrl = '/images/hungry.jpg'
-    }
-    this.newWeek.days[dayObj.day] = {
-      title: dayObj.title,
-      comment: dayObj.comment,
-      imgUrl: dayObj.imgUrl
-    }
+    Meteor.call('addWeek', this.newWeek, (err,res) => {
+      if (err) {
+        console.log(err.reason)
+      }
+    })
   }
 }
 

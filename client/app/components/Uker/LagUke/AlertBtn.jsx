@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { Alert, Button } from 'react-bootstrap'
-import LagUkeActions from '../../../actions/LagUkeActions'
 
 class AlertBtn extends React.Component {
   constructor(props) {
@@ -10,17 +9,12 @@ class AlertBtn extends React.Component {
     }
     this.handleAlertDismiss = this.handleAlertDismiss.bind(this)
     this.handleAlertShow = this.handleAlertShow.bind(this)
-    this.handleDanger = this.handleDanger.bind(this)
   }
   handleAlertDismiss() {
     this.setState({alertVisible: false});
   }
   handleAlertShow() {
     this.setState({alertVisible: true});
-  }
-  handleDanger() {
-    this.handleAlertDismiss()
-    LagUkeActions.deleteDays()
   }
   render () {
     if (this.state.alertVisible) {
@@ -29,7 +23,7 @@ class AlertBtn extends React.Component {
               <h4>Er du helt sikker?</h4>
               <p>Hvis du trykker nullstill må du begynne helt på nytt.</p>
               <p>
-                <Button bsStyle="warning" onClick={this.handleDanger}>Nullstill uke</Button>
+                <Button bsStyle="warning">Nullstill uke</Button>
                 <span> eller </span>
                 <Button onClick={this.handleAlertDismiss}>skjul varsel</Button>
               </p>
@@ -38,7 +32,7 @@ class AlertBtn extends React.Component {
         }
 
     return (
-      <Button disabled={this.props.disabled} bsStyle='warning' onClick={this.handleAlertShow} block>Start uken på nytt</Button>
+      <Button bsStyle='warning' onClick={this.handleAlertShow} block>Start på nytt</Button>
     );
   }
 }

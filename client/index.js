@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import Routes from './routes.jsx'
 
 
-Meteor.subscribe('uker')
+
 Meteor.startup(function () {
   render(Routes(),document.getElementById('root'));
 });

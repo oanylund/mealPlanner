@@ -1,11 +1,5 @@
 // compileCompressed: ./$1.css
 
-$backColor: white;
-$subBackColor: none;
-$hoverColor: white;
-$fontColor: black;
-$fontHoverColor: #008cba;
-
 body,html {
   height: 100%;
   padding:0;
@@ -35,8 +29,8 @@ html {
   }
 }
 
-@import "./scss/shared.scss";
-@import "./scss/sidebar.scss";
-@import "./scss/verticalnav.scss";
-@import "./scss/uke/dagform.scss";
-@import "./scss/uke/dag.scss";
+@import "./scss/shared._scss";
+@import "./scss/sidebar._scss";
+@import "./scss/verticalnav._scss";
+@import "./scss/uke/dagform._scss";
+@import "./scss/uke/dag._scss";

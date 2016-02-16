@@ -1,33 +1,20 @@
 Middager = new Mongo.Collection("middager")
 
 MiddagSchema = new SimpleSchema({
-  title: {
+  tittel: {
     type: String,
     label: 'tittel'
   },
-  description: {
+  beskrivelse: {
     type: String,
     label: 'beskrivelse'
   },
-  steps: {
-    type: Array,
-    optional: true
+  steg: {
+    type: [String]
   },
-  "steps.$": {
-    type: Object
-  },
-  "steps.$.order": {
-    type: Number
-  },
-  "steps.$.description": {
-    type: String
-  },
-  imgUrl: {
+  bildeUrl: {
     type: String,
-    defaultValue: '/images/default-dinner.png',
-    optional: true
+    defaultValue: '/images/default-dinner.png'
   }
 
 })
-
-Middager.attachSchema(MiddagSchema)
