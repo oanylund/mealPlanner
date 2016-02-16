@@ -10,18 +10,9 @@ class LagUkeStore {
     this.newWeek = {
       year: new Date().getFullYear(),
       week: moment().week(),
-      days: {
-        thursday: {
-          explainNone: 'Tacoleftovers',
-          comment: 'Øl i kjøleskapet'
-        },
-        sunday: {
-          explainNone: 'Ole er borte',
-          comment: 'Pizza i frysern'
-        }
-      }
+      days: {}
     }
-    this.bindActions(LagUkeActions);
+    this.bindActions(LagUkeActions)
   }
   onWeekChange(weekYear) {
     this.newWeek.year = weekYear.year
@@ -37,6 +28,13 @@ class LagUkeStore {
   }
   onDeleteDays() {
     this.newWeek.days = {}
+  }
+  onAddDay(dayObj) {
+    this.newWeek.days[dayObj.day] = {
+      title: dayObj.title,
+      comment: dayObj.comment,
+      imgUrl: '/images/hungry.jpg'
+    }
   }
 }
 

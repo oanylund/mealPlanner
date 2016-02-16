@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Grid, Row, Col, Button, ButtonToolbar } from 'react-bootstrap'
+import { Grid, Row, Col, Button, ButtonToolbar, Alert } from 'react-bootstrap'
 import _ from 'underscore'
 
 import DagForm from './LagUke/DagForm.jsx'
@@ -25,7 +25,7 @@ class LagUke extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showAddForm: true
+      showAddForm: false
     }
     this.showAddForm = this.showAddForm.bind(this)
     this.hideAddForm = this.hideAddForm.bind(this)
@@ -41,10 +41,10 @@ class LagUke extends React.Component {
     const dayList = _.map(newWeek.days, (day,dayString) => {
       return (
         <Col key={dayString + 'C'} md={6} lg={4}>
-          <Dag key={dayString + 'D'} title={translateDays[dayString]} description={day.explainNone}
+          <Dag key={dayString + 'D'} title={translateDays[dayString]} description={day.title}
             descriptionGrey={day.comment}
             closeHandler={LagUkeActions.deleteDay.bind(null,dayString)}
-            imgUrl='/images/taco.jpg'/>
+            imgUrl={day.imgUrl}/>
         </Col>
       )
     })
@@ -72,7 +72,14 @@ class LagUke extends React.Component {
           </Row>
           <Row>
             { Object.keys(newWeek.days).length ? dayList :
-            <Col md={12}><p style={{fontSize:11}}>Trykk + knappen for å legge en middag til en av ukedagene.</p></Col>}
+            <Col md={12}>
+              <div className='addDag'>
+                <Alert bsStyle='info'>
+                  <p >Trykk + knappen for å legge en middag til en av ukedagene.</p>
+                </Alert>
+              </div>
+            </Col>
+            }
           </Row>
           <Row>
             <Col md={12}>
@@ -82,7 +89,7 @@ class LagUke extends React.Component {
           <Row>
             <div style={{marginTop:15}}>
               <Col sm={6}>
-                <Button bsStyle='success' block>Lag uke</Button>
+                <Button disabled={resetEnabled} bsStyle='success' block>Lag uke</Button>
               </Col>
               <Col sm={6}>
                 <AlertBtn disabled={resetEnabled} />

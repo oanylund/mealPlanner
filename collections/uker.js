@@ -7,10 +7,12 @@ DagSchema = new SimpleSchema({
     label: 'middagId',
     optional: true
   },
-  explainNone: {
+  isDinner: {
+    type: Boolean
+  },
+  title: {
     type: String,
-    label: 'Begrunnelse for ingen middag',
-    optional: true
+    label: 'Begrunnelse for ingen middag, eller middagstittel',
   },
   comment: {
     type: String,

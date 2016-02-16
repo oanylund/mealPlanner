@@ -38,7 +38,7 @@ class AlertBtn extends React.Component {
         }
 
     return (
-      <Button disabled={this.props.disabled} bsStyle='warning' onClick={this.handleAlertShow} block>Start på nytt</Button>
+      <Button disabled={this.props.disabled} bsStyle='warning' onClick={this.handleAlertShow} block>Start uken på nytt</Button>
     );
   }
 }

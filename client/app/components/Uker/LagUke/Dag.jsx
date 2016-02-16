@@ -22,7 +22,6 @@ showImgElement.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   descriptionGrey: PropTypes.string,
-  closeHandler: PropTypes.function,
   imgUrl: PropTypes.string,
   linkUrl: PropTypes.string,
 }

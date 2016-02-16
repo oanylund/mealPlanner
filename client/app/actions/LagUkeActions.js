@@ -10,5 +10,8 @@ class LagUkeActions {
   deleteDays() {
     return true
   }
+  addDay(dayObject) {
+    return dayObject
+  }
 }
 export default alt.createActions(LagUkeActions)
