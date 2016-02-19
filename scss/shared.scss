@@ -1,5 +1,14 @@
 // main: ../matPlanlegger.scss
 
+// Colors
+
+$backColor: white;
+$subBackColor: none;
+$hoverColor: white;
+$fontColor: black;
+$fontHoverColor: #008cba;
+$greySeparator: #9e9e9e;
+
 
 // Generic components
 
@@ -31,4 +40,8 @@
 
 .fa-CloseBtn {
   @extend %closeBtn;
+}
+
+%boxShadow {
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.1);
 }

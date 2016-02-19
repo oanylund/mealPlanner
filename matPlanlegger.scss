@@ -1,10 +1,6 @@
 // compileCompressed: ./$1.css
 
-$backColor: white;
-$subBackColor: none;
-$hoverColor: white;
-$fontColor: black;
-$fontHoverColor: #008cba;
+@import "./scss/shared.scss";
 
 body,html {
   height: 100%;
@@ -35,7 +31,6 @@ html {
   }
 }
 
-@import "./scss/shared.scss";
 @import "./scss/sidebar.scss";
 @import "./scss/verticalnav.scss";
 @import "./scss/uke/dagform.scss";
