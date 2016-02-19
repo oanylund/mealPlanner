@@ -1,20 +1,20 @@
 import React, { PropTypes } from 'react'
-import { composeAll, composeWithTracker } from 'react-komposer'
+import { composeWithTracker } from 'react-komposer'
+import IngredsInCat from '../../../composers/IngredsInCat'
+import { Badge } from 'react-bootstrap'
 
-class IngredList extends React.Component {
-  constructor(props) {
-    super(props)
-
-  }
-
-  render() {
-    return(
-
+const IngredCategory = ({category, IngredsInCat}) => {
+  const ingredients = IngredsInCat.map( (ingredient) => {
+    return (
+      <p>{ingredient.name.singular}</p>
     )
-  }
+  })
+  return (
+    <div>
+      <h2>{category.name} <Badge>{IngredsInCat.length}</Badge></h2>
+      {ingredients}
+    </div>
+  )
 }
 
-export default composeAll(
-  composeWithTracker(IngredCat),
-  composeWithTracker(IngredsInCat)
-)(IngredList)
+export default composeWithTracker(IngredsInCat)(IngredCategory)
