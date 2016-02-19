@@ -9,7 +9,9 @@ function composer(props, onData) {
   };
 };
 
-const IngKatList = ({categories}) => {
+const IngKatList = (props) => {
+  debugger
+  categories = props.categories
   const categoryList = categories.map( (category) => {
     return(
       <p>{category.name}</p>
