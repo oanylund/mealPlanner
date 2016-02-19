@@ -9,8 +9,6 @@ import Uker from './app/components/Uker/Uker.jsx'
 import LagUke from './app/components/Uker/LagUke.jsx'
 
 import IngrediensListe from './app/components/Ingredienser/Ingredienser.jsx'
-import RedigerKategori from './app/components/Ingredienser/Kategorier/IngrediensKategorier.jsx'
-
 
 export default () => {
   return (
