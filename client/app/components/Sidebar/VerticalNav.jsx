@@ -13,7 +13,7 @@ const VerticalNav = (props) => {
           <SubItem text="Lag ny" subpath="lag-ny" icon="plus"/>
         </ListItem>
         <ListItem text="Ingrediens" path="/ingrediens" icon="list">
-          <SubItem text="Rediger" subpath="rediger" icon="gears"/>
+          <SubItem text="Kategorier" subpath="kategorier" icon="clone"/>
         </ListItem>
         <ListItem text="Handleliste" path="/handleliste" icon="shopping-cart"/>
       </div>
