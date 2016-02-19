@@ -27,8 +27,7 @@ class IngrediensBox extends React.Component {
   }
   onRemove(id,e) {
     e.stopPropagation()
-    // TODO: Call Remove method
-    alert(id)
+    Meteor.call('removeIngredient',id)
   }
   render () {
     const btns = {
