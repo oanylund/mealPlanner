@@ -1,0 +1,15 @@
+// main: ../../matPlanlegger.scss
+
+.ingrediensBox {
+  display: flex;
+  height: 100px;
+  background-color: white;
+  .ingrediensBox-Name {
+    flex-grow: 1;
+    background-color: rgb(166, 214, 65);
+  }
+  .ingrediensBox-Unit {
+    flex-grow: 1;
+    background-color: rgb(54, 101, 97);
+  }
+}

@@ -2,11 +2,12 @@ import React, { PropTypes } from 'react'
 import { composeWithTracker } from 'react-komposer'
 import IngredsInCat from '../../../composers/IngredsInCat'
 import { Col, Badge } from 'react-bootstrap'
+import IngredBox from './IngrediensBox.jsx'
 
 const IngredCategory = ({category, IngredsInCat}) => {
   const ingredients = IngredsInCat.map( (ingredient) => {
     return (
-        <p>{ingredient.name.singular}</p>
+        <IngredBox ingredient={ingredient} />
     )
   })
   return (

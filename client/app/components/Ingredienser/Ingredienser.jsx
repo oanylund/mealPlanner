@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { composeWithTracker } from 'react-komposer'
 import { Grid, Row, Col } from 'react-bootstrap'
-import Catrender from './Kategorier/IngrediensCategory.jsx'
+import Catrender from './IngrediensCategory.jsx'
 import IngredCats from '../../composers/IngredCats'
 
 class Ingredienser extends React.Component {
