@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { composeWithTracker } from 'react-komposer'
+import { Grid, Row, Col } from 'react-bootstrap'
 import Catrender from './Kategorier/IngrediensCategory.jsx'
 import IngredCats from '../../composers/IngredCats'
 
@@ -15,7 +16,20 @@ class Ingredienser extends React.Component {
       )
     })
     return (
-      <div className='marginSquare'>{categories}</div>
+      <div className='marginSquare'>
+        <Grid fluid>
+          <Row>
+            <Col md={12}>
+              <h2>Ingredienser</h2>
+              {/* TODO: Add category filter
+              */}
+            </Col>
+          </Row>
+          <Row>
+              {categories}
+          </Row>
+        </Grid>
+      </div>
     )
   }
 }
