@@ -1,15 +1,44 @@
 // main: ../../matPlanlegger.scss
 
 .ingrediensBox {
-  display: flex;
-  height: 100px;
+  display: flex;;
+  padding: 10px;
   background-color: white;
-  .ingrediensBox-Name {
-    flex-grow: 1;
-    background-color: rgb(166, 214, 65);
+  margin-bottom: 5px;
+  flex-flow: row wrap;
+  @extend %boxShadow;
+  .ingrediensBox-Col {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column wrap;
+    .ingrediensBox-Headers {
+      flex-grow: 1;
+      p {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+    }
+    .ingrediensBox-Bodies {
+      flex-grow: 1;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      .ingrediensBox-smallTitle {
+        font-size: 1.2rem;
+      }
+      .ingrediensBox-Row {
+        flex: 0 0 auto;
+        padding: 0 5px;
+      }
+    }
+    &:first-child {
+      border-right: 1px dashed $greySeparator;
+      margin-right: 10px;
+    }
   }
-  .ingrediensBox-Unit {
-    flex-grow: 1;
-    background-color: rgb(54, 101, 97);
+
+  .ingrediensBox-centered {
+    justify-content: center !important;
   }
+
 }
