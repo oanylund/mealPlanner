@@ -3,6 +3,7 @@ import { composeWithTracker } from 'react-komposer'
 import { Grid, Row, Col } from 'react-bootstrap'
 import Catrender from './IngrediensCategory.jsx'
 import IngredCats from '../../composers/IngredCats'
+import AddIngredient from './AddIngredient.jsx'
 
 class Ingredienser extends React.Component {
   constructor(props) {
@@ -10,6 +11,10 @@ class Ingredienser extends React.Component {
   }
 
   render () {
+    const catOptions = this.props.categories.map( (category,i) =>{
+      return { value: category._id, label: category.name }
+    })
+
     const categories = this.props.categories.map( (category,i) => {
       return (
         <Catrender key={`CAT${i}`} category={category}/>
@@ -27,6 +32,11 @@ class Ingredienser extends React.Component {
           </Row>
           <Row>
               {categories}
+          </Row>
+          <Row>
+            <Col md={12}>
+              <AddIngredient categoryOptions={catOptions} />
+            </Col>
           </Row>
         </Grid>
       </div>
