@@ -5,10 +5,11 @@ class IngrediensBox extends React.Component {
     super(props)
   }
   render () {
+    const ingredient = this.props.ingredient
     return (
       <div className='ingrediensBox'>
-        <div className='ingrediensBox-Name'>t</div>
-        <div className='ingrediensBox-Unit'>t</div>
+        <div className='ingrediensBox-Name'>{ingredient.name.singular}</div>
+        <div className='ingrediensBox-Unit'>{ingredient.unit.singular}</div>
       </div>
     )
   }

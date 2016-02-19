@@ -10,9 +10,9 @@ class Ingredienser extends React.Component {
   }
 
   render () {
-    const categories = this.props.categories.map( (category) => {
+    const categories = this.props.categories.map( (category,i) => {
       return (
-        <Catrender category={category}/>
+        <Catrender key={`CAT${i}`} category={category}/>
       )
     })
     return (
