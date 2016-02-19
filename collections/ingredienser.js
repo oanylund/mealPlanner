@@ -29,12 +29,17 @@ IngrediensSchema = new SimpleSchema({
 
   name: {
     type: SingularPluralSchema,
-    label: 'Navn på ingrediens'
+    label: 'Navn på ingrediens',
+    index: 1
   },
   unit: {
     type: SingularPluralSchema,
     label: 'Hvordan enhet den måles i'
   },
+  categoryId: {
+    type: String,
+    index: 1
+  }
 
 
 })
