@@ -8,8 +8,8 @@ import UkeMain from './app/components/Uker/UkeMain.jsx'
 import Uker from './app/components/Uker/Uker.jsx'
 import LagUke from './app/components/Uker/LagUke.jsx'
 
+import IngrediensListe from './app/components/Ingredienser/IngrediensListe.jsx'
 import RedigerKategori from './app/components/Ingredienser/Kategorier/IngrediensKategorier.jsx'
-
 
 
 export default () => {
@@ -21,6 +21,7 @@ export default () => {
           <Route path='lag-ny' component={LagUke}/>
         </Route>
         <Route path='ingrediens' component={UkeMain}>
+          <IndexRoute component={IngrediensListe} />
           <Route path='kategorier' component={RedigerKategori}/>
         </Route>
         <Route path="*" component={NotFound}/>
@@ -28,4 +29,3 @@ export default () => {
     </Router>
   );
 }
-// <IndexRoute component={Dashboard} />
