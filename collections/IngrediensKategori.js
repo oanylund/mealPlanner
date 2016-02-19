@@ -14,7 +14,8 @@ IngrediensKat.allow({
 
 IngrediensKatSchema = new SimpleSchema({
   name: {
-    type: String
+    type: String,
+    index: 1
   }
 })
 
