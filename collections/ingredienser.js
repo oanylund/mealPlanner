@@ -1,6 +1,4 @@
-Ingredienser = new Mongo.Collection("ingredienser")
-
-// SimpleSchema.debug = true
+Ingredienser = new Mongo.Collection('ingredienser')
 
 Ingredienser.allow({
   insert: (userId,doc) => {
@@ -40,7 +38,5 @@ IngrediensSchema = new SimpleSchema({
 
 
 })
-
-
 
 Ingredienser.attachSchema(IngrediensSchema)
