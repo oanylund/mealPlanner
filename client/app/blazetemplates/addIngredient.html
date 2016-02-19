@@ -1,0 +1,23 @@
+<template name="addIngredient">
+  {{#autoForm id="addIngredient" type="insert" collection="Ingredienser" class="IngForm-topborder"}}
+  <fieldset>
+    <legend>Lag ny ingrediens</legend>
+    <div class="row">
+      <div class="col-md-6">
+        {{> afQuickField name="name" }}
+      </div>
+      <div class="col-md-6">
+        {{> afQuickField name="unit" }}
+      </div>
+      <div class="col-md-6">
+        {{> afFormGroup name="categoryId" options=catOptions firstOption="Velg en kategori" }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-6" style="text-align:right">
+        <button type="submit" class="btn btn-primary">Legg til ingrediens</button>
+      </div>
+    </div>
+  </fieldset>
+  {{/autoForm}}
+</template>
