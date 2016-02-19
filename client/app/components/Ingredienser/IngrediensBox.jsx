@@ -1,16 +1,29 @@
 import React, { PropTypes } from 'react'
+import ClassName from 'classnames'
+import IngrediensBoxExtended from './IngrediensBoxExtended.jsx'
 
 class IngrediensBox extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      isExpanded: true
+    }
+    this.onToggle = this.onToggle.bind(this)
+  }
+  onToggle(e){
+    e.preventDefault()
+    this.setState({
+      isExpanded: !this.state.isExpanded
+    })
   }
   render () {
-    const ingredient = this.props.ingredient
-    return (
-      <div className='ingrediensBox'>
-        <div className='ingrediensBox-Name'>{ingredient.name.singular}</div>
-        <div className='ingrediensBox-Unit'>{ingredient.unit.singular}</div>
+    return(
+      <div>
+        { this.state.isExpanded ?
+          <IngrediensBoxExtended click={this.onToggle} ingredient={this.props.ingredient} />
+          : '' }
       </div>
+
     )
   }
 }
