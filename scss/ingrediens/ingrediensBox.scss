@@ -1,16 +1,17 @@
 // main: ../../matPlanlegger.scss
 
 .ingrediensBox {
-  display: flex;;
+  display: flex;
   padding: 10px;
   background-color: white;
   margin-bottom: 5px;
   flex-flow: row wrap;
   @extend %boxShadow;
   .ingrediensBox-Col {
-    flex: 1 0 auto;
+    flex: 1 0 200px;
     display: flex;
     flex-flow: column wrap;
+    justify-content: center;
     .ingrediensBox-Headers {
       flex-grow: 1;
       p {
@@ -36,9 +37,40 @@
       margin-right: 10px;
     }
   }
-
+  .ingrediensBox-MenuCol {
+    $padWidth: 5px;
+    $itemWidth: 20px;
+    $colWidth: $itemWidth*2;
+    $fullWidth: $colWidth+$padWidth;
+    flex: 0 0 $fullWidth;
+    display: flex;
+    .ingrediensBox-MenuItem {
+      @extend %flexCenterChild;
+      width: $itemWidth;
+      margin-right: $padWidth;
+      height: $itemWidth;
+      font-size: 1.5rem;
+      &:last-child {
+        margin-right: 0;
+      }
+      &:hover {
+        color: $fontHoverColor;
+        cursor: pointer;
+      }
+      z-index: 100;
+    }
+  }
   .ingrediensBox-centered {
     justify-content: center !important;
   }
-
+}
+.ingrediensBox-Back {
+  background-color: $fontHoverColor !important;
+  color: white;
+}
+.ingrediensBox-zoomIn {
+  cursor: zoom-in;
+}
+.ingrediensBox-zoomOut {
+  cursor: zoom-out;
 }

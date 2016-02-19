@@ -18,7 +18,7 @@ const IngrediensBoxExtended = ({ingredient,click}) => {
     })
 
     return (
-      <div className='ingrediensBox' onClick={click}>
+      <div className='ingrediensBox ingrediensBox-Back ingrediensBox-zoomOut' onClick={click}>
         <div className='ingrediensBox-Col'>
 
           <div className='ingrediensBox-Headers'>
