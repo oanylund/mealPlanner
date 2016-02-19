@@ -38,6 +38,7 @@ IngrediensSchema = new SimpleSchema({
   },
   categoryId: {
     type: String,
+    label: 'Kategori',
     index: 1
   }
 
