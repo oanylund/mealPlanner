@@ -1,29 +1,46 @@
 Ingredienser = new Mongo.Collection("ingredienser")
 
+// SimpleSchema.debug = true
+
+Ingredienser.allow({
+  insert: (userId,doc) => {
+    return true
+  },
+  update: (userId,doc) => {
+    return true
+  },
+  remove: (userId,doc) => {
+    return true
+  },
+})
+
+SingularPluralSchema = new SimpleSchema({
+  singular: {
+    type: String,
+    label: 'Entall',
+    index: true
+  },
+  plural: {
+    type: String,
+    optional: true,
+    label: 'Flertall'
+  },
+})
+
 IngrediensSchema = new SimpleSchema({
 
   name: {
-    type: Object
+    type: SingularPluralSchema,
+    label: 'Navn på ingrediens'
   },
-  "name.$.singular": {
-    type: String
-  },
-  "name.$.plural": {
-    type: String,
-    optional: true
+  unit: {
+    type: SingularPluralSchema,
+    label: 'Hvordan enhet den måles i'
   },
 
-  unit: {
-    type: Object
-  },
-  "unit.$.singular": {
-    type: String
-  },
-  "unit.$.plural": {
-    type: String,
-    optional: true
-  },
 
 })
+
+
 
 Ingredienser.attachSchema(IngrediensSchema)
