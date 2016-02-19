@@ -20,10 +20,7 @@ export default () => {
           <IndexRoute component={Uker} />
           <Route path='lag-ny' component={LagUke}/>
         </Route>
-        <Route path='ingrediens' component={UkeMain}>
-          <IndexRoute component={IngrediensListe} />
-          <Route path='kategorier' component={RedigerKategori}/>
-        </Route>
+        <Route path='ingrediens' component={IngrediensListe}/>
         <Route path="*" component={NotFound}/>
       </Route>
     </Router>
