@@ -16,7 +16,7 @@ SingularPluralSchema = new SimpleSchema({
   singular: {
     type: String,
     label: 'Entall',
-    index: true
+    index: 1
   },
   plural: {
     type: String,
