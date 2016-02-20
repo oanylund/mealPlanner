@@ -4,10 +4,10 @@ import IngredsInCat from '../../composers/IngredsInCat'
 import { Col, Badge } from 'react-bootstrap'
 import IngredBox from './IngrediensBox.jsx'
 
-const IngredCategory = ({category, IngredsInCat}) => {
+const IngredCategory = ({category, catOptions, IngredsInCat}) => {
   const ingredients = IngredsInCat.map( (ingredient,i) => {
     return (
-        <IngredBox key={`ING${i}`} ingredient={ingredient} />
+        <IngredBox key={`ING${i}`} catOptions={catOptions} ingredient={ingredient} />
     )
   })
   return (

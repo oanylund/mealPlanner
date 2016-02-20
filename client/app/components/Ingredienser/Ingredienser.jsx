@@ -17,7 +17,7 @@ class Ingredienser extends React.Component {
 
     const categories = this.props.categories.map( (category,i) => {
       return (
-        <Catrender key={`CAT${i}`} category={category}/>
+        <Catrender key={`CAT${i}`} catOptions={catOptions} category={category}/>
       )
     })
     return (

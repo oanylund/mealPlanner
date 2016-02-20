@@ -1,0 +1,24 @@
+// main: ../../matPlanlegger.scss
+
+.editIngredient-Box {
+  position: relative;
+  display: flex;
+  padding: 20px;
+  background-color: white;
+  margin-bottom: 5px;
+  flex-flow: row wrap;
+  @extend %boxShadow;
+  fieldset {
+    flex: 1 0 auto;
+    display:flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    padding-right: 20px;
+  }
+  .editIngredient-Center {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+}

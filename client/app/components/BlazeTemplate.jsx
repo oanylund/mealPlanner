@@ -14,6 +14,9 @@ export default class BlazeTemplate extends React.Component {
   componentWillUnmount() {
     Blaze.remove(this.view);
   }
+  componentWillReceiveProps(props) {
+      this.view.dataVar.set(props);
+  }
   render() {
     let {component, ...props} = this.props;
     props.ref = 'root';
