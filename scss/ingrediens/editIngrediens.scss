@@ -7,6 +7,7 @@
   background-color: white;
   margin-bottom: 5px;
   flex-flow: row wrap;
+  border: 1px solid $fontHoverColor;
   @extend %boxShadow;
   fieldset {
     flex: 1 0 auto;
