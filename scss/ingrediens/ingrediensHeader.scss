@@ -1,0 +1,28 @@
+// main: ../../matPlanlegger.scss
+
+.IngrediensHeader {
+  display: inline-block;
+  form {
+    display: inline;
+    input {
+      background-color:rgba(0, 0, 0, 0);
+      outline: none;
+      border: none;
+      border-bottom: 1px solid grey;
+    }
+  }
+  .IngrediensHeader-menu {
+    margin-left: 20px;
+    font-size: 1.9rem;
+    display: none;
+    i {
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  }
+  &:hover {
+    .IngrediensHeader-menu {
+      display: inline;
+    }
+  }
+}
