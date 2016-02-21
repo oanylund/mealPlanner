@@ -98,7 +98,7 @@ class EditIngredient extends React.Component {
               </select>
             </div>
             <div style={{textAlign:'right'}}>
-              <button type='submit' className='btn btn-default'>Oppdater</button>
+              <button type='submit' className='btn btn-primary'>Oppdater</button>
             </div>
           </fieldset>
         </div>
