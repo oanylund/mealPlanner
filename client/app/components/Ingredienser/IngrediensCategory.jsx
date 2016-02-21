@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react'
 import { composeWithTracker } from 'react-komposer'
 import IngredsInCat from '../../composers/IngredsInCat'
-import { Col, Badge } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
 import IngredBox from './IngrediensBox.jsx'
+import IngredHeader from './IngrediensHeader.jsx'
 
 const IngredCategory = ({category, catOptions, IngredsInCat}) => {
   const ingredients = IngredsInCat.map( (ingredient,i) => {
@@ -12,7 +13,7 @@ const IngredCategory = ({category, catOptions, IngredsInCat}) => {
   })
   return (
     <Col md={12}>
-      <h3>{category.name} <Badge>{IngredsInCat.length}</Badge></h3>
+      <IngredHeader title={category.name} id={category._id} ingredsInCat={IngredsInCat.length} />
       {ingredients}
     </Col>
   )
