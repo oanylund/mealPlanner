@@ -10,16 +10,27 @@ import LagUke from './app/components/Uker/LagUke.jsx'
 
 import IngrediensListe from './app/components/Ingredienser/Ingredienser.jsx'
 
+import MiddagMain from './app/components/Middag/MiddagMain.jsx'
+import LagMiddag from './app/components/Middag/LagMiddag/LagMiddag.jsx'
+
 export default () => {
   return (
     <Router history={browserHistory}>
       <Route path='/' component={App}>
+
         <Route path='uker' component={UkeMain}>
           <IndexRoute component={Uker} />
           <Route path='lag-ny' component={LagUke}/>
         </Route>
+
+        <Route path='middag' component={MiddagMain}>
+          <Route path='lag-ny' component={LagMiddag}/>
+        </Route>
+
         <Route path='ingrediens' component={IngrediensListe}/>
+
         <Route path="*" component={NotFound}/>
+
       </Route>
     </Router>
   );
