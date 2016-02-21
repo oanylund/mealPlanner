@@ -6,5 +6,15 @@ Meteor.methods({
     Ingredienser.update(id,{
       $set: updatedDoc
     })
+  },
+  removeIngredientCategory: (id) => {
+    IngrediensKat.remove(id)
+  },
+  updateIngredientCategory: (id,newName) => {
+    IngrediensKat.update(id, {
+      $set: {
+        name: newName
+      }
+    })
   }
 })
