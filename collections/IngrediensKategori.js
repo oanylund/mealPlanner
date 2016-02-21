@@ -15,7 +15,8 @@ IngrediensKat.allow({
 IngrediensKatSchema = new SimpleSchema({
   name: {
     type: String,
-    index: 1
+    label: 'Navn på kategori',
+    index: 1,
   }
 })
 
