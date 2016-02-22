@@ -1,0 +1,33 @@
+// main: ../../matPlanlegger.scss
+
+.addDinner {
+  .addDinner-mainHeader {
+    margin: 0 0 30px 0;
+  }
+  .addDinner-topMargin {
+    margin-top: 20px;
+  }
+  legend {
+    font-size: 15px;
+    border-bottom: 1px solid $fontHoverColor;
+    padding-bottom: 3px;
+  }
+  .addDinner-IngredRow {
+    .addDinner-Antall {
+      display: inline-block;
+      label {
+        display: block;
+      }
+      input {
+        width: auto;
+      }
+    }
+    span {
+      margin: 0 10px;
+    }
+    i {
+      font-size: 22px;
+      margin-left: 10px;
+    }
+  }
+}
