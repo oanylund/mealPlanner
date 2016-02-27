@@ -4,8 +4,29 @@
   .addDinner-mainHeader {
     margin: 0 0 30px 0;
   }
-  .addDinner-topMargin {
-    margin-top: 20px;
+  %nav-border-color {
+    border-color: #BEBEBE;
+  }
+  .addDinner-nav {
+    @extend %nav-border-color;
+    margin-bottom: 20px;
+    &>li>a {
+      background-color: white;
+      @extend %nav-border-color;
+    }
+    &>li>a:hover {
+      background-color: #DDD;
+      @extend %nav-border-color;
+    }
+    &>li.active>a, &>li.active>a:hover, &>li.active>a:focus {
+      color: white;
+      background-color: $fontHoverColor;
+      @extend %nav-border-color;
+
+    }
+  }
+  .addDinner-hidePart {
+    display: none;
   }
   legend {
     font-size: 15px;
