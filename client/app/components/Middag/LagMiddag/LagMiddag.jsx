@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Grid, Row, Col, Button, ButtonToolbar, Alert } from 'react-bootstrap'
+import AddImage from './AddImage.jsx'
 
 class LagMiddag extends React.Component {
   render () {
@@ -31,9 +32,7 @@ class LagMiddag extends React.Component {
             <Col sm={12}>
               <fieldset>
                 <legend>Legg til bilde</legend>
-                <div style={{textAlign:'center'}}>
-                  <img src="//placehold.it/200x200" className='img-thumbnail' />
-                </div>
+                <AddImage />
               </fieldset>
             </Col>
           </Row>
