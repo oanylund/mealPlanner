@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Grid, Row, Col, Nav, NavItem, Alert, Button, Pager, PageItem } from 'react-bootstrap'
+import { Grid, Row, Col, Nav, NavItem, Alert, Pager, PageItem } from 'react-bootstrap'
 import ClassName from 'classnames'
+import AddIngredient from './AddIngredient.jsx'
 
 class LagMiddag extends React.Component {
   constructor(props) {
@@ -87,22 +88,10 @@ class LagMiddag extends React.Component {
 
               <fieldset className={showIngredient}>
                 <legend>Legg til ingredienser</legend>
-                <Col sm={12}>
-                  <div className='addDinner-IngredRow'>
-                    <div className='form-group addDinner-Antall'>
-                      <label className='control-label'>Antall</label>
-                      <input className='form-control' type='number'
-                        min={1} max={9999} maxLength={4} size={4} />
-                    </div>
-                    <span>Stykk</span>
-                    <div className='form-group addDinner-Antall'>
-                      <label className='control-label'>Ingrediens</label>
-                      <input className='form-control' type='text'/>
-                    </div>
-                    <i className='fa fa-close' />
-                  </div>
-                  <Button bsStyle="primary" block><i className='fa fa-plus'/></Button>
-                </Col>
+                <Alert bsStyle='info'>
+                  <p >Trykk + knappen for å legge til ingredienser</p>
+                </Alert>
+                <AddIngredient />
               </fieldset>
 
             </Col>
