@@ -1,5 +1,17 @@
 Middager = new Mongo.Collection("middager")
 
+IngrediensInDinner = new SimpleSchema({
+  quantity: {
+    type: Number
+  },
+  displayOrder: {
+    type: Number
+  },
+  ingredientId: {
+    type: String
+  }
+})
+
 MiddagSchema = new SimpleSchema({
   title: {
     type: String,
@@ -26,8 +38,10 @@ MiddagSchema = new SimpleSchema({
     type: String,
     defaultValue: '/images/default-dinner.png',
     optional: true
+  },
+  ingredients: {
+    type: [IngrediensInDinner]
   }
-
 })
 
 Middager.attachSchema(MiddagSchema)
