@@ -1,5 +1,19 @@
 Ingredienser = new Mongo.Collection('ingredienser')
 
+// Add search method to collection class
+Ingredienser.searchName = (query) => {
+  return Ingredienser.find({
+      'name.plural' : {
+        $regex: RegExp.escape(query),
+        $options: 'i'
+      }
+    },
+    {
+      limit: 20
+    });
+}
+
+
 Ingredienser.allow({
   insert: (userId,doc) => {
     return true
