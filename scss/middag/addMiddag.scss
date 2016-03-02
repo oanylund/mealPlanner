@@ -7,22 +7,61 @@
   %nav-border-color {
     border-color: #BEBEBE;
   }
-  .addDinner-nav {
+  .addDinner-nav.nav-tabs {
     @extend %nav-border-color;
     margin-bottom: 20px;
+    $topBorderWidth: 5px;
     &>li>a {
       background-color: white;
-      @extend %nav-border-color;
+      // @extend %nav-border-color;
+      border: none;
+      border-top: $topBorderWidth solid #BBB;
     }
     &>li>a:hover {
-      background-color: #DDD;
-      @extend %nav-border-color;
+      background-color: #EEE;
+      // @extend %nav-border-color;
     }
     &>li.active>a, &>li.active>a:hover, &>li.active>a:focus {
+      cursor: pointer;
+      color: black;
+      border: none;
+      border-top: $topBorderWidth solid $fontHoverColor;
+    }
+    &>li.success>a {
+      cursor: pointer;
+      background-color: #43ac6a;
       color: white;
-      background-color: $fontHoverColor;
-      @extend %nav-border-color;
-
+      &:hover {
+        background-color: #358753;
+      }
+    }
+    &>li.success.active>a{
+      background-color: #43ac6a;
+      color: white;
+    }
+    &>li.warning>a {
+      cursor: pointer;
+      background-color: #e99002;
+      color: white;
+      &:hover {
+        background-color: #b67102;
+      }
+    }
+    &>li.warning.active>a{
+      background-color: #e99002;
+      color: white;
+    }
+    &>li.error>a {
+      cursor: pointer;
+      background-color: #d9534f;
+      color: white;
+      &:hover {
+        background-color: #c9302c;
+      }
+    }
+    &>li.error.active>a{
+      background-color: #d9534f;
+      color: white;
     }
   }
   .addDinner-hidePart {
