@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react'
-import { Grid, Row, Col, Nav, NavItem, Alert, Button, Pager, PageItem } from 'react-bootstrap'
+import { Grid, Row, Col, Alert, Button, Pager, PageItem } from 'react-bootstrap'
 import ClassName from 'classnames'
 import AltContainer from 'alt-container'
 import alt from '../../../alt'
 import LagMiddagStore from '../../../stores/LagMiddagStore'
 import LagMiddagActions from '../../../actions/LagMiddagActions'
+import NavSteps from './NavSteps.jsx'
 
 import AddTitleAndDesc from './AddTitleAndDesc.jsx'
 
@@ -42,17 +43,14 @@ class LagMiddag extends React.Component {
     const showTitleDesc = ClassName({
       'addDinner-hidePart': !(this.state.selectedView === 1)
     })
-    const showImg = ClassName({
+    const showIngredient = ClassName({
       'addDinner-hidePart': !(this.state.selectedView === 2)
     })
-    const showIngredient = ClassName({
+    const showSteps = ClassName({
       'addDinner-hidePart': !(this.state.selectedView === 3)
     })
-    const showSteps = ClassName({
+    const showImg = ClassName({
       'addDinner-hidePart': !(this.state.selectedView === 4)
-    })
-    const showFinnish = ClassName({
-      'addDinner-hidePart': !(this.state.selectedView === 5)
     })
 
     return (
@@ -61,20 +59,13 @@ class LagMiddag extends React.Component {
           <Row>
             <Col md={12}>
               <h2 className='addDinner-mainHeader'>Lag ny middag</h2>
-              <Nav className='addDinner-nav'
-                bsStyle="tabs" activeKey={this.state.selectedView} onSelect={this.changeView}>
-                <NavItem eventKey={1}>Tittel og beskrivelse</NavItem>
-                <NavItem eventKey={2}>Bilde</NavItem>
-                <NavItem eventKey={3}>Ingredienser</NavItem>
-                <NavItem eventKey={4}>Steg</NavItem>
-                <NavItem eventKey={5}>Fullfør</NavItem>
-              </Nav>
             </Col>
           </Row>
           <Row>
             <Col sm={12}>
 
               <AltContainer store={LagMiddagStore} actions={LagMiddagActions} >
+                <NavSteps selectedView={this.state.selectedView} changeView={this.changeView} />
                 <AddTitleAndDesc changeNavElement={this.changeView} fieldClassName={showTitleDesc} />
               </AltContainer>
 
@@ -111,7 +102,7 @@ class LagMiddag extends React.Component {
             <Col sm={12}>
               <Pager>
                 { selectedView > 1 ? <PageItem previous onSelect={this.decrementView}>Forrige steg</PageItem> : ''}
-                { selectedView < 5 ? <PageItem next onSelect={this.incrementView}>Neste steg</PageItem> : '' }
+                { selectedView < 4 ? <PageItem next onSelect={this.incrementView}>Neste steg</PageItem> : '' }
               </Pager>
             </Col>
           </Row>
