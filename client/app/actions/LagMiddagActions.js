@@ -7,5 +7,8 @@ class LagMiddagActions {
   descFieldChanged(newVal) {
     return newVal
   }
+  addIngredient(newIngred) {
+    return newIngred
+  }
 }
 export default alt.createActions(LagMiddagActions)
