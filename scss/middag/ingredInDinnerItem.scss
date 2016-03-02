@@ -1,0 +1,31 @@
+// main: ../../matPlanlegger.scss
+
+.addDinner-IngredList {
+  margin-bottom: 20px;
+  &>div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    border-bottom: 1px dashed #AAA;
+    &>span {
+      flex: 0 0 auto;
+      margin-right: 10px;
+      text-transform: lowercase;
+    }
+    &>span.addDinner-IngredItemName {
+      font-weight: bold;
+    }
+    &>span.addDinner-IngredItemUnit {
+      
+    }
+    &>span.addDinner-IngredItemQuantity {
+      flex: 0 0 50px;
+      font-weight: bold;
+      border-right: 1px solid #AAA;
+    }
+  }
+}
