@@ -2,29 +2,6 @@ import React, { PropTypes } from 'react'
 import ClassName from 'classnames'
 import alt from 'alt'
 
-// const validationTostore = (field, store, form, firstAddDone) => {
-//   // Check if field is empty, render error msg if so
-//   if( form === '' && firstAddDone ) {
-//     return {
-//       [`err${field}`]: 'Dette feltet kan ikke være tomt',
-//       [`err${field}ValidationClass`]: 'has-error'
-//     };
-//   }
-//   // Check store against present value in form, render warning if not the same
-//   if( store !== form ) {
-//     return {
-//       [`err${field}`]: 'Feltet er endret, men endringen er ikke lagret',
-//       [`err${field}ValidationClass`]: 'has-warning'
-//     };
-//   }
-//   else {
-//     return {
-//       [`err${field}`]: null,
-//       [`err${field}ValidationClass`]: ''
-//     };
-//   }
-// }
-
 class AddTitleAndDesc extends React.Component {
   componentDidMount() {
     this.refs.title.focus()
@@ -36,10 +13,12 @@ class AddTitleAndDesc extends React.Component {
     const emptyDesc = titleDescObj.descHasBeenChanged && dinnerObj.desc === '';
 
     const titleValidationState = ClassName('form-group', {
-      'has-error': emptyTitle
+      'has-error': emptyTitle,
+      'has-success': titleDescObj.titleHasBeenChanged && dinnerObj.title !== ''
     });
     const descValidationState = ClassName('form-group', {
-      'has-error': emptyDesc
+      'has-error': emptyDesc,
+      'has-success': titleDescObj.descHasBeenChanged && dinnerObj.desc !== ''
     });
 
     const emptyMsg = 'Dette feltet kan ikke være tomt';
