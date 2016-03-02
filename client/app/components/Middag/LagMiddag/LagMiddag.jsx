@@ -1,16 +1,26 @@
 import React, { PropTypes } from 'react'
 import { Grid, Row, Col, Nav, NavItem, Alert, Button, Pager, PageItem } from 'react-bootstrap'
 import ClassName from 'classnames'
+import AltContainer from 'alt-container'
+import alt from '../../../alt'
+import LagMiddagStore from '../../../stores/LagMiddagStore'
+import LagMiddagActions from '../../../actions/LagMiddagActions'
+
+import AddTitleAndDesc from './AddTitleAndDesc.jsx'
 
 class LagMiddag extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedView: 1
+      selectedView: 1,
     }
     this.changeView = this.changeView.bind(this)
     this.incrementView = this.incrementView.bind(this)
     this.decrementView = this.decrementView.bind(this)
+    this.setNavState = this.setNavState.bind(this)
+  }
+  componentWillUnmount() {
+    alt.recycle(LagMiddagStore)
   }
   changeView(selView) {
     this.setState({
@@ -25,6 +35,11 @@ class LagMiddag extends React.Component {
   decrementView() {
     this.setState({
       selectedView: this.state.selectedView - 1
+    })
+  }
+  setNavState(navElement,classname) {
+    this.setState({
+      [navElement]: classname
     })
   }
   render () {
@@ -65,18 +80,13 @@ class LagMiddag extends React.Component {
           <Row>
             <Col sm={12}>
 
-              <fieldset className={showTitleDesc}>
-                <legend>Legg til tittel og beskrivelse</legend>
-                <div className='form-group'>
-                  <label className="control-label" htmlFor='newDinnerTitle'>Tittel</label>
-                  <input id='newDinnerTitle' className='form-control' type='text'/>
-                  <div className='help-block'>Testing</div>
-                </div>
-                <div className='form-group'>
-                  <label className="control-label" htmlFor='newDinnerDesc'>Beskrivelse</label>
-                  <textarea id='newDinnerDesc' className="form-control" ></textarea>
-                </div>
-              </fieldset>
+              <AltContainer store={LagMiddagStore} actions={LagMiddagActions} >
+                <AddTitleAndDesc
+                  setNavState={this.setNavState}
+                  changeNavElement={this.changeView}
+                  fieldClassName={showTitleDesc}
+                />
+              </AltContainer>
 
               <fieldset className={showImg}>
                 <legend>Legg til bilde</legend>
