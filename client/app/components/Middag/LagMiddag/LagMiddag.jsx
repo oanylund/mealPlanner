@@ -86,13 +86,9 @@ class LagMiddag extends React.Component {
                 </div>
               </fieldset>
 
-              <fieldset className={showIngredient}>
-                <legend>Legg til ingredienser</legend>
-                <Alert bsStyle='info'>
-                  <p >Trykk + knappen for å legge til ingredienser</p>
-                </Alert>
-                <AddIngredient />
-              </fieldset>
+
+              <AddIngredient showIngredient={showIngredient}/>
+
 
             </Col>
           </Row>

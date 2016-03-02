@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Button, Col } from 'react-bootstrap'
+import { Button, Col, Alert } from 'react-bootstrap'
 import AddIngredSearch from './AddIngredSearch.jsx'
 
 
@@ -64,36 +64,43 @@ class AddIngredient extends React.Component {
       var showUnit = plural ? this.state.selectedIngredient.unit.plural :
       this.state.selectedIngredient.unit.singular;
     }
+    const ingredsInStore = 4;
+    const alertEmpty = <Alert bsStyle='info'><p>Trykk + knappen for å legge til ingredienser</p></Alert>
+    const showIngreds = ingredsInStore === 0 ? alertEmpty : '';
 
-    if( this.state.showAddForm ) {
-      return (
-        <Col sm={12}>
-          <div className='addDinner-IngredRow'>
-            <div className='addDinner-Antall'>
-              <label className='control-label'>Antall</label>
-              <input className='form-control' type='number' ref='quantity'
-                min={1} max={9999} maxLength={4} size={4}
-                onChange={this.onQuantityChange} value={this.state.ingredientQuantity}/>
-            </div>
-            { valSelected ? showUnit : <span>-</span> }
-            <div className='addDinner-Ingred'>
-              <label className='control-label'>Ingrediens</label>
-              <AddIngredSearch query={this.state.searchQuery} searchChange={this.onSearchChange}
-                valSelected={valSelected} plural={plural}
-                selectVal={this.onSelectVal}
-              />
-            </div>
-            { valSelected ? <input ref='addIngredBtn' onClick={this.onReset} className='btn btn-primary addIngredBtn' type='button' value='Legg til'/> :
-              <i onClick={this.onReset} className='fa fa-close'/> }
-          </div>
-        </Col>
-      )
-    }
+    const form = (
+      <div className='addDinner-IngredRow'>
+        <div className='addDinner-Antall'>
+          <label className='control-label'>Antall</label>
+          <input className='form-control' type='number' ref='quantity'
+            min={1} max={9999} maxLength={4} size={4}
+            onChange={this.onQuantityChange} value={this.state.ingredientQuantity}/>
+        </div>
+        { valSelected ? showUnit : <span>-</span> }
+        <div className='addDinner-Ingred'>
+          <label className='control-label'>Ingrediens</label>
+          <AddIngredSearch query={this.state.searchQuery} searchChange={this.onSearchChange}
+            valSelected={valSelected} plural={plural}
+            selectVal={this.onSelectVal}
+            />
+        </div>
+        { valSelected ? <input ref='addIngredBtn' onClick={this.onReset} className='btn btn-primary addIngredBtn' type='button' value='Legg til'/> :
+        <i onClick={this.onReset} className='fa fa-close'/> }
+        </div>
+    );
 
+    const btn = (
+        <button ref='showAddIngredFormBtn' type='button'
+          className='btn btn-primary btn-block' onClick={this.showAddForm}>
+          <i className='fa fa-plus'/>
+        </button>
+    );
     return (
-      <Col sm={12}>
-        <button ref='showAddIngredFormBtn' type='button' className='btn btn-primary btn-block' onClick={this.showAddForm}><i className='fa fa-plus'/></button>
-      </Col>
+      <fieldset className={this.props.showIngredient}>
+        <legend>Legg til ingredienser</legend>
+        {showIngreds}
+        { this.state.showAddForm ? form : btn }
+      </fieldset>
     )
   }
 }
