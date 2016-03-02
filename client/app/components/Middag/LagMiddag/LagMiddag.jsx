@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react'
-import { Grid, Row, Col, Alert, Button, Pager, PageItem } from 'react-bootstrap'
+import { Grid, Row, Col, Pager, PageItem } from 'react-bootstrap'
 import ClassName from 'classnames'
 import AltContainer from 'alt-container'
 import alt from '../../../alt'
 import LagMiddagStore from '../../../stores/LagMiddagStore'
 import LagMiddagActions from '../../../actions/LagMiddagActions'
-import NavSteps from './NavSteps.jsx'
 
+import NavSteps from './NavSteps.jsx'
 import AddTitleAndDesc from './AddTitleAndDesc.jsx'
+import AddIngredient from './AddIngredient.jsx'
 
 class LagMiddag extends React.Component {
   constructor(props) {
@@ -67,6 +68,7 @@ class LagMiddag extends React.Component {
               <AltContainer store={LagMiddagStore} actions={LagMiddagActions} >
                 <NavSteps selectedView={this.state.selectedView} changeView={this.changeView} />
                 <AddTitleAndDesc changeNavElement={this.changeView} fieldClassName={showTitleDesc} />
+                <AddIngredient showIngredient={showIngredient}/>
               </AltContainer>
 
               <fieldset className={showImg}>
@@ -74,26 +76,6 @@ class LagMiddag extends React.Component {
                 <div style={{textAlign:'center'}}>
                   <img src="//placehold.it/200x200" className='img-thumbnail' />
                 </div>
-              </fieldset>
-
-              <fieldset className={showIngredient}>
-                <legend>Legg til ingredienser</legend>
-                <Col sm={12}>
-                  <div className='addDinner-IngredRow'>
-                    <div className='form-group addDinner-Antall'>
-                      <label className='control-label'>Antall</label>
-                      <input className='form-control' type='number'
-                        min={1} max={9999} maxLength={4} size={4} />
-                    </div>
-                    <span>Stykk</span>
-                    <div className='form-group addDinner-Antall'>
-                      <label className='control-label'>Ingrediens</label>
-                      <input className='form-control' type='text'/>
-                    </div>
-                    <i className='fa fa-close' />
-                  </div>
-                  <Button bsStyle="primary" block><i className='fa fa-plus'/></Button>
-                </Col>
               </fieldset>
 
             </Col>
