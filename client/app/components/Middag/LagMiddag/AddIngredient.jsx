@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Button, Col, Alert } from 'react-bootstrap'
 import AddIngredSearch from './AddIngredSearch.jsx'
-
+import ShowIngredsAdded from './ShowIngredsAdded.jsx'
 
 class AddIngredient extends React.Component {
   constructor(props) {
@@ -16,7 +16,8 @@ class AddIngredient extends React.Component {
     this.onQuantityChange = this.onQuantityChange.bind(this)
     this.onSelectVal = this.onSelectVal.bind(this)
     this.showAddForm = this.showAddForm.bind(this)
-    this.onReset = this.onReset.bind(this)
+    this._resetForm = this._resetForm.bind(this)
+    this.onAdd = this.onAdd.bind(this)
   }
   onQuantityChange() {
     let newQuantity = +this.refs.quantity.value
@@ -45,7 +46,7 @@ class AddIngredient extends React.Component {
       this.refs.quantity.focus()
     })
   }
-  onReset() {
+  _resetForm() {
     this.setState({
       searchQuery: '',
       selectedIngredient: null,
@@ -57,6 +58,11 @@ class AddIngredient extends React.Component {
       }
     })
   }
+  onAdd() {
+    const ingredObj = Object.assign(this.state.selectedIngredient, { quantity: this.state.ingredientQuantity })
+    this.props.addIngredient(ingredObj)
+    this._resetForm()
+  }
   render () {
     const valSelected = !!this.state.selectedIngredient;
     const plural = (this.state.ingredientQuantity > 1);
@@ -64,9 +70,11 @@ class AddIngredient extends React.Component {
       var showUnit = plural ? this.state.selectedIngredient.unit.plural :
       this.state.selectedIngredient.unit.singular;
     }
-    const ingredsInStore = 0;
+
+    const showIngredsComponent = <ShowIngredsAdded ingreds={this.props.dinnerObj.ingredients} />
+    const ingredsInStore = this.props.dinnerObj.ingredients.length;
     const alertEmpty = ( <Alert bsStyle='info'><p>Trykk + knappen for å legge til ingredienser</p></Alert> );
-    const showIngreds = ingredsInStore === 0 ? alertEmpty : '';
+    const showIngreds = ingredsInStore === 0 ? alertEmpty : showIngredsComponent;
 
     const form = (
       <div className='addDinner-IngredRow'>
@@ -84,14 +92,14 @@ class AddIngredient extends React.Component {
             selectVal={this.onSelectVal}
             />
         </div>
-        { valSelected ? <input ref='addIngredBtn' onClick={this.onReset} className='btn btn-primary addIngredBtn' type='button' value='Legg til'/> :
-        <i onClick={this.onReset} className='fa fa-close'/> }
+        { valSelected ? <input ref='addIngredBtn' onClick={this.onAdd} className='btn btn-primary addIngredBtn' type='button' value='Legg til'/> :
+        <i onClick={this._resetForm} className='fa fa-close'/> }
         </div>
     );
 
     const btn = (
         <button ref='showAddIngredFormBtn' type='button'
-          className='btn btn-primary btn-block' onClick={this.showAddForm}>
+          className='btn btn-primary btn-block btn-xs' onClick={this.showAddForm}>
           <i className='fa fa-plus'/>
         </button>
     );
