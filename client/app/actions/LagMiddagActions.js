@@ -1,8 +1,11 @@
 import alt from "../alt"
 
 class LagMiddagActions {
-  addTitleAndDesc(titleAndDesc) {
-    return titleAndDesc
+  titleFieldChanged(newVal) {
+    return newVal
+  }
+  descFieldChanged(newVal) {
+    return newVal
   }
 }
 export default alt.createActions(LagMiddagActions)

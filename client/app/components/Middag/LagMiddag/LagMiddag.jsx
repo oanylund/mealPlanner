@@ -17,7 +17,6 @@ class LagMiddag extends React.Component {
     this.changeView = this.changeView.bind(this)
     this.incrementView = this.incrementView.bind(this)
     this.decrementView = this.decrementView.bind(this)
-    this.setNavState = this.setNavState.bind(this)
   }
   componentWillUnmount() {
     alt.recycle(LagMiddagStore)
@@ -35,11 +34,6 @@ class LagMiddag extends React.Component {
   decrementView() {
     this.setState({
       selectedView: this.state.selectedView - 1
-    })
-  }
-  setNavState(navElement,classname) {
-    this.setState({
-      [navElement]: classname
     })
   }
   render () {
@@ -81,11 +75,7 @@ class LagMiddag extends React.Component {
             <Col sm={12}>
 
               <AltContainer store={LagMiddagStore} actions={LagMiddagActions} >
-                <AddTitleAndDesc
-                  setNavState={this.setNavState}
-                  changeNavElement={this.changeView}
-                  fieldClassName={showTitleDesc}
-                />
+                <AddTitleAndDesc changeNavElement={this.changeView} fieldClassName={showTitleDesc} />
               </AltContainer>
 
               <fieldset className={showImg}>
