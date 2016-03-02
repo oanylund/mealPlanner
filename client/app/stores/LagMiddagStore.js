@@ -16,16 +16,18 @@ class LagMiddagStore {
       descHasBeenChanged: false,
     }
     this.validSteps = {
-      titleAndDesc: false
+      titleAndDesc: {
+        valid: false,
+      }
     }
     this.bindActions(LagMiddagActions)
   }
   validateTitleAndDesc() {
     if( this.dinnerObj.title.length > 0 && this.dinnerObj.desc.length > 0 ) {
-      this.validSteps.titleAndDesc = true
+      this.validSteps.titleAndDesc.valid = true
     }
     else {
-      this.validSteps.titleAndDesc = false
+      this.validSteps.titleAndDesc.valid = false
     }
   }
   onTitleFieldChanged(newVal) {
