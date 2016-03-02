@@ -64,8 +64,8 @@ class AddIngredient extends React.Component {
       var showUnit = plural ? this.state.selectedIngredient.unit.plural :
       this.state.selectedIngredient.unit.singular;
     }
-    const ingredsInStore = 4;
-    const alertEmpty = <Alert bsStyle='info'><p>Trykk + knappen for å legge til ingredienser</p></Alert>
+    const ingredsInStore = 0;
+    const alertEmpty = ( <Alert bsStyle='info'><p>Trykk + knappen for å legge til ingredienser</p></Alert> );
     const showIngreds = ingredsInStore === 0 ? alertEmpty : '';
 
     const form = (
@@ -95,6 +95,7 @@ class AddIngredient extends React.Component {
           <i className='fa fa-plus'/>
         </button>
     );
+
     return (
       <fieldset className={this.props.showIngredient}>
         <legend>Legg til ingredienser</legend>
