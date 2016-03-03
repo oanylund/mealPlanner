@@ -44,6 +44,7 @@ class AddIngredient extends React.Component {
       showAddForm: true
     }, () => {
       this.refs.quantity.focus()
+      this.refs.quantity.select()
     })
   }
   _resetForm() {
