@@ -1,4 +1,39 @@
 import React, { PropTypes } from 'react'
+import { findDOMNode } from 'react-dom';
+import { DragSource, DropTarget } from 'react-dnd';
+
+const itemSource = {
+  beginDrag(props) {
+    return {
+      index: props.index,
+    };
+  }
+}
+
+const itemTarget = {
+  hover(props, monitor, component) {
+    const dragIndex = monitor.getItem().index;
+    const hoverIndex = props.index;
+
+    if (dragIndex === hoverIndex) {
+      return;
+    }
+
+    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    const clientOffset = monitor.getClientOffset();
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+    // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+    //   return;
+    // }
+    // if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+    //   return;
+    // }
+    props.moveIngred({ old: dragIndex , new: hoverIndex });
+    monitor.getItem().index = hoverIndex;
+  }
+}
 
 class AddIngredItem extends React.Component {
   constructor(props) {
@@ -28,12 +63,13 @@ class AddIngredItem extends React.Component {
     this.props.moveIngredDown(this.props.index)
   }
   render () {
-    const { ingred } = this.props
+    const { ingred, connectDragSource, connectDropTarget, isDragging } = this.props
     const unitShown = ingred.quantity > 1 ? ingred.unit.plural : ingred.unit.singular
     const nameShown = ingred.quantity > 1 ? ingred.name.plural : ingred.name.singular
+    const opacity = isDragging ? 1 : 1;
 
-    return (
-      <div>
+    return connectDragSource(connectDropTarget(
+      <div style={{ opacity }}>
         <input className='addDinner-IngredItemQuantity' value={this.props.ingred.quantity}
           type='number' min={1} max={9999} onChange={this.onQuantityChange} />
         <span className='addDinner-IngredItemUnit'>{unitShown}</span>
@@ -44,8 +80,22 @@ class AddIngredItem extends React.Component {
           <i className='fa fa-chevron-up' onClick={this.onMoveUp} />
         </span>
       </div>
-    )
+    ));
   }
 }
 
-export default AddIngredItem;
+const dropCollect = (connect) => {
+  return {
+    connectDropTarget: connect.dropTarget()
+  }
+}
+
+const dragCollect = (connect,monitor) => {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+
+
+export default DropTarget('item', itemTarget, dropCollect)(DragSource('item', itemSource, dragCollect)(AddIngredItem) );

@@ -75,6 +75,7 @@ class AddIngredient extends React.Component {
                                   ingreds={this.props.dinnerObj.ingredients}
                                   editQuantity={this.props.editIngredientQuantity}
                                   deleteIngred={this.props.deleteIngredient}
+                                  moveIngred={this.props.moveIngredient}
                                   moveIngredUp={this.props.moveIngredientUp}
                                   moveIngredDown={this.props.moveIngredientDown}
                                  />
