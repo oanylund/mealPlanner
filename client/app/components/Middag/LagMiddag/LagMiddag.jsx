@@ -9,6 +9,7 @@ import LagMiddagActions from '../../../actions/LagMiddagActions'
 import NavSteps from './NavSteps.jsx'
 import AddTitleAndDesc from './AddTitleAndDesc.jsx'
 import AddIngredient from './AddIngredient.jsx'
+import AddSteps from './AddSteps.jsx'
 
 class LagMiddag extends React.Component {
   constructor(props) {
@@ -68,7 +69,8 @@ class LagMiddag extends React.Component {
               <AltContainer store={LagMiddagStore} actions={LagMiddagActions} >
                 <NavSteps selectedView={this.state.selectedView} changeView={this.changeView} />
                 <AddTitleAndDesc changeNavElement={this.changeView} fieldClassName={showTitleDesc} />
-                <AddIngredient showIngredient={showIngredient}/>
+                <AddIngredient showIngredient={showIngredient} />
+                <AddSteps showSteps={showSteps} />
               </AltContainer>
 
               <fieldset className={showImg}>
