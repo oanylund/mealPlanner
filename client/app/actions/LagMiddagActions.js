@@ -10,5 +10,18 @@ class LagMiddagActions {
   addIngredient(newIngred) {
     return newIngred
   }
+  deleteIngredient(delIndex) {
+    return delIndex
+  }
+  moveIngredientUp(moveIndex) {
+    return moveIndex
+  }
+  moveIngredientDown(moveIndex) {
+    return moveIndex
+  }
+  editIngredientQuantity(newQuantity) {
+    return newQuantity
+  }
+
 }
 export default alt.createActions(LagMiddagActions)

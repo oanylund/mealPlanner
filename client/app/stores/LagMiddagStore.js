@@ -61,6 +61,23 @@ class LagMiddagStore {
       this.ingredObj.ingredHasBeenAdded = true;
     this.validateIngredients()
   }
+  onDeleteIngredient(delIndex) {
+    this.dinnerObj.ingredients.splice(delIndex,1);
+    this.validateIngredients();
+  }
+  onMoveIngredientUp(index) {
+    if( index > 0 ) {
+      let tmp = this.dinnerObj.ingredients.splice(index,1);
+      this.dinnerObj.ingredients.splice(index-1,0,tmp[0]);
+    }
+  }
+  onMoveIngredientDown(index) {
+    let tmp = this.dinnerObj.ingredients.splice(index,1)
+    this.dinnerObj.ingredients.splice(index+1,0,tmp[0]);
+  }
+  onEditIngredientQuantity(newQuantity) {
+    this.dinnerObj.ingredients[newQuantity.index].quantity = newQuantity.quantity
+  }
   validateIngredients() {
     if( this.dinnerObj.ingredients.length > 0) {
       this.validSteps.ingredients.valid = true

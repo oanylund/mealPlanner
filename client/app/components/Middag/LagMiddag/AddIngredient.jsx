@@ -71,7 +71,13 @@ class AddIngredient extends React.Component {
       this.state.selectedIngredient.unit.singular;
     }
 
-    const showIngredsComponent = <ShowIngredsAdded ingreds={this.props.dinnerObj.ingredients} />
+    const showIngredsComponent = <ShowIngredsAdded
+                                  ingreds={this.props.dinnerObj.ingredients}
+                                  editQuantity={this.props.editIngredientQuantity}
+                                  deleteIngred={this.props.deleteIngredient}
+                                  moveIngredUp={this.props.moveIngredientUp}
+                                  moveIngredDown={this.props.moveIngredientDown}
+                                 />
     const ingredsInStore = this.props.dinnerObj.ingredients.length;
     const alertEmpty = ( <Alert bsStyle='info'><p>Trykk + knappen for å legge til ingredienser</p></Alert> );
     const showIngreds = ingredsInStore === 0 ? alertEmpty : showIngredsComponent;
