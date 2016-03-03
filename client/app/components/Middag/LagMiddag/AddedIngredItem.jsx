@@ -6,7 +6,11 @@ const itemSource = {
   beginDrag(props) {
     return {
       index: props.index,
+      ingId: props.ingred._id
     };
+  },
+  isDragging(props, monitor) {
+    return props.ingred._id === monitor.getItem().ingId
   }
 }
 
@@ -66,7 +70,7 @@ class AddIngredItem extends React.Component {
     const { ingred, connectDragSource, connectDropTarget, isDragging } = this.props
     const unitShown = ingred.quantity > 1 ? ingred.unit.plural : ingred.unit.singular
     const nameShown = ingred.quantity > 1 ? ingred.name.plural : ingred.name.singular
-    const opacity = isDragging ? 1 : 1;
+    const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
       <div style={{ opacity }}>
