@@ -33,7 +33,7 @@ class AddIngredItem extends React.Component {
     const nameShown = ingred.quantity > 1 ? ingred.name.plural : ingred.name.singular
 
     return (
-      <div draggable={true}>
+      <div>
         <input className='addDinner-IngredItemQuantity' value={this.props.ingred.quantity}
           type='number' min={1} max={9999} onChange={this.onQuantityChange} />
         <span className='addDinner-IngredItemUnit'>{unitShown}</span>
