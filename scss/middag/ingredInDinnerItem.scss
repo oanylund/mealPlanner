@@ -3,6 +3,7 @@
 .addDinner-IngredList {
   margin-bottom: 20px;
   &>div {
+    cursor: move;
     margin-bottom: 5px;
     border-bottom: 1px dashed #AAA;
     position: relative;
