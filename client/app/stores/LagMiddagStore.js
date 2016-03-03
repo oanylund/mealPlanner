@@ -71,6 +71,10 @@ class LagMiddagStore {
       this.dinnerObj.ingredients.splice(index-1,0,tmp[0]);
     }
   }
+  onMoveIngredient(indexes) {
+    let tmp = this.dinnerObj.ingredients.splice(indexes.old,1)
+    this.dinnerObj.ingredients.splice(indexes.new,0,tmp[0]);
+  }
   onMoveIngredientDown(index) {
     let tmp = this.dinnerObj.ingredients.splice(index,1)
     this.dinnerObj.ingredients.splice(index+1,0,tmp[0]);

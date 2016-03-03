@@ -13,6 +13,9 @@ class LagMiddagActions {
   deleteIngredient(delIndex) {
     return delIndex
   }
+  moveIngredient(indexes) {
+    return indexes
+  }
   moveIngredientUp(moveIndex) {
     return moveIndex
   }
