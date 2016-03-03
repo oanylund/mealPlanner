@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Button, Col, Alert } from 'react-bootstrap'
 import AddIngredSearch from './AddIngredSearch.jsx'
 import ShowIngredsAdded from './ShowIngredsAdded.jsx'
+import InfoAlert from '../../Reusable/InfoAlert.jsx'
 
 class AddIngredient extends React.Component {
   constructor(props) {
@@ -81,8 +81,8 @@ class AddIngredient extends React.Component {
                                   moveIngredDown={this.props.moveIngredientDown}
                                  />
     const ingredsInStore = this.props.dinnerObj.ingredients.length;
-    const alertEmpty = ( <Alert bsStyle='info'><p>Trykk + knappen for å legge til ingredienser</p></Alert> );
-    const showIngreds = ingredsInStore === 0 ? alertEmpty : showIngredsComponent;
+    const alertEmpty = 'Trykk + knappen for å legge til ingredienser';
+    const showIngreds = ingredsInStore === 0 ? <InfoAlert txt={alertEmpty} /> : showIngredsComponent;
 
     const form = (
       <div className='addDinner-IngredRow'>
