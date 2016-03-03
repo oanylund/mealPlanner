@@ -3,29 +3,39 @@
 .addDinner-IngredList {
   margin-bottom: 20px;
   &>div {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 5px;
     margin-bottom: 5px;
-    height: 30px;
     border-bottom: 1px dashed #AAA;
-    &>span {
-      flex: 0 0 auto;
-      margin-right: 10px;
-      text-transform: lowercase;
-    }
+    position: relative;
     &>span.addDinner-IngredItemName {
       font-weight: bold;
+      margin-right: 20px;
     }
     &>span.addDinner-IngredItemUnit {
-      
+      margin-right: 8px;
+      text-transform: lowercase;
     }
-    &>span.addDinner-IngredItemQuantity {
-      flex: 0 0 50px;
+    &>input.addDinner-IngredItemQuantity {
       font-weight: bold;
-      border-right: 1px solid #AAA;
+      background-color: transparent;
+      border: none;
+      width: 50px;
+      height: 25px;
+      margin-right: 10px;
+    }
+    &>span.addDinnerIngredItemMenu {
+      position: absolute;
+      right: 0;
+      &>i {
+        cursor: pointer;
+        width: 25px;
+        height: 24px;
+        text-align: center;
+        line-height: 23px;
+        font-size: 18px;
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.5);
+        }
+      }
     }
   }
 }
