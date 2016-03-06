@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import AddStepsForm from './AddStepsForm.jsx'
-import { Alert } from 'react-bootstrap'
+import InfoAlert from '../../Reusable/InfoAlert.jsx'
+import PlusBtn from '../../Reusable/PlusBtn.jsx'
 
 class AddSteps extends React.Component {
   constructor(props) {
@@ -19,14 +20,9 @@ class AddSteps extends React.Component {
 
   render () {
     const stepsInStore =  0; //this.props.dinnerObj.ingredients.length;
-    const alertEmpty = ( <Alert bsStyle='info'><p>Trykk + knappen for å legge til steg</p></Alert> );
+    const alertEmpty = <InfoAlert txt='Trykk + knappen for å legge til steg' /> ;
     const showSteps = stepsInStore === 0 ? alertEmpty : '';
-    const btn = (
-        <button ref='showAddIngredFormBtn' type='button'
-          className='btn btn-primary btn-block btn-xs' onClick={this.showAddForm}>
-          <i className='fa fa-plus'/>
-        </button>
-    );
+    const btn = <PlusBtn click={this.showAddForm} ref='showAddStepFormBtn' />;
 
     return (
       <fieldset className={this.props.showSteps}>
@@ -39,7 +35,3 @@ class AddSteps extends React.Component {
 }
 
 export default AddSteps;
-
-
-// {showIngreds}
-// { this.state.showAddForm ? form : btn }
