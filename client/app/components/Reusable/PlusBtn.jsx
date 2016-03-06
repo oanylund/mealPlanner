@@ -1,12 +1,21 @@
 import React, { PropTypes } from 'react'
 
-const PlusBtn = ({ click }) => {
-  return (
-    <button ref='showAddIngredFormBtn' type='button'
-      className='btn btn-primary btn-block btn-xs' onClick={click}>
-      <i className='fa fa-plus'/>
-    </button>
-  )
+class PlusBtn extends React.Component {
+  constructor(props) {
+    super(props)
+    this.focusBtn = this.focusBtn.bind(this)
+  }
+  focusBtn() {
+    this.refs.btn.focus()
+  }
+  render () {
+    return (
+      <button type='button' ref='btn'
+        className='btn btn-primary btn-block btn-xs' onClick={this.props.click}>
+        <i className='fa fa-plus'/>
+      </button>
+    )
+  }
 }
 
 PlusBtn.propTypes = {

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import AddIngredSearch from './AddIngredSearch.jsx'
 import ShowIngredsAdded from './ShowIngredsAdded.jsx'
 import InfoAlert from '../../Reusable/InfoAlert.jsx'
+import PlusBtn from '../../Reusable/PlusBtn.jsx'
 
 class AddIngredient extends React.Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class AddIngredient extends React.Component {
       showAddForm: false
     }, () => {
       if( !!this.refs.showAddIngredFormBtn ) {
-        this.refs.showAddIngredFormBtn.focus()
+        this.refs.showAddIngredFormBtn.focusBtn()
       }
     })
   }
@@ -105,12 +106,7 @@ class AddIngredient extends React.Component {
         </div>
     );
 
-    const btn = (
-        <button ref='showAddIngredFormBtn' type='button'
-          className='btn btn-primary btn-block btn-xs' onClick={this.showAddForm}>
-          <i className='fa fa-plus'/>
-        </button>
-    );
+    const btn = ( <PlusBtn click={this.showAddForm} ref='showAddIngredFormBtn' /> );
 
     return (
       <fieldset className={this.props.showIngredient}>
