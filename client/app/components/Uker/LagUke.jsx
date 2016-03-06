@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react'
-import { Grid, Row, Col, Button, ButtonToolbar, Alert } from 'react-bootstrap'
+import { Grid, Row, Col, Button } from 'react-bootstrap'
 import _ from 'underscore'
 
 import DagForm from './LagUke/DagForm.jsx'
 import Dag from './LagUke/Dag.jsx'
 import VelgUke from './LagUke/VelgUke.jsx'
 import AlertBtn from './LagUke/AlertBtn.jsx'
+import InfoAlert from '../Reusable/InfoAlert.jsx'
+import PlusBtn from '../Reusable/PlusBtn.jsx'
 
 import AltContainer from 'alt-container'
 import LagUkeStore from '../../stores/LagUkeStore'
@@ -57,7 +59,7 @@ class LagUke extends React.Component {
     <DagForm alreadyAdded={Object.keys(newWeek.days)}
       hideForm={this.hideAddForm}
       translateDays={translateDays}/> :
-    <Button bsStyle="primary" onClick={this.showAddForm.bind(null,this.state.showAddForm)} block><i className='fa fa-plus'/></Button> ;
+    <PlusBtn click={this.showAddForm.bind(null,this.state.showAddForm)} /> ;
 
     return (
       <div className='marginSquare'>
@@ -75,9 +77,7 @@ class LagUke extends React.Component {
             { Object.keys(newWeek.days).length ? dayList :
             <Col md={12}>
               <div className='addDag'>
-                <Alert bsStyle='info'>
-                  <p >Trykk + knappen for å legge en middag til en av ukedagene.</p>
-                </Alert>
+                <InfoAlert txt='Trykk + knappen for å legge en middag til en av ukedagene.' />
               </div>
             </Col>
             }

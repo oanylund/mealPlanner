@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
-import { Button, Col, Alert } from 'react-bootstrap'
 import AddIngredSearch from './AddIngredSearch.jsx'
 import ShowIngredsAdded from './ShowIngredsAdded.jsx'
+import InfoAlert from '../../Reusable/InfoAlert.jsx'
+import PlusBtn from '../../Reusable/PlusBtn.jsx'
 
 class AddIngredient extends React.Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class AddIngredient extends React.Component {
       showAddForm: false
     }, () => {
       if( !!this.refs.showAddIngredFormBtn ) {
-        this.refs.showAddIngredFormBtn.focus()
+        this.refs.showAddIngredFormBtn.focusBtn()
       }
     })
   }
@@ -81,8 +82,8 @@ class AddIngredient extends React.Component {
                                   moveIngredDown={this.props.moveIngredientDown}
                                  />
     const ingredsInStore = this.props.dinnerObj.ingredients.length;
-    const alertEmpty = ( <Alert bsStyle='info'><p>Trykk + knappen for å legge til ingredienser</p></Alert> );
-    const showIngreds = ingredsInStore === 0 ? alertEmpty : showIngredsComponent;
+    const alertEmpty = 'Trykk + knappen for å legge til ingredienser';
+    const showIngreds = ingredsInStore === 0 ? <InfoAlert txt={alertEmpty} /> : showIngredsComponent;
 
     const form = (
       <div className='addDinner-IngredRow'>
@@ -105,12 +106,7 @@ class AddIngredient extends React.Component {
         </div>
     );
 
-    const btn = (
-        <button ref='showAddIngredFormBtn' type='button'
-          className='btn btn-primary btn-block btn-xs' onClick={this.showAddForm}>
-          <i className='fa fa-plus'/>
-        </button>
-    );
+    const btn = ( <PlusBtn click={this.showAddForm} ref='showAddIngredFormBtn' /> );
 
     return (
       <fieldset className={this.props.showIngredient}>
