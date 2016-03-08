@@ -22,13 +22,13 @@ class AddSteps extends React.Component {
     const stepsInStore =  0; //this.props.dinnerObj.ingredients.length;
     const alertEmpty = <InfoAlert txt='Trykk + knappen for å legge til steg' /> ;
     const showSteps = stepsInStore === 0 ? alertEmpty : '';
-    const btn = <PlusBtn click={this.showAddForm} ref='showAddStepFormBtn' />;
 
     return (
       <fieldset className={this.props.showSteps}>
         <legend>Legg til steg</legend>
         { showSteps }
-        { this.state.showAddForm ? <AddStepsForm /> : btn }
+        { this.state.showAddForm ? <AddStepsForm /> :
+          <PlusBtn click={this.showAddForm} ref='showAddStepFormBtn' /> }
       </fieldset>
     )
   }
