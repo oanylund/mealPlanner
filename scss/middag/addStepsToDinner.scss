@@ -1,0 +1,74 @@
+// main: ../../matPlanlegger.scss
+
+
+.addDinner-addedStep {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 15px;
+  padding: 5px;
+  &:hover {
+    background-color: white;
+    &>.addedStep-Menu, &>.addedStep-Order>i {
+      visibility: visible;
+    }
+    &>.addedStep-Step {
+      display: none;
+    }
+  }
+  &>.addedStep-Order {
+    $size: 25px;
+    flex: 0 0 $size;
+    margin-right: 10px;
+    padding-right: 5px;
+    border-right: 1px solid #BBB;
+    font-size: 15px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    &>.addedStep-Step {
+      font-weight: bold;
+      cursor: default;
+    }
+    &>i {
+      visibility: hidden;
+      width: $size;
+      height: $size;
+      display: block;
+      text-align: center;
+      cursor: pointer;
+      line-height: $size;
+    }
+  }
+  &>.addedStep-Desc {
+    flex: 20 0 auto;
+    margin-bottom: 0;
+    min-height: 60px;
+    &.editMode {
+      padding: 10px;
+      resize: vertical;
+      border-left-style: none;
+      border-right-style: none;
+      background-color: transparent;
+    }
+  }
+  &>.addedStep-Menu {
+    $size: 25px;
+    visibility: hidden;
+    flex: 0 0 $size;
+    margin-left: 5px;
+    text-align: center;
+    font-size: 15px;
+    &>i {
+      width: $size;
+      height: $size;
+      display: block;
+      text-align: center;
+      cursor: pointer;
+      line-height: $size;
+      &:first-child {
+        margin-bottom: 3px;
+      }
+    }
+  }
+}
