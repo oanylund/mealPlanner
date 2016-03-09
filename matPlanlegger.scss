@@ -15,6 +15,10 @@ html {
   outline: 0;
 }
 
+textarea {
+  resize: vertical;
+}
+
 // Main Components
 #root {
   height: 100%;
