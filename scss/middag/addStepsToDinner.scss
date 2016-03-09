@@ -76,3 +76,16 @@
     }
   }
 }
+
+.addDinner-StepAddForm {
+  position: relative;
+  &>i {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    &:hover {
+      color: $fontHoverColor;
+    }
+  }
+}
