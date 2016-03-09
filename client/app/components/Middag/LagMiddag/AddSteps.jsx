@@ -11,6 +11,7 @@ class AddSteps extends React.Component {
       showAddForm: false
     }
     this.showAddForm = this.showAddForm.bind(this)
+    this.hideAddForm = this.hideAddForm.bind(this)
   }
 
   showAddForm() {
@@ -18,7 +19,11 @@ class AddSteps extends React.Component {
       showAddForm: true
     })
   }
-
+  hideAddForm() {
+    this.setState({
+      showAddForm: false
+    })
+  }
   render () {
     const stepsInStore =  1; //this.props.dinnerObj.ingredients.length;
     const alertEmpty = <InfoAlert txt='Trykk + knappen for å legge til steg' /> ;
@@ -28,7 +33,7 @@ class AddSteps extends React.Component {
       <fieldset className={this.props.showSteps}>
         <legend>Legg til steg</legend>
         { showSteps }
-        { this.state.showAddForm ? <AddStepsForm /> :
+        { this.state.showAddForm ? <AddStepsForm closeForm={this.hideAddForm} /> :
           <PlusBtn click={this.showAddForm} ref='showAddStepFormBtn' /> }
       </fieldset>
     )
