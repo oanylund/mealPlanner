@@ -16,12 +16,16 @@ const NavSteps = (props) => {
     error: !props.validSteps.ingredients.valid && props.ingredObj.ingredHasBeenAdded,
   })
 
+  let stepClass = ClassName({
+    success: props.dinnerObj.steps.length > 0
+  })
+
   return (
     <Nav className='addDinner-nav'
       bsStyle="tabs" activeKey={props.selectedView} onSelect={props.changeView}>
       <NavItem eventKey={1} className={titleAndDescClass}>Tittel og beskrivelse</NavItem>
       <NavItem eventKey={2} className={ingredClass}>Ingredienser</NavItem>
-      <NavItem eventKey={3} className=''>Steg</NavItem>
+      <NavItem eventKey={3} className={stepClass}>Steg</NavItem>
       <NavItem eventKey={4} className=''>Bilde</NavItem>
     </Nav>
   )
