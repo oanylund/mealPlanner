@@ -23,10 +23,9 @@ class AddedStepItem extends React.Component {
     });
   }
   render () {
-
-    const fakeProps = 'tetete blball e';
-    const editView = <textarea ref='stepEdit' className='addedStep-Desc editMode' defaultValue={fakeProps} />;
-    const descView = this.state.editMode ? editView : <p className='addedStep-Desc'>{fakeProps}</p>;
+    const { addStep, deleteStep, editStep, moveStep, moveStepUp, moveStepDown, stepTxt, index } = this.props;
+    const editView = <textarea ref='stepEdit' className='addedStep-Desc editMode' defaultValue={stepTxt} />;
+    const descView = this.state.editMode ? editView : <p className='addedStep-Desc'>{stepTxt}</p>;
     const stepClass = ClassNames('addDinner-addedStep', {
       editTrue: this.state.editMode
     })
@@ -35,7 +34,7 @@ class AddedStepItem extends React.Component {
         <div className={stepClass}>
           <div className='addedStep-Order'>
             <i title='Flytt steg ett hakk opp' className='fa fa-chevron-up' />
-            <span title='Nåværende steg' className='addedStep-Step'>10</span>
+            <span title='Nåværende steg' className='addedStep-Step'>{index+1}</span>
             <i title='Flytt steg ett hakk ned' className='fa fa-chevron-down' />
           </div>
           {descView}
@@ -46,7 +45,7 @@ class AddedStepItem extends React.Component {
           </div>
           : '' }
           <div className='addedStep-Menu'>
-            <i title='Slett steg' className='fa fa-close' />
+            <i title='Slett steg' className='fa fa-close' onClick={deleteStep.bind(null,index)} />
             <i title='Endre Steg' className='fa fa-edit' onClick={this.onEdit} />
           </div>
         </div>
