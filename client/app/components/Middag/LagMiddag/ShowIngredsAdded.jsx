@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react'
 import AddedIngredItem from './AddedIngredItem.jsx'
 import { Row, Col } from 'react-bootstrap'
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 
 class ShowIngredsAdded extends React.Component {
   render () {
@@ -29,4 +27,4 @@ class ShowIngredsAdded extends React.Component {
   }
 }
 
-export default DragDropContext(HTML5Backend)(ShowIngredsAdded);
+export default ShowIngredsAdded;
