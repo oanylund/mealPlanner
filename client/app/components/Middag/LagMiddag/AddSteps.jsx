@@ -33,7 +33,7 @@ class AddSteps extends React.Component {
       <fieldset className={this.props.showSteps}>
         <legend>Legg til steg</legend>
         { showSteps }
-        { this.state.showAddForm ? <AddStepsForm closeForm={this.hideAddForm} /> :
+        { this.state.showAddForm ? <AddStepsForm addStep={this.props.addStep} closeForm={this.hideAddForm} /> :
           <PlusBtn click={this.showAddForm} ref='showAddStepFormBtn' /> }
       </fieldset>
     )
