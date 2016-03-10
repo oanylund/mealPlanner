@@ -99,17 +99,21 @@ class LagMiddagStore {
     this.dinnerObj.steps.splice(delIndex,1);
     // this.validateIngredients(); TODO
   }
-  onEditStep(newDesc) {
-
+  onEditStep(editStepObj) {
+    this.dinnerObj.steps[editStepObj.index] = editStepObj.newTxt;
   }
   onMoveStep(indexes) {
 
   }
-  onMoveStepUp(moveIndex) {
-
+  onMoveStepUp(index) {
+    if( index > 0 ) {
+      let tmp = this.dinnerObj.steps.splice(index,1);
+      this.dinnerObj.steps.splice(index-1,0,tmp[0]);
+    }
   }
-  onMoveStepDown(moveIndex) {
-
+  onMoveStepDown(index) {
+    let tmp = this.dinnerObj.steps.splice(index,1);
+    this.dinnerObj.steps.splice(index+1,0,tmp[0]);
   }
 }
 
