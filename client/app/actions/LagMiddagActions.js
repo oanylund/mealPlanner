@@ -43,6 +43,12 @@ class LagMiddagActions {
   moveStepDown(moveIndex) {
     return moveIndex
   }
+  addImage(image) {
+    return image
+  }
+  addImageThumb(thumb) {
+    return thumb
+  }
 
 }
 export default alt.createActions(LagMiddagActions)

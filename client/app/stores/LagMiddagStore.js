@@ -28,6 +28,10 @@ class LagMiddagStore {
         valid: false
       }
     }
+    this.images = {
+      original: null,
+      thumb: null
+    }
     this.bindActions(LagMiddagActions)
   }
 
@@ -115,6 +119,13 @@ class LagMiddagStore {
   onMoveStepDown(index) {
     let tmp = this.dinnerObj.steps.splice(index,1);
     this.dinnerObj.steps.splice(index+1,0,tmp[0]);
+  }
+  // image handlers
+  onAddImage(image) {
+    this.images.original = image;
+  }
+  onAddImageThumb(thumb) {
+    this.images.thumb = thumb;
   }
 }
 
