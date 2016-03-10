@@ -6,6 +6,13 @@
   flex-flow: row nowrap;
   margin-bottom: 15px;
   padding: 5px;
+  textarea.emptyErr {
+    background-color: #fb7c7d !important;
+  }
+  i.emptyErr {
+    color: red;
+    cursor: not-allowed !important;
+  }
   &.editTrue {
     background-color: white;
   }
