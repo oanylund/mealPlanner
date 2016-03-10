@@ -1,5 +1,44 @@
-import React, { PropTypes } from 'react'
-import ClassNames from 'classnames'
+import React, { PropTypes } from 'react';
+import ClassNames from 'classnames';
+import { findDOMNode } from 'react-dom';
+import { DragSource, DropTarget } from 'react-dnd';
+
+const stepSource = {
+  beginDrag(props) {
+    return {
+      index: props.index,
+      stpTxt: props.stepTxt
+    };
+  },
+  isDragging(props, monitor) {
+    return props.stepTxt === monitor.getItem().stpTxt
+  }
+}
+
+const stepTarget = {
+  hover(props, monitor, component) {
+    const dragIndex = monitor.getItem().index;
+    const hoverIndex = props.index;
+
+    if (dragIndex === hoverIndex) {
+      return;
+    }
+
+    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    const clientOffset = monitor.getClientOffset();
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+      return;
+    }
+    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+      return;
+    }
+    props.moveStep({ old: dragIndex , new: hoverIndex });
+    monitor.getItem().index = hoverIndex;
+  }
+}
 
 class AddedStepItem extends React.Component {
   constructor(props) {
@@ -45,6 +84,7 @@ class AddedStepItem extends React.Component {
   }
   render () {
     const { addStep, deleteStep, moveStep, moveStepUp, moveStepDown, stepTxt, index } = this.props;
+    const { connectDragSource, connectDropTarget, isDragging } = this.props;
 
     const stepClass = ClassNames('addDinner-addedStep', {
       editTrue: this.state.editMode
@@ -59,9 +99,11 @@ class AddedStepItem extends React.Component {
     const editView = <textarea ref='stepEdit' className={editTxtClass}
                       onChange={this.onTxtChange}  defaultValue={stepTxt} />;
     const descView = this.state.editMode ? editView : <p className='addedStep-Desc'>{stepTxt}</p>;
-    const saveChangeBtnTitle = this.state.emptyErr ? 'Kan lagre tomt steg' : 'Lagre endring'
-    return (
-        <div className={stepClass}>
+    const saveChangeBtnTitle = this.state.emptyErr ? 'Kan lagre tomt steg' : 'Lagre endring';
+    const opacity = isDragging ? 0 : 1;
+
+    return connectDragSource(connectDropTarget(
+        <div className={stepClass} style={{ opacity }}>
           <div className='addedStep-Order'>
             <i title='Flytt steg ett hakk opp' className='fa fa-chevron-up' onClick={moveStepUp.bind(null,index)} />
             <span title='Nåværende steg' className='addedStep-Step'>{index+1}</span>
@@ -79,8 +121,21 @@ class AddedStepItem extends React.Component {
             <i title='Endre Steg' className='fa fa-edit' onClick={this.onEdit} />
           </div>
         </div>
-    )
+    ));
   }
 }
 
-export default AddedStepItem;
+const dropCollect = (connect) => {
+  return {
+    connectDropTarget: connect.dropTarget()
+  }
+}
+
+const dragCollect = (connect,monitor) => {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+
+export default DropTarget('step', stepTarget, dropCollect)(DragSource('step', stepSource, dragCollect)(AddedStepItem) );
