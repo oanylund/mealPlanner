@@ -33,7 +33,8 @@ class AddStepsForm extends React.Component {
       })
     }
     else {
-      // TODO: Call Action insert
+      this.props.addStep(text);
+      this.props.closeForm();
     }
   }
   render () {
