@@ -31,8 +31,8 @@ class LagMiddagActions {
   deleteStep(delIndex) {
     return delIndex
   }
-  editStep(newDesc) {
-    return newDesc
+  editStep(editStepObj) {
+    return editStepObj
   }
   moveStep(indexes) {
     return indexes
