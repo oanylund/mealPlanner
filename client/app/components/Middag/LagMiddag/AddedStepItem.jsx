@@ -99,7 +99,7 @@ class AddedStepItem extends React.Component {
     const editView = <textarea ref='stepEdit' className={editTxtClass}
                       onChange={this.onTxtChange}  defaultValue={stepTxt} />;
     const descView = this.state.editMode ? editView : <p className='addedStep-Desc'>{stepTxt}</p>;
-    const saveChangeBtnTitle = this.state.emptyErr ? 'Kan lagre tomt steg' : 'Lagre endring';
+    const saveChangeBtnTitle = this.state.emptyErr ? 'Steget kan ikke være tomt' : 'Lagre endring';
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
