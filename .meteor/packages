@@ -22,3 +22,7 @@ aldeed:autoform
 check
 standard-minifier-css
 standard-minifier-js
+cfs:standard-packages
+cfs:gridfs
+cfs:filesystem
+cfs:graphicsmagick

@@ -12,6 +12,7 @@ import NavSteps from './NavSteps.jsx'
 import AddTitleAndDesc from './AddTitleAndDesc.jsx'
 import AddIngredient from './AddIngredient.jsx'
 import AddSteps from './AddSteps.jsx'
+import AddImage from './AddImage.jsx'
 
 class LagMiddag extends React.Component {
   constructor(props) {
@@ -77,9 +78,7 @@ class LagMiddag extends React.Component {
 
               <fieldset className={showImg}>
                 <legend>Legg til bilde</legend>
-                <div style={{textAlign:'center'}}>
-                  <img src="//placehold.it/200x200" className='img-thumbnail' />
-                </div>
+                <AddImage />
               </fieldset>
 
             </Col>
