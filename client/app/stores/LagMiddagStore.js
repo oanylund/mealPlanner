@@ -103,7 +103,8 @@ class LagMiddagStore {
     this.dinnerObj.steps[editStepObj.index] = editStepObj.newTxt;
   }
   onMoveStep(indexes) {
-
+    let tmp = this.dinnerObj.steps.splice(indexes.old,1);
+    this.dinnerObj.steps.splice(indexes.new,0,tmp[0]);
   }
   onMoveStepUp(index) {
     if( index > 0 ) {
