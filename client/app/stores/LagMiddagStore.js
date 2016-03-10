@@ -96,7 +96,8 @@ class LagMiddagStore {
     this.dinnerObj.steps.push(newStep);
   }
   onDeleteStep(delIndex) {
-
+    this.dinnerObj.steps.splice(delIndex,1);
+    // this.validateIngredients(); TODO
   }
   onEditStep(newDesc) {
 
