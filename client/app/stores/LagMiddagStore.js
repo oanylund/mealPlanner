@@ -10,7 +10,8 @@ class LagMiddagStore {
     this.dinnerObj = {
       title: '',
       desc: '',
-      ingredients: []
+      ingredients: [],
+      steps: []
     }
     this.titleDescObj = {
       titleHasBeenChanged: false,
@@ -56,7 +57,7 @@ class LagMiddagStore {
 
   // Ingredient handlers
   onAddIngredient(newIngred) {
-    this.dinnerObj.ingredients.push(newIngred)
+    this.dinnerObj.ingredients.push(newIngred);
     if(!this.ingredObj.ingredHasBeenAdded)
       this.ingredObj.ingredHasBeenAdded = true;
     this.validateIngredients()
@@ -72,25 +73,43 @@ class LagMiddagStore {
     }
   }
   onMoveIngredient(indexes) {
-    let tmp = this.dinnerObj.ingredients.splice(indexes.old,1)
+    let tmp = this.dinnerObj.ingredients.splice(indexes.old,1);
     this.dinnerObj.ingredients.splice(indexes.new,0,tmp[0]);
   }
   onMoveIngredientDown(index) {
-    let tmp = this.dinnerObj.ingredients.splice(index,1)
+    let tmp = this.dinnerObj.ingredients.splice(index,1);
     this.dinnerObj.ingredients.splice(index+1,0,tmp[0]);
   }
   onEditIngredientQuantity(newQuantity) {
-    this.dinnerObj.ingredients[newQuantity.index].quantity = newQuantity.quantity
+    this.dinnerObj.ingredients[newQuantity.index].quantity = newQuantity.quantity;
   }
   validateIngredients() {
     if( this.dinnerObj.ingredients.length > 0) {
-      this.validSteps.ingredients.valid = true
+      this.validSteps.ingredients.valid = true;
     }
     else {
-      this.validSteps.ingredients.valid = false
+      this.validSteps.ingredients.valid = false;
     }
   }
+  // Steps handlers
+  onAddStep(newStep) {
+    this.dinnerObj.steps.push(newStep);
+  }
+  onDeleteStep(delIndex) {
 
+  }
+  onEditStep(newDesc) {
+
+  }
+  onMoveStep(indexes) {
+
+  }
+  onMoveStepUp(moveIndex) {
+
+  }
+  onMoveStepDown(moveIndex) {
+
+  }
 }
 
 export default alt.createStore(LagMiddagStore, 'LagMiddagStore')
