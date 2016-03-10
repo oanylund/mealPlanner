@@ -74,13 +74,8 @@ class LagMiddag extends React.Component {
                 <AddTitleAndDesc changeNavElement={this.changeView} fieldClassName={showTitleDesc} />
                 <AddIngredient showIngredient={showIngredient} />
                 <AddSteps showSteps={showSteps} />
+                <AddImage showImg={showImg} />
               </AltContainer>
-
-              <fieldset className={showImg}>
-                <legend>Legg til bilde</legend>
-                <AddImage />
-              </fieldset>
-
             </Col>
           </Row>
           <Row>
