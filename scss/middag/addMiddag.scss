@@ -115,4 +115,18 @@
       margin-left: 20px;
     }
   }
+  .addDinner-infoTxt {
+    font-size: 12px;
+    color: #828282;
+  }
+}
+.addDinner-Modal {
+  margin-bottom: 0 !important;
+  &>.addDinner-Modal-Footer {
+    text-align: right;
+    margin-top: 20px;
+  }
+  &>p.addDinner-Modal-Warning {
+    color: yellow;
+  }
 }
