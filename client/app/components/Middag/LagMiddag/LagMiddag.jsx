@@ -13,6 +13,7 @@ import AddTitleAndDesc from './AddTitleAndDesc.jsx'
 import AddIngredient from './AddIngredient.jsx'
 import AddSteps from './AddSteps.jsx'
 import AddImage from './AddImage.jsx'
+import CompleteBtns from './CompleteBtns.jsx'
 
 class LagMiddag extends React.Component {
   constructor(props) {
@@ -86,6 +87,9 @@ class LagMiddag extends React.Component {
               </Pager>
             </Col>
           </Row>
+          <AltContainer store={LagMiddagStore} actions={LagMiddagActions} >
+            <CompleteBtns/>
+          </AltContainer>
         </Grid>
       </div>
     )
