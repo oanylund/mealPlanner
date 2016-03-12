@@ -35,11 +35,11 @@ class AddImage extends React.Component {
             <Col md={12}>
               <Dropzone style={DropStyle} ref="dropzone"
                 onDrop={this.onDrop} multiple={false} >
-                <div>Slipp Bilde her, eller klikk for å åpne filvelgeren</div>
+                <div>Slipp bilde her, eller klikk for å åpne filvelgeren</div>
               </Dropzone>
             </Col>
           </Row>
-          <CropImg image={image}/>
+          <CropImg addImageThumb={this.props.addImageThumb} image={image}/>
         </fieldset>
     )
   }

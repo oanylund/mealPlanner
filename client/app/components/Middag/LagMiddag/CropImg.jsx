@@ -9,23 +9,12 @@ class CropImg extends React.Component {
   }
 
   cropImage() {
-
     let croppedImg = this.refs.cropper.getCroppedCanvas()
-
     if(typeof croppedImg === 'undefined'){
       return
+      // TODO: Handle error if undefined
     }
-
-    var newFile = new FS.File();
-    newFile.attachData(croppedImg.toDataURL(), function (error) {
-      if (error) throw error; // TODO: Handle error
-      newFile.name("thumbnail.png");
-      debugger
-      DinnerThumbs.insert(newFile, function (error, fileObj) {
-        debugger
-      })
-    })
-
+    this.props.addImageThumb(croppedImg.toDataURL());
   }
   render () {
     const { image } = this.props;
