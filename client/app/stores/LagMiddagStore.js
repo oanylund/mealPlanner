@@ -1,17 +1,14 @@
 import alt from "../alt"
 import LagMiddagActions from '../actions/LagMiddagActions'
 
-// const validateTitleAndDesc = (title,desc) => {
-
-
-
 class LagMiddagStore {
   constructor() {
     this.dinnerObj = {
       title: '',
       desc: '',
       ingredients: [],
-      steps: []
+      steps: [],
+      imgId: null
     }
     this.titleDescObj = {
       titleHasBeenChanged: false,
@@ -26,6 +23,12 @@ class LagMiddagStore {
       },
       ingredients: {
         valid: false
+      },
+      steps: {
+        valid: false
+      },
+      image: {
+        added: false
       }
     }
     this.images = {
@@ -98,10 +101,11 @@ class LagMiddagStore {
   // Steps handlers
   onAddStep(newStep) {
     this.dinnerObj.steps.push(newStep);
+    this.validateSteps();
   }
   onDeleteStep(delIndex) {
     this.dinnerObj.steps.splice(delIndex,1);
-    // this.validateIngredients(); TODO
+    this.validateSteps();
   }
   onEditStep(editStepObj) {
     this.dinnerObj.steps[editStepObj.index] = editStepObj.newTxt;
@@ -120,12 +124,34 @@ class LagMiddagStore {
     let tmp = this.dinnerObj.steps.splice(index,1);
     this.dinnerObj.steps.splice(index+1,0,tmp[0]);
   }
+  validateSteps() {
+    if( this.dinnerObj.steps.length > 0) {
+      this.validSteps.steps.valid = true;
+    }
+    else {
+      this.validSteps.steps.valid = false;
+    }
+  }
   // image handlers
   onAddImage(image) {
     this.images.original = image;
   }
   onAddImageThumb(thumb) {
     this.images.thumb = thumb;
+    this.validSteps.image.added = true;
+  }
+  _addThumbToDb() {
+    var newFile = new FS.File();
+    newFile.attachData(thumb, function (error) {
+      if (error) throw error; // TODO: Handle error
+      newFile.name("thumbnail.png");
+      DinnerThumbs.insert(newFile, function (error, fileObj) {
+        // TODO: handle insert error correctly
+        if ( !error ) {
+          this.dinnerObj.imgId = fileObj.id;
+        }
+      })
+    })
   }
 }
 
