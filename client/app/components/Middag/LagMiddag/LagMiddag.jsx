@@ -88,7 +88,7 @@ class LagMiddag extends React.Component {
             </Col>
           </Row>
           <AltContainer store={LagMiddagStore} actions={LagMiddagActions} >
-            <CompleteBtns/>
+            <CompleteBtns restartView={this.changeView} />
           </AltContainer>
         </Grid>
       </div>

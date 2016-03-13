@@ -27,7 +27,7 @@ class CompleteBtns extends React.Component {
             <Button bsStyle='success' onClick={this.onShowFinish}>Lag middag</Button>
             <Modal show={this.state.showFinish} onHide={this.onCloseFinish}>
               <FinishStepModal close={this.onCloseFinish} {...this.props.validSteps }
-                addDinner={this.props.addDinnerToDb} />
+                addDinner={this.props.addDinnerToDb} restartView={this.props.restartView} />
             </Modal>
           </Col>
         </Row>
