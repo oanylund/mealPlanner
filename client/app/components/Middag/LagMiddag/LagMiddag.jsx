@@ -60,7 +60,7 @@ class LagMiddag extends React.Component {
     })
 
     return (
-      <div className='marginSquare addDinner'>
+      <div key={this.state.selectedView} className='marginSquare addDinner'>
         <Grid fluid>
           <Row>
             <Col md={12}>
