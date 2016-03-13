@@ -5,16 +5,14 @@ class LagMiddagStore {
   constructor() {
     this.dinnerObj = {
       title: '',
-      desc: '',
+      description: '',
       ingredients: [],
       steps: [],
-      imgId: null
+      imageId: null
     }
-    this.titleDescObj = {
+    this.changeObj = {
       titleHasBeenChanged: false,
       descHasBeenChanged: false,
-    }
-    this.ingredObj = {
       ingredHasBeenAdded: false
     }
     this.validSteps = {
@@ -38,9 +36,10 @@ class LagMiddagStore {
     this.bindActions(LagMiddagActions)
   }
 
+
   // Title and description handlers
   validateTitleAndDesc() {
-    if( this.dinnerObj.title.length > 0 && this.dinnerObj.desc.length > 0 ) {
+    if( this.dinnerObj.title.length > 0 && this.dinnerObj.description.length > 0 ) {
       this.validSteps.titleAndDesc.valid = true
     }
     else {
@@ -49,24 +48,25 @@ class LagMiddagStore {
   }
   onTitleFieldChanged(newVal) {
     this.dinnerObj.title = newVal;
-    let titleHasBeenChanged = this.titleDescObj.titleHasBeenChanged;
+    let titleHasBeenChanged = this.changeObj.titleHasBeenChanged;
     if (!titleHasBeenChanged)
-      this.titleDescObj.titleHasBeenChanged = true;
+      this.changeObj.titleHasBeenChanged = true;
     this.validateTitleAndDesc()
   }
   onDescFieldChanged(newVal) {
-    this.dinnerObj.desc = newVal
-    let descHasBeenChanged = this.titleDescObj.descHasBeenChanged;
+    this.dinnerObj.description = newVal
+    let descHasBeenChanged = this.changeObj.descHasBeenChanged;
     if (!descHasBeenChanged)
-      this.titleDescObj.descHasBeenChanged = true;
+      this.changeObj.descHasBeenChanged = true;
     this.validateTitleAndDesc()
   }
+
 
   // Ingredient handlers
   onAddIngredient(newIngred) {
     this.dinnerObj.ingredients.push(newIngred);
-    if(!this.ingredObj.ingredHasBeenAdded)
-      this.ingredObj.ingredHasBeenAdded = true;
+    if(!this.changeObj.ingredHasBeenAdded)
+      this.changeObj.ingredHasBeenAdded = true;
     this.validateIngredients()
   }
   onDeleteIngredient(delIndex) {
@@ -98,6 +98,8 @@ class LagMiddagStore {
       this.validSteps.ingredients.valid = false;
     }
   }
+
+
   // Steps handlers
   onAddStep(newStep) {
     this.dinnerObj.steps.push(newStep);
@@ -132,6 +134,8 @@ class LagMiddagStore {
       this.validSteps.steps.valid = false;
     }
   }
+
+
   // image handlers
   onAddImage(image) {
     this.images.original = image;
@@ -140,19 +144,60 @@ class LagMiddagStore {
     this.images.thumb = thumb;
     this.validSteps.image.added = true;
   }
+  onResetImages() {
+    this.images.thumb = null;
+    this.validSteps.image.added = false;
+  }
   _addThumbToDb() {
-    var newFile = new FS.File();
-    newFile.attachData(thumb, function (error) {
-      if (error) throw error; // TODO: Handle error
-      newFile.name("thumbnail.png");
-      DinnerThumbs.insert(newFile, function (error, fileObj) {
-        // TODO: handle insert error correctly
-        if ( !error ) {
-          this.dinnerObj.imgId = fileObj.id;
-        }
+    const thumb = this.images.thumb;
+
+    return new Promise( (res,rej) => {
+
+      var newFile = new FS.File();
+
+      newFile.attachData(thumb, function (error) {
+        if (error) throw error; // TODO: Handle error
+
+        newFile.name("thumbnail.png");
+        DinnerThumbs.insert(newFile, function (error, fileObj) {
+          if(error) throw error; // TODO: handle insert error correctly
+            res(fileObj._id);
+        });
+
       })
+
+    }).then( (id) => {
+      return id;
     })
   }
-}
+  _prepareIngredsForDb() {
+    let dbReady = this.dinnerObj.ingredients.map( (ingred) => {
+      return { quantity: ingred.quantity, ingredientId: ingred._id }
+    });
+    return dbReady
+  }
+  onAddDinnerToDb() {
+    let newDinner = {
+      title: this.dinnerObj.title,
+      description: this.dinnerObj.description,
+    }
 
+    newDinner.ingredients = this._prepareIngredsForDb();
+
+    if( this.validSteps.steps.valid ) {
+      newDinner.steps = this.dinnerObj.steps;
+    }
+
+    if( this.validSteps.image.added ) {
+       this._addThumbToDb().then( (id) => {
+         newDinner.imageId = id;
+         Meteor.call('addDinner', newDinner);
+       });
+    }
+    else {
+      Meteor.call('addDinner', newDinner);
+    }
+
+  }
+}
 export default alt.createStore(LagMiddagStore, 'LagMiddagStore')
