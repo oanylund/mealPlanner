@@ -1,10 +1,23 @@
 import React, { PropTypes } from 'react'
+import alt from '../../../alt'
+import LagMiddagStore from '../../../stores/LagMiddagStore'
 import ClassNames from 'classnames'
 import { Modal, Button, ButtonToolbar } from 'react-bootstrap'
 
 class FinishStepModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.submitData = this.submitData.bind(this);
+  }
+  submitData() {
+    this.props.addDinner();
+    this.props.restartView(1);
+    // TODO: Some way to restart all state smoothly with loader present
+    // alt.recycle(LagMiddagStore);
+    // this.props.close();
+  }
   render () {
-    const { steps, image, addDinner } = this.props;
+    const { steps, image } = this.props;
     let mer = 'Nei, jeg vil legge til mer';
     let jaLag = 'Ja, legg til middag';
     let warningMsg = 'Er du sikker på at du ikke vil legge til noen steg og et bilde?';
@@ -29,7 +42,7 @@ class FinishStepModal extends React.Component {
           : <p className='addDinner-Modal-Warning'>{warningMsg}</p> }
         <div className='addDinner-Modal-Footer'>
           <ButtonToolbar>
-            <Button bsStyle='success' onClick={addDinner}>{LagMdagBtn}</Button>
+            <Button bsStyle='success' onClick={this.submitData}>{LagMdagBtn}</Button>
             <Button onClick={this.props.close}>{lukkBtn}</Button>
           </ButtonToolbar>
         </div>
