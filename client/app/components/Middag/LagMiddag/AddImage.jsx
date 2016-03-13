@@ -15,7 +15,7 @@ class AddImage extends React.Component {
   render() {
     const { showImg } = this.props
     let image = this.props.images.original ? this.props.images.original.preview : null
-
+    const thumb = this.props.images.thumb;
     let DropStyle = {
       width: '100%',
       height: 100,
@@ -31,6 +31,7 @@ class AddImage extends React.Component {
     return (
         <fieldset className={showImg}>
           <legend>Legg til ingredienser</legend>
+          { !thumb ?
           <Row>
             <Col md={12}>
               <Dropzone style={DropStyle} ref="dropzone"
@@ -39,7 +40,9 @@ class AddImage extends React.Component {
               </Dropzone>
             </Col>
           </Row>
-          <CropImg addImageThumb={this.props.addImageThumb} image={image}/>
+          : '' }
+          { image ? <CropImg addImageThumb={this.props.addImageThumb} resetImg={this.props.resetImages}
+            thumb={thumb} image={image} /> : '' }
         </fieldset>
     )
   }
