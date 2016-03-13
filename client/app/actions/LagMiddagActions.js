@@ -49,6 +49,12 @@ class LagMiddagActions {
   addImageThumb(thumb) {
     return thumb
   }
+  resetImages() {
+    return true
+  }
+  addDinnerToDb() {
+    return true
+  }
 
 }
 export default alt.createActions(LagMiddagActions)
