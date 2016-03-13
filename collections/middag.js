@@ -4,9 +4,6 @@ IngrediensInDinner = new SimpleSchema({
   quantity: {
     type: Number
   },
-  displayOrder: {
-    type: Number
-  },
   ingredientId: {
     type: String
   }
@@ -26,17 +23,10 @@ MiddagSchema = new SimpleSchema({
     optional: true
   },
   "steps.$": {
-    type: Object
-  },
-  "steps.$.order": {
-    type: Number
-  },
-  "steps.$.description": {
     type: String
   },
-  imgUrl: {
+  imageId: {
     type: String,
-    defaultValue: '/images/default-dinner.png',
     optional: true
   },
   ingredients: {
