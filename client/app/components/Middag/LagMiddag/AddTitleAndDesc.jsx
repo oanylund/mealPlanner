@@ -7,18 +7,18 @@ class AddTitleAndDesc extends React.Component {
     this.refs.title.focus()
   }
   render () {
-    const { fieldClassName, dinnerObj, titleDescObj } = this.props
+    const { fieldClassName, dinnerObj, changeObj } = this.props
 
-    const emptyTitle = titleDescObj.titleHasBeenChanged && dinnerObj.title === '';
-    const emptyDesc = titleDescObj.descHasBeenChanged && dinnerObj.desc === '';
+    const emptyTitle = changeObj.titleHasBeenChanged && dinnerObj.title === '';
+    const emptyDesc = changeObj.descHasBeenChanged && dinnerObj.description === '';
 
     const titleValidationState = ClassName('form-group', {
       'has-error': emptyTitle,
-      'has-success': titleDescObj.titleHasBeenChanged && dinnerObj.title !== ''
+      'has-success': changeObj.titleHasBeenChanged && dinnerObj.title !== ''
     });
     const descValidationState = ClassName('form-group', {
       'has-error': emptyDesc,
-      'has-success': titleDescObj.descHasBeenChanged && dinnerObj.desc !== ''
+      'has-success': changeObj.descHasBeenChanged && dinnerObj.description !== ''
     });
 
     const emptyMsg = 'Dette feltet kan ikke være tomt';
@@ -35,7 +35,7 @@ class AddTitleAndDesc extends React.Component {
           <div className={descValidationState}>
             <label className="control-label" htmlFor='newDinnerDesc'>Beskrivelse</label>
             <textarea ref='desc' id='newDinnerDesc' className='form-control'
-              onChange={(e)=>{this.props.descFieldChanged(e.target.value)}} defaultValue={dinnerObj.desc} required></textarea>
+              onChange={(e)=>{this.props.descFieldChanged(e.target.value)}} defaultValue={dinnerObj.description} required></textarea>
             { emptyDesc ? <div className='help-block'>{emptyMsg}</div> : '' }
           </div>
           <div style={{textAlign:'right'}}>

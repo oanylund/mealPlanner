@@ -4,7 +4,7 @@ import ClassName from 'classnames'
 
 const NavSteps = (props) => {
 
-  let titleAndDescHasChanged = props.titleDescObj.titleHasBeenChanged && props.titleDescObj.descHasBeenChanged;
+  let titleAndDescHasChanged = props.changeObj.titleHasBeenChanged && props.changeObj.descHasBeenChanged;
 
   let titleAndDescClass = ClassName({
     success: props.validSteps.titleAndDesc.valid && titleAndDescHasChanged,
@@ -12,8 +12,8 @@ const NavSteps = (props) => {
   })
 
   let ingredClass = ClassName({
-    success: props.validSteps.ingredients.valid && props.ingredObj.ingredHasBeenAdded,
-    error: !props.validSteps.ingredients.valid && props.ingredObj.ingredHasBeenAdded,
+    success: props.validSteps.ingredients.valid && props.changeObj.ingredHasBeenAdded,
+    error: !props.validSteps.ingredients.valid && props.changeObj.ingredHasBeenAdded,
   })
 
   let stepClass = ClassName({
