@@ -4,7 +4,7 @@ import { Modal, Button, ButtonToolbar } from 'react-bootstrap'
 
 class FinishStepModal extends React.Component {
   render () {
-    const { steps, image } = this.props;
+    const { steps, image, addDinner } = this.props;
     let mer = 'Nei, jeg vil legge til mer';
     let jaLag = 'Ja, legg til middag';
     let warningMsg = 'Er du sikker på at du ikke vil legge til noen steg og et bilde?';
@@ -29,7 +29,7 @@ class FinishStepModal extends React.Component {
           : <p className='addDinner-Modal-Warning'>{warningMsg}</p> }
         <div className='addDinner-Modal-Footer'>
           <ButtonToolbar>
-            <Button bsStyle='success'>{LagMdagBtn}</Button>
+            <Button bsStyle='success' onClick={addDinner}>{LagMdagBtn}</Button>
             <Button onClick={this.props.close}>{lukkBtn}</Button>
           </ButtonToolbar>
         </div>
