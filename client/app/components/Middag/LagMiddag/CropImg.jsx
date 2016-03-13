@@ -17,24 +17,41 @@ class CropImg extends React.Component {
     this.props.addImageThumb(croppedImg.toDataURL());
   }
   render () {
-    const { image } = this.props;
+    const { image, thumb } = this.props;
+    const previewStyle = { width: 200, height: 200, overflow: 'hidden' };
 
+    if( thumb ) {
+      return (
+        <Row>
+          <Col md={3}>
+            <img src={thumb} style={previewStyle} />
+            <p>Forhåndsvisning av bilde</p>
+          </Col>
+          <Col md={2}>
+            <button className='btn btn-primary' onClick={this.props.resetImg}>Rediger/Nytt bilde</button>
+          </Col>
+        </Row>
+      )
+    }
     return (
       <Row>
-        <Col md={4}>
-          <div className="img-preview" style={{width: 200, height: 200, overflow: 'hidden'}}/>
+        <Col md={3}>
+          <div className="img-preview" style={previewStyle} />
+          <p>Forhåndsvisning av bilde</p>
         </Col>
-        <Col md={8}>
+        <Col md={7}>
           <Cropper
             ref='cropper'
             src={image}
             preview='.img-preview'
-            style={{height: 300, width:500}}
+            style={{ height: 300, width:500 }}
             aspectRatio={1}
             guides={false}
             viewMode={1}
-            />
-          <button onClick={this.cropImage} style={{float: 'right'}}>Bruk justert bilde</button>
+          />
+        </Col>
+        <Col md={2} >
+          <button className='btn btn-primary' onClick={this.cropImage}>Bruk justert bilde</button>
         </Col>
       </Row>
     )
