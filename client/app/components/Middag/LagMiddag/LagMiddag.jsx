@@ -64,7 +64,7 @@ class LagMiddag extends React.Component {
         <Grid fluid>
           <Row>
             <Col md={12}>
-              <h2 className='addDinner-mainHeader'>Lag ny middag</h2>
+              <h2 className='mainHeader'>Lag ny middag</h2>
             </Col>
           </Row>
           <Row>
