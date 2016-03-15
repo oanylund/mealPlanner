@@ -11,6 +11,7 @@ import LagUke from './app/components/Uker/LagUke.jsx'
 import IngrediensListe from './app/components/Ingredienser/Ingredienser.jsx'
 
 import MiddagMain from './app/components/Middag/MiddagMain.jsx'
+import ShowDinners from './app/components/Middag/ShowDinners.jsx'
 import LagMiddag from './app/components/Middag/LagMiddag/LagMiddag.jsx'
 
 export default () => {
@@ -24,6 +25,7 @@ export default () => {
         </Route>
 
         <Route path='middag' component={MiddagMain}>
+          <IndexRoute component={ShowDinners} />
           <Route path='lag-ny' component={LagMiddag}/>
         </Route>
 
