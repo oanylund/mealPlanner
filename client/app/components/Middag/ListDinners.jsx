@@ -7,11 +7,11 @@ import Spinner from '../spinner.jsx'
 
 const ListDinners = ({dinners}) => {
 
-  const dinnerList = dinners.map( (dinner) => {
+  const dinnerList = dinners.map( (dinner, i) => {
     return (
-      <Col md={6} >
-        <DinnerItem title={dinner.title} description={dinner.description}
-          linkUrl={`/middager/${dinner._id}`} />
+      <Col key={i} md={6} >
+        <DinnerItem key={i} title={dinner.title} description={dinner.description}
+          imageId={dinner.imageId} linkUrl={`/middag/${dinner._id}`} />
       </Col>
     )
   })
