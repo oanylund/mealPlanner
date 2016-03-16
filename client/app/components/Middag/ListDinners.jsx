@@ -11,7 +11,7 @@ const ListDinners = ({dinners}) => {
     return (
       <Col key={i} md={6} >
         <DinnerItem key={i} title={dinner.title} description={dinner.description}
-          imageId={dinner.imageId} linkUrl={`/middag/${dinner._id}`} />
+          imageId={dinner.imageId} linkUrl={`/middag/vis/${dinner._id}`} />
       </Col>
     )
   })
