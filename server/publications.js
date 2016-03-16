@@ -6,6 +6,9 @@ Meteor.publish("uker", function () {
 Meteor.publish("middagsListe", function () {
     return Middager.find({},{ fields: { title: 1, description: 1, imageId: 1 } });
 });
+Meteor.publish("middagImageThumbs", function () {
+    return DinnerThumbs.find({});
+});
 Meteor.publish("ingrediensKat", function () {
     return IngrediensKat.find({});
 });
