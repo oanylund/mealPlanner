@@ -12,6 +12,7 @@ import IngrediensListe from './app/components/Ingredienser/Ingredienser.jsx'
 
 import MiddagMain from './app/components/Middag/MiddagMain.jsx'
 import ShowDinners from './app/components/Middag/ShowDinners.jsx'
+import ShowDinner from './app/components/Middag/ShowDinner.jsx'
 import LagMiddag from './app/components/Middag/LagMiddag/LagMiddag.jsx'
 
 export default () => {
@@ -26,6 +27,7 @@ export default () => {
 
         <Route path='middag' component={MiddagMain}>
           <IndexRoute component={ShowDinners} />
+          <Route path='vis/:dinnerId' component={ShowDinner}/>
           <Route path='lag-ny' component={LagMiddag}/>
         </Route>
 
