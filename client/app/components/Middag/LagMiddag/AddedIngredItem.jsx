@@ -28,12 +28,6 @@ const itemTarget = {
     const clientOffset = monitor.getClientOffset();
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
-    // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-    //   return;
-    // }
-    // if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-    //   return;
-    // }
     props.moveIngred({ old: dragIndex , new: hoverIndex });
     monitor.getItem().index = hoverIndex;
   }
@@ -67,9 +61,16 @@ class AddIngredItem extends React.Component {
     this.props.moveIngredDown(this.props.index)
   }
   render () {
-    const { ingred, connectDragSource, connectDropTarget, isDragging } = this.props
-    const unitShown = ingred.quantity > 1 ? ingred.unit.plural : ingred.unit.singular
-    const nameShown = ingred.quantity > 1 ? ingred.name.plural : ingred.name.singular
+    const { ingred, connectDragSource, connectDropTarget, isDragging } = this.props;
+
+    const singularUnit = ingred.unit.singular || ingred.unit.plural;
+    const pluralUnit = ingred.unit.plural || ingred.unit.singular;
+    const singularName = ingred.name.singular || ingred.name.plural;
+    const pluralName = ingred.name.plural || ingred.name.singular;
+
+    const unitShown = ingred.quantity > 1 ? pluralUnit : singularUnit;
+    const nameShown = ingred.quantity > 1 ? pluralName : singularName;
+
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(

@@ -68,9 +68,11 @@ class AddIngredient extends React.Component {
   render () {
     const valSelected = !!this.state.selectedIngredient;
     const plural = (this.state.ingredientQuantity > 1);
+
     if ( valSelected ) {
-      var showUnit = plural ? this.state.selectedIngredient.unit.plural :
-      this.state.selectedIngredient.unit.singular;
+      const singularUnit = this.state.selectedIngredient.unit.singular || this.state.selectedIngredient.unit.plural;
+      const pluralUnit = this.state.selectedIngredient.unit.plural || this.state.selectedIngredient.unit.singular;
+      var showUnit = plural ? pluralUnit :     this.state.selectedIngredient.unit.singular;
     }
 
     const showIngredsComponent = <ShowIngredsAdded

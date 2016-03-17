@@ -18,7 +18,6 @@ const AddIngredSearch = ({
       title: cats.name
     }
   })
-  const singOrPlur = plural ? 'plural' : 'singular';
   return (
     <SimpleSelect
       placeholder = "Søk etter ingrediens"
@@ -31,9 +30,12 @@ const AddIngredSearch = ({
         return item.categoryId
       }}
       renderValue={ (chosen) => {
+        const renderNameSingular = chosen.name.singular || chosen.name.plural;
+        const renderNamePlural = chosen.name.plural || chosen.name.singular;
+
         return (
           <div className='simple-value'>
-            <span>{chosen.name[singOrPlur]}</span>
+            { plural ? <span>{renderNamePlural}</span> : <span>{renderNameSingular}</span> }
           </div>
         )
       }}
