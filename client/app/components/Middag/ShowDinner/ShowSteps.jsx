@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const ShowSteps = ({steps}) => {
+const ViewSteps = ({steps}) => {
 
   const Steps = steps.map( (step, i) => {
     const order = i + 1;
@@ -15,6 +15,17 @@ const ShowSteps = ({steps}) => {
       {Steps}
     </div>
   )
+}
+
+const ShowSteps = ({ editMode, steps }) => {
+  if( editMode ) {
+    return (
+      <div>edit</div>
+    )
+  }
+  else {
+    return <ViewSteps steps={steps} />
+  }
 }
 
 export default ShowSteps

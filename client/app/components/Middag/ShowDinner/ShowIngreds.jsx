@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import ShowIngredItem from './ShowIngredItem.jsx'
 
-const ShowIngreds = ({ingredients}) => {
+const ViewIngreds = ({ingredients}) => {
   const ingreds = ingredients.map( (ingredient, i) => {
     const ingId = ingredient.ingredientId;
     const quantity = ingredient.quantity;
@@ -15,6 +15,17 @@ const ShowIngreds = ({ingredients}) => {
       </ul>
     </div>
   )
+}
+
+const ShowIngreds = ({ editMode, ingredients }) => {
+  if( editMode ) {
+    return (
+      <div>EditIngreds</div>
+    )
+  }
+  else {
+    return <ViewIngreds ingredients={ingredients} />;
+  }
 }
 
 export default ShowIngreds
