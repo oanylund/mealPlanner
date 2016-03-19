@@ -1,0 +1,26 @@
+// main: ../../matPlanlegger.scss
+
+.showDinner-TopRightMenu {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  z-index: 1;
+  font-size: 1.2rem;
+  &>button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0 5px;
+    margin-right: 10px;
+    &.editActive {
+      color: #b58030;
+      &:hover {
+        color: #80581b;
+      }
+    }
+    &:hover {
+      color: $fontHoverColor;
+    }
+  }
+}
