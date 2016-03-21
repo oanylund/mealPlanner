@@ -1,5 +1,17 @@
 Middager = new Mongo.Collection("middager")
 
+Middager.allow({
+  insert: (userId,doc) => {
+    return true
+  },
+  update: (userId,doc) => {
+    return true
+  },
+  remove: (userId,doc) => {
+    return true
+  },
+})
+
 IngrediensInDinner = new SimpleSchema({
   quantity: {
     type: Number
