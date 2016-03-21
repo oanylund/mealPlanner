@@ -24,11 +24,15 @@ class ShowDinner extends React.Component {
     });
   }
   deleteDinner() {
-    browserHistory.push('/middag');
-    // TODO: meteor.call 'deleteDinner' _id
+    // TODO: Ensure dinner is not used in any week before removing. And error handling
+    Meteor.call('deleteDinner', this.props.dinner._id, this.props.dinner.imageId, (err, res) => {
+      if (err) throw err;
+      browserHistory.push('/middag');
+    });
   }
   render () {
-    const { title, description, imageId, ingredients, steps } = this.props.dinner;
+    const { _id, title, description, imageId, ingredients } = this.props.dinner;
+    let { steps } = this.props.dinner;
 
     let img = imageId ? <ShowDinnerImage imageId={imageId} />
       : <img className='showDinner-Image' src='/images/default-dinner.png'/>;
@@ -41,7 +45,9 @@ class ShowDinner extends React.Component {
       stepWidth = 12;
       stepOffset = 0;
     }
-
+    if( !steps ) {
+      steps = [];
+    }
     return (
       <div id='ShowDinner'>
         <TopRightMenu {...this.state} changeMode={this.changeMode} deleteDinner={this.deleteDinner} />
@@ -57,7 +63,7 @@ class ShowDinner extends React.Component {
               <Col md={ingredWidth}>
                 <ShowIngreds ingredients={ingredients} {...this.state} />
               </Col>
-              { steps ? <Col md={stepWidth} mdOffset={stepOffset}><ShowSteps steps={steps} {...this.state} /></Col> : '' }
+              { steps.length !== 0 || this.state.editMode ? <Col md={stepWidth} mdOffset={stepOffset}><ShowSteps id={_id} steps={steps} {...this.state} /></Col> : '' }
             </Row>
           </Grid>
         </div>
