@@ -2,8 +2,6 @@ import React, { PropTypes } from 'react'
 import { Grid, Row, Col, Pager, PageItem } from 'react-bootstrap'
 import ClassName from 'classnames'
 import AltContainer from 'alt-container'
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import alt from '../../../alt'
 import LagMiddagStore from '../../../stores/LagMiddagStore'
 import LagMiddagActions from '../../../actions/LagMiddagActions'
@@ -96,4 +94,4 @@ class LagMiddag extends React.Component {
   }
 }
 
-export default DragDropContext(HTML5Backend)(LagMiddag);
+export default LagMiddag;
