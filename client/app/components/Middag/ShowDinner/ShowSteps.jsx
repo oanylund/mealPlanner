@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import EditSteps from './EditMode/EditSteps.jsx'
 
 const ViewSteps = ({steps}) => {
 
@@ -17,10 +18,10 @@ const ViewSteps = ({steps}) => {
   )
 }
 
-const ShowSteps = ({ editMode, steps }) => {
+const ShowSteps = ({ editMode, steps, id }) => {
   if( editMode ) {
     return (
-      <div>edit</div>
+      <EditSteps id={id} steps={steps} />
     )
   }
   else {
