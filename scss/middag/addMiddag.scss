@@ -69,52 +69,52 @@
     border-bottom: 1px solid $fontHoverColor;
     padding-bottom: 3px;
   }
-  .addDinner-IngredRow {
-    position: relative;
-    display: flex;
-    flex-flow: row nowrap;
-    margin-bottom: 15px;
-    &>div {
-      display: inline-block;
-    }
-    .addDinner-Antall {
-      label {
-        display: block;
-      }
-      input {
-        width: auto;
-      }
-    }
-    .addDinner-Ingred {
-      display: inline-flex;
-      flex-flow: column nowrap;
-      justify-content: flex-start;
-    }
-    &>span {
-      display: flex;
-      align-items:flex-end;
-      margin: 11px 10px;
-    }
-    i {
-      font-size: 20px;
-      color: white;
-      -webkit-text-stroke: 1px #666;
-      // @include stroke(1,#818181);
-      margin-left: 10px;
-      margin-bottom: 12px;
-      bottom: 0;
-      position: absolute;
-    }
-    &>.addIngredBtn {
-      height: 39px;
-      bottom: 0;
-      position: absolute;
-      margin-left: 20px;
-    }
-  }
   .addDinner-infoTxt {
     font-size: 12px;
     color: #828282;
+  }
+}
+.addDinner-IngredRow {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 15px;
+  &>div {
+    display: inline-block;
+  }
+  .addDinner-Antall {
+    label {
+      display: block;
+    }
+    input {
+      width: auto;
+    }
+  }
+  .addDinner-Ingred {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+  }
+  &>span {
+    display: flex;
+    align-items:flex-end;
+    margin: 11px 10px;
+  }
+  i {
+    font-size: 20px;
+    color: white;
+    -webkit-text-stroke: 1px #666;
+    // @include stroke(1,#818181);
+    margin-left: 10px;
+    margin-bottom: 12px;
+    bottom: 0;
+    position: absolute;
+  }
+  &>.addIngredBtn {
+    height: 39px;
+    bottom: 0;
+    position: absolute;
+    margin-left: 20px;
   }
 }
 .addDinner-Modal {
