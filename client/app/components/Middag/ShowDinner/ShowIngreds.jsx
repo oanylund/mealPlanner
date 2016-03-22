@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import ShowIngredItem from './ShowIngredItem.jsx'
+import EditIngredients from './EditMode/EditIngredients.jsx'
 
 const ViewIngreds = ({ingredients}) => {
   const ingreds = ingredients.map( (ingredient, i) => {
@@ -20,7 +21,7 @@ const ViewIngreds = ({ingredients}) => {
 const ShowIngreds = ({ editMode, ingredients }) => {
   if( editMode ) {
     return (
-      <div>EditIngreds</div>
+      <EditIngredients ingredients={ingredients} />
     )
   }
   else {
