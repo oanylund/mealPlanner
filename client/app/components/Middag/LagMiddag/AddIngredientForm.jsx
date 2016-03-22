@@ -43,9 +43,6 @@ class AddIngredientForm extends React.Component {
       ingredientQuantity: 1
     }, () => {
       this.props.hideForm();
-      if( !!this.refs.showAddIngredFormBtn ) {
-        this.refs.showAddIngredFormBtn.focusBtn();
-      }
     })
   }
   onAdd() {
@@ -54,8 +51,8 @@ class AddIngredientForm extends React.Component {
     this._resetForm();
   }
   highlightQuantity() {
-    this.refs.quantity.focus()
-    this.refs.quantity.select()
+    this.refs.quantity.focus();
+    this.refs.quantity.select();
   }
   render () {
     const valSelected = !!this.state.selectedIngredient;

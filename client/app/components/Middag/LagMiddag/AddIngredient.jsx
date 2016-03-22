@@ -19,12 +19,15 @@ class AddIngredient extends React.Component {
       showAddForm: true
     }, () => {
       this.refs.addIngredForm.highlightQuantity()
-
     })
   }
   hideAddForm() {
     this.setState({
       showAddForm: false
+    }, () => {
+      if( !!this.refs.showAddIngredFormBtn ) {
+        this.refs.showAddIngredFormBtn.focusBtn();
+      }
     });
   }
   render () {
