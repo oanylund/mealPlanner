@@ -5,6 +5,7 @@ import { composeWithTracker } from 'react-komposer'
 import GetDinner from '../../composers/GetDinner'
 import Spinner from '../spinner.jsx'
 import TopRightMenu from './ShowDinner/TopRightMenu.jsx'
+import ShowTitle from './ShowDinner/ShowTitle.jsx'
 import ShowDinnerImage from './ShowDinner/ShowDinnerImage.jsx'
 import ShowIngreds from './ShowDinner/ShowIngreds.jsx'
 import ShowSteps from './ShowDinner/ShowSteps.jsx'
@@ -55,7 +56,7 @@ class ShowDinner extends React.Component {
         <div className='showDinner-Container'>
           <div className='showDinner-Header'>
             {img}
-            <span className='showDinner-Title'>{title}</span>
+            <ShowTitle dinnerId={_id} title={title} {...this.state} />
             <span className='showDinner-Description'>{description}</span>
           </div>
           <Grid fluid>

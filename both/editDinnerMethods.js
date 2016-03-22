@@ -4,6 +4,13 @@ Meteor.methods({
       Middager.remove({ _id: id });
     })
   },
+  // Title
+  editDinnerTitle: (id, newTitle) => {
+    Middager.update({ _id: id }, {
+      $set: { title: newTitle }
+    });
+  },
+
   // Ingredients
   addIngredientToDinner: (id, newIngredient) => {
     Middager.update({ _id: id }, {

@@ -34,6 +34,23 @@
         left: 250px;
         font-weight: bold;
         font-size: 2rem;
+        button {
+          background-color:rgba(0, 0, 0, 0);
+          outline: none;
+          border: none;
+          margin-left: 10px;
+          &:hover {
+            color: $fontHoverColor;
+          }
+        }
+        &>form {
+          display: inline;
+          &>input {
+            background-color:rgba(255, 255, 255, 0.4);
+            outline: none;
+            border: none;
+          }
+        }
       }
       .showDinner-Description {
         position: absolute;
