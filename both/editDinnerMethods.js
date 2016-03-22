@@ -11,6 +11,13 @@ Meteor.methods({
     });
   },
 
+  // Description
+  editDinnerDescription: (id, newDescription) => {
+    Middager.update({ _id: id }, {
+      $set: { description: newDescription }
+    });
+  },
+
   // Ingredients
   addIngredientToDinner: (id, newIngredient) => {
     Middager.update({ _id: id }, {
