@@ -18,10 +18,10 @@ const ViewIngreds = ({ingredients}) => {
   )
 }
 
-const ShowIngreds = ({ editMode, ingredients }) => {
+const ShowIngreds = ({ editMode, ingredients, dinnerId }) => {
   if( editMode ) {
     return (
-      <EditIngredients ingredients={ingredients} />
+      <EditIngredients dinnerId={dinnerId} ingredients={ingredients} />
     )
   }
   else {

@@ -61,7 +61,7 @@ class ShowDinner extends React.Component {
           <Grid fluid>
             <Row>
               <Col md={ingredWidth}>
-                <ShowIngreds ingredients={ingredients} {...this.state} />
+                <ShowIngreds dinnerId={_id} ingredients={ingredients} {...this.state} />
               </Col>
               { steps.length !== 0 || this.state.editMode ? <Col md={stepWidth} mdOffset={stepOffset}><ShowSteps id={_id} steps={steps} {...this.state} /></Col> : '' }
             </Row>
