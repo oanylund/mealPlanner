@@ -38,8 +38,9 @@ class CropImg extends React.Component {
         <Col md={3}>
           <div className="img-preview" style={previewStyle} />
           <p>Forhåndsvisning av bilde</p>
+          <button className='btn btn-primary' onClick={this.cropImage}>Bruk justert bilde</button>
         </Col>
-        <Col md={7}>
+        <Col md={9}>
           <Cropper
             ref='cropper'
             src={image}
@@ -49,9 +50,6 @@ class CropImg extends React.Component {
             guides={false}
             viewMode={1}
           />
-        </Col>
-        <Col md={2} >
-          <button className='btn btn-primary' onClick={this.cropImage}>Bruk justert bilde</button>
         </Col>
       </Row>
     )

@@ -22,12 +22,39 @@
       margin-bottom: 20px;
       width: 100%;
       .showDinner-Image {
-        height: 200px;
-        width: 200px;
+        position: relative;
+        $imgWidth: 200px;
+        $imgHeight: 200px;
+        $imgBorder: 3px;
+        &>img {
+          height: $imgHeight;
+          width: $imgWidth;
+        }
+        height: $imgHeight+2*$imgBorder;
+        width: $imgWidth+2*$imgBorder;
         border: 3px solid white;
         position: relative;
         top: 25px;
         left: 25px;
+        .showDinner-EditImgMenu {
+          position: absolute;
+          width: 100px;
+          height: 40px;
+          top: 80px;
+          left: 50px;
+          background-color: white;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          border: 3px solid #CCC;
+          &>button {
+            border: none;
+            background-color: transparent;
+            &:hover {
+              color: $fontHoverColor;
+            }
+          }
+        }
       }
       .showDinner-Title {
         position: absolute;

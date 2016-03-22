@@ -60,5 +60,55 @@ Meteor.methods({
     Middager.update({ _id: id }, {
       $set: { steps: reorderedSteps }
     })
+  },
+
+  // Image
+  addDinnerImage: (dinnerId, newImage) => {
+    // Create new file
+    var newFile = new FS.File();
+    // Attach image data from blob recieved from cropper
+    newFile.attachData(newImage, function (error) {
+      if (error) throw error; // TODO: Handle error
+      // Append "original" image name
+      newFile.name("thumbnail.png");
+      // Insert new image to db
+      DinnerThumbs.insert(newFile, function (error, fileObj) {
+        if(error) throw error; // TODO: handle insert error correctly
+        // Insert new imageid referance to dinner being edited
+        Middager.update({ _id: dinnerId }, {
+          $set: { imageId: fileObj._id }
+        });
+      });
+
+    });
+  },
+  changeDinnerImage: (dinnerId, oldImgId, newImage) => {
+    // Remove old image from db
+    DinnerThumbs.remove({ _id: oldImgId }, () => {
+      // Create new file
+      var newFile = new FS.File();
+      // Attach image data from blob recieved from cropper
+      newFile.attachData(newImage, function (error) {
+        if (error) throw error; // TODO: Handle error
+        // Append "original" image name
+        newFile.name("thumbnail.png");
+        // Insert new image to db
+        DinnerThumbs.insert(newFile, function (error, fileObj) {
+          if(error) throw error; // TODO: handle insert error correctly
+          // Insert new imageid referance to dinner being edited
+          Middager.update({ _id: dinnerId }, {
+            $set: { imageId: fileObj._id }
+          });
+        });
+
+      });
+    });
+  },
+  deleteDinnerImage: (dinnerId, imageId) => {
+    DinnerThumbs.remove({ _id: imageId }, () => {
+      Middager.update({ _id: dinnerId }, {
+        $unset: { imageId: '' }
+      });
+    });
   }
 });
