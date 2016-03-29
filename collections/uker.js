@@ -18,10 +18,6 @@ DagSchema = new SimpleSchema({
     type: String,
     label: 'Kommentar til middag',
     optional: true
-  },
-  imgUrl: {
-    type: String,
-    label: 'Bilde for framvisning'
   }
 })
 
