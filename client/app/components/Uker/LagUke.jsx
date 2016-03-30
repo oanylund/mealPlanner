@@ -3,7 +3,7 @@ import { Grid, Row, Col, Button } from 'react-bootstrap'
 import _ from 'underscore'
 
 import DagForm from './LagUke/DagForm.jsx'
-import Dag from './LagUke/Dag.jsx'
+import DagListe from './LagUke/DagListe.jsx'
 import VelgUke from './LagUke/VelgUke.jsx'
 import AlertBtn from './LagUke/AlertBtn.jsx'
 import InfoAlert from '../Reusable/InfoAlert.jsx'
@@ -27,7 +27,7 @@ class LagUke extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showAddForm: false
+      showAddForm: true
     }
     this.showAddForm = this.showAddForm.bind(this)
     this.hideAddForm = this.hideAddForm.bind(this)
@@ -40,16 +40,6 @@ class LagUke extends React.Component {
   }
   render() {
     const newWeek = this.props.newWeek
-    const dayList = _.map(newWeek.days, (day,dayString) => {
-      return (
-        <Col key={dayString + 'C'} md={6} lg={4}>
-          <Dag key={dayString + 'D'} title={translateDays[dayString]} description={day.title}
-            descriptionGrey={day.comment}
-            closeHandler={LagUkeActions.deleteDay.bind(null,dayString)}
-            imgUrl={day.imgUrl}/>
-        </Col>
-      )
-    })
 
     const addDayEnabled = (Object.keys(newWeek.days).length < 7) ? true : false;
     const resetEnabled = Object.keys(newWeek.days).length ? false : true;
@@ -73,15 +63,7 @@ class LagUke extends React.Component {
           <Row>
             <Col md={12}><p>Dager</p></Col>
           </Row>
-          <Row>
-            { Object.keys(newWeek.days).length ? dayList :
-            <Col md={12}>
-              <div className='addDag'>
-                <InfoAlert txt='Trykk + knappen for å legge en middag til en av ukedagene.' />
-              </div>
-            </Col>
-            }
-          </Row>
+          <DagListe newWeek={newWeek} translateDays={translateDays} deleteDay={LagUkeActions.deleteDay} />
           <Row>
             <Col md={12}>
               { addDayEnabled ? addForm : ''}

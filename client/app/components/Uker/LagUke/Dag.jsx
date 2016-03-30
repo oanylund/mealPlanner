@@ -11,7 +11,7 @@ const showImgElement = (props) => {
         <span>{props.description}</span><br/>
         {props.descriptionGrey ? <span className='grey'>{props.descriptionGrey}</span> : '' }
         { props.linkUrl ?
-        <a href={props.linkUrl}>Read more...</a>
+        <a href={props.linkUrl}>Les mer...</a>
         : '' }
       </div>
     </div>

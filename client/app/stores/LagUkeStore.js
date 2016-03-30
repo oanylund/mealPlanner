@@ -26,14 +26,17 @@ class LagUkeStore {
     this.newWeek.days = {}
   }
   onAddDay(dayObj) {
-    if(!dayObj.isDinner) {
-      dayObj.imgUrl = '/images/hungry.jpg'
+    let dayToAdd = {}
+    if ( dayObj.comment ) {
+      dayToAdd.comment = dayObj.comment
     }
-    this.newWeek.days[dayObj.day] = {
-      title: dayObj.title,
-      comment: dayObj.comment,
-      isDinner: dayObj.isDinner,
-      imgUrl: dayObj.imgUrl
+    if(dayObj.dinnerId) {
+      dayToAdd.dinnerId = dayObj.dinnerId
+      this.newWeek.days[dayObj.day] = dayToAdd
+    }
+    else {
+      dayToAdd.whynot = dayObj.whynot
+      this.newWeek.days[dayObj.day] = dayToAdd
     }
   }
 }

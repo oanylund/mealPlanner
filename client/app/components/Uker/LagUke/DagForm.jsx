@@ -1,38 +1,52 @@
 import React, { PropTypes } from 'react'
 import LagUkeActions from '../../../actions/LagUkeActions'
 import { Input, Button } from 'react-bootstrap'
-
+import ChoseDinnerModal from './ChoseDinnerModal.jsx'
 
 class DagForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isDinner: false
+      dinner: null,
+      showModal: false
     }
     this.handleAddClick = this.handleAddClick.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+    this.addDinnerToDay = this.addDinnerToDay.bind(this)
   }
   handleAddClick() {
     let day = this.refs.day.getValue()
     let whynot = this.refs.whynot.getValue()
     let comment = this.refs.comment.getValue()
 
-    if (this.state.isDinner) {
+    let payload = { day: day }
+
+    if ( comment !== '') {
+      payload.comment = comment
+    }
+
+    if (this.state.dinner) {
 
     }
     else {
       if(whynot === '') {
-        alert('Det burde vertfall være en tittel til dagen når det ikke er valgt en middag')
+        alert('Når ingen middag er valgt, må det være en begrunnelse for hvorfor det ikke blir middag')
       }
       else {
-        let payload = {
-          day: day,
-          isDinner: this.state.isDinner,
-          title: whynot,
-          comment: comment
-        }
+        payload.whynot = whynot
         LagUkeActions.addDay(payload)
       }
     }
+  }
+  openModal() {
+    this.setState({ showModal: true })
+  }
+  closeModal() {
+    this.setState({ showModal: false })
+  }
+  addDinnerToDay() {
+
   }
   render() {
     let translateDays = this.props.translateDays
@@ -44,6 +58,18 @@ class DagForm extends React.Component {
         <option key={day+'O'} value={day}>{translateDays[day]}</option>
       )
     })
+
+    const addDayMenu =  <div className='Dagform-innerBox'>
+                          <div className='Dagform-addmiddag'>
+                            <p>Legg til middag</p>
+                            <i className='fa fa-plus' onClick={this.openModal}/>
+                          </div>
+                          <div className='Dagform-whynot'>
+                            <p><strong>Eller</strong> skriv kort om hvorfor det ikke blir middag</p>
+                            <Input ref='whynot' type='text'/>
+                          </div>
+                        </div>;
+
     return (
       <div className='Dagform-box'>
         { this.props.hideForm ? <i className='fa fa-close fa-CloseBtn' onClick={this.props.hideForm} /> : '' }
@@ -54,16 +80,7 @@ class DagForm extends React.Component {
             <Input ref='day' type='select'>
               {options}
             </Input>
-            <div className='Dagform-innerBox'>
-              <div className='Dagform-addmiddag'>
-                <p>Legg til middag</p>
-                <i className='fa fa-plus'/>
-              </div>
-              <div className='Dagform-whynot'>
-                <p><strong>Eller</strong> skriv kort om hvorfor det ikke blir middag</p>
-                <Input ref='whynot' type='text'/>
-              </div>
-            </div>
+            { addDayMenu }
             <div className='Dagform-kommentar'>
               <p>Legg til kommentar (feks: 'Ta opp kjøtt fra frysern')</p>
               <Input ref='comment' type='text'/>
@@ -73,6 +90,8 @@ class DagForm extends React.Component {
             </div>
           </fieldset>
         </form>
+        <ChoseDinnerModal show={this.state.showModal} close={this.closeModal}
+          addDinner={this.addDinnerToDay} />
       </div>
     )
   }
