@@ -16,5 +16,5 @@ class ChoseDinnerModal extends React.Component {
     )
   }
 }
-
+// TODO: Add dinner modal
 export default ChoseDinnerModal;
