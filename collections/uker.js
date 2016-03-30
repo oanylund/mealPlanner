@@ -7,9 +7,6 @@ DagSchema = new SimpleSchema({
     label: 'middagId',
     optional: true
   },
-  isDinner: {
-    type: Boolean
-  },
   whynot: {
     type: String,
     label: 'Begrunnelse for ingen middag',
