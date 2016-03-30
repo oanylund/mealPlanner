@@ -10,9 +10,10 @@ DagSchema = new SimpleSchema({
   isDinner: {
     type: Boolean
   },
-  title: {
+  whynot: {
     type: String,
-    label: 'Begrunnelse for ingen middag, eller middagstittel',
+    label: 'Begrunnelse for ingen middag',
+    optional: true
   },
   comment: {
     type: String,
