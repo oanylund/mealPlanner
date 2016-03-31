@@ -1,5 +1,17 @@
 Middager = new Mongo.Collection("middager")
 
+Middager.searchTitle = (query) => {
+  return Middager.find({
+      title: {
+        $regex: RegExp.escape(query),
+        $options: 'i'
+      }
+    },
+    {
+      limit: 20
+    });
+}
+
 Middager.allow({
   insert: (userId,doc) => {
     return true
