@@ -6,6 +6,14 @@ Meteor.publish("uker", function () {
 Meteor.publish("middagsListe", function () {
     return Middager.find({},{ fields: { title: 1, description: 1, imageId: 1 } });
 });
+Meteor.publish("dinnerSearch", function (query) {
+  check(query, String);
+
+  if ( _.isEmpty(query) )
+    return this.ready();
+
+  return Middager.searchTitle(query);
+});
 Meteor.publish("middagerAllProperties", function () {
     return Middager.find({});
 });
