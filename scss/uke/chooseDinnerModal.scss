@@ -1,0 +1,56 @@
+// main: ../../matPlanlegger.scss
+
+.addWeek-ChooseDinnerHeaderTitle {
+  display: inline;
+  line-height: normal;
+}
+
+.addWeek-ChooseDinnerHeaderMenu {
+  float: right;
+  .addWeek-ChooseDinnerFilter {
+    display: inline;
+    &>input {
+      width: 300px;
+      margin-left: 15px;
+      border: none;
+      border-bottom: 1px solid #CCC;
+    }
+  }
+  .addWeek-ChooseDinnerCloseBtn {
+    margin-left: 15px;
+    display: inline;
+  }
+}
+
+.addWeek-ChooseDinnerItem {
+  $rowSize: 50px;
+  outline: none;
+  border: none;
+  display: block;
+  background-color: transparent;
+  height: $rowSize;
+  width: 100%;
+  position: relative;
+  font-size: 13px;
+  &>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    width: $rowSize;
+  }
+  &>.addWeek-ChooseDinnerItem-Title {
+    position: absolute;
+    top: 5px;
+    left: $rowSize + 10px;
+    font-weight: bold;
+  }
+  &>.addWeek-ChooseDinnerItem-Desc {
+    position: absolute;
+    top: 22px;
+    left: $rowSize + 10px;
+  }
+  &:hover {
+    background-color: #EEE;
+  }
+}
