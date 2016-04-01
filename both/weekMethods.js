@@ -5,5 +5,20 @@ Meteor.methods({
       return true
     }
     return false
+  },
+  getDinnerCount: function(titleFilter) {
+    if( titleFilter === '') {
+      return Middager.find({}).count();
+    }
+    else {
+      return Middager.searchTitle(titleFilter).count();
+    }
+  },
+  getDinners: function( offset, limit, titleFilter ) {
+    if( titleFilter === '' ) {
+      return Middager.find({}, { limit: limit, skip: offset }).fetch();
+    } else {
+      return Middager.searchTitle(titleFilter).fetch();
+    }
   }
 });
