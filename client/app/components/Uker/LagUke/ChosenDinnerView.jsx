@@ -2,21 +2,22 @@ import React, { PropTypes } from 'react'
 import { composeWithTracker } from 'react-komposer'
 import GetDinner from '../../../composers/GetDinner'
 import ChoseDinnerItemImg from './ChoseDinnerItemImg.jsx'
+import ChosenDinnerIngredView from './ChosenDinnerIngredView.jsx'
 import { Accordion, Panel, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
 
 const ChosenDinnerView = ({dinner, addDinner}) => {
 
   const ingredientList = dinner.ingredients.map( (ingredient, i) => {
     return (
-      <ListGroupItem key={i}>{ingredient.quantity}.{` ${ingredient.ingredientId}`}</ListGroupItem>
-    ) // TODO: Get ingredient properties from db
+      <ChosenDinnerIngredView key={i} quantity={ingredient.quantity} ingId={ingredient.ingredientId} />
+    )
   });
 
   let stepsList = '';
   if( dinner.steps ) {
     stepsList = dinner.steps.map( (step, i) => {
       return (
-        <ListGroupItem key={i}><strong>{i+1}.</strong>{` ${step}`}</ListGroupItem>
+        <ListGroupItem key={i} ><strong>{i+1}.</strong>{` ${step}`}</ListGroupItem>
       );
     });
   }
