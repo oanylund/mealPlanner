@@ -86,9 +86,9 @@ class DagForm extends React.Component {
     const daysLeft = Object.keys(translateDays).filter( (day) => {
       return !this.props.alreadyAdded.includes(day)
     })
-    const options = daysLeft.map( (day) => {
+    const options = daysLeft.map( (day, i) => {
       return(
-        <option key={day+'O'} value={day}>{translateDays[day]}</option>
+        <option key={i} value={day}>{translateDays[day]}</option>
       )
     })
 
