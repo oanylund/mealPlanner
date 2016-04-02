@@ -23,8 +23,8 @@ const ChosenDinnerView = ({dinner, addDinner}) => {
   }
 
   const addDinnerProps = {
-    title: dinner.title,
-    description: dinner.description
+    dinnerId: dinner._id,
+    title: dinner.title
   }
   // TODO: style view
   return (

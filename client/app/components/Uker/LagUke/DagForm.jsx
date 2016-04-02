@@ -14,6 +14,9 @@ class DagForm extends React.Component {
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.addDinnerToDay = this.addDinnerToDay.bind(this)
+    this.addDayMenu = this.addDayMenu.bind(this)
+    this.dayAdded = this.dayAdded.bind(this)
+    this.resetDinner = this.resetDinner.bind(this)
   }
   handleAddClick() {
     let day = this.refs.day.getValue()
@@ -50,6 +53,34 @@ class DagForm extends React.Component {
       dinner: dinner
     });
   }
+  addDayMenu() {
+    return (
+      <div className='Dagform-innerBox'>
+        <div className='Dagform-addmiddag'>
+          <p>Legg til middag</p>
+          <i className='fa fa-plus' onClick={this.openModal}/>
+        </div>
+        <div className='Dagform-whynot'>
+          <p><strong>Eller</strong> skriv kort om hvorfor det ikke blir middag</p>
+          <Input ref='whynot' type='text'/>
+        </div>
+      </div>
+    )
+  }
+  dayAdded() {
+    return (
+      <div>
+        <p>Middag valgt</p>
+        <h4>{this.state.dinner.title}</h4>
+        <Button bsSize='xs' onClick={this.resetDinner}>Fjern middag</Button>
+      </div>
+    )
+  }
+  resetDinner() {
+    this.setState({
+      dinner: null
+    });
+  }
   render() {
     let translateDays = this.props.translateDays
     const daysLeft = Object.keys(translateDays).filter( (day) => {
@@ -61,17 +92,6 @@ class DagForm extends React.Component {
       )
     })
 
-    const addDayMenu =  <div className='Dagform-innerBox'>
-                          <div className='Dagform-addmiddag'>
-                            <p>Legg til middag</p>
-                            <i className='fa fa-plus' onClick={this.openModal}/>
-                          </div>
-                          <div className='Dagform-whynot'>
-                            <p><strong>Eller</strong> skriv kort om hvorfor det ikke blir middag</p>
-                            <Input ref='whynot' type='text'/>
-                          </div>
-                        </div>;
-
     return (
       <div className='Dagform-box'>
         { this.props.hideForm ? <i className='fa fa-close fa-CloseBtn' onClick={this.props.hideForm} /> : '' }
@@ -82,7 +102,7 @@ class DagForm extends React.Component {
             <Input ref='day' type='select'>
               {options}
             </Input>
-            { this.state.dinner ? <div>tetst</div> : addDayMenu }
+            { this.state.dinner ? this.dayAdded() : this.addDayMenu() }
             <div className='Dagform-kommentar'>
               <p>Legg til kommentar (feks: 'Ta opp kjøtt fra frysern')</p>
               <Input ref='comment' type='text'/>
