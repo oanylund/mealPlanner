@@ -4,7 +4,7 @@ const ChoseDinnerFilter = ({filterChange}) => {
   return (
     <div className='addWeek-ChooseDinnerFilter'>
       <span>Filter:</span>
-      <input type='text' placeholder='Filtrer middager etter tittel' onChange={filterChange}/>
+      <input type='text' placeholder='Filtrer titler (Minimum 3 bokstaver)' onChange={filterChange}/>
     </div>
   )
 }

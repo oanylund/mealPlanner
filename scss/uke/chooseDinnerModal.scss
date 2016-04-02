@@ -54,3 +54,12 @@
     background-color: #EEE;
   }
 }
+
+.addWeek-ChooseDinnerView {
+  height: 500px;
+  &>img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+}

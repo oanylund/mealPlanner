@@ -19,7 +19,7 @@ class DagForm extends React.Component {
     let day = this.refs.day.getValue()
     let whynot = this.refs.whynot.getValue()
     let comment = this.refs.comment.getValue()
-
+    // TODO: Rewrite method
     let payload = { day: day }
 
     if ( comment !== '') {
@@ -45,8 +45,10 @@ class DagForm extends React.Component {
   closeModal() {
     this.setState({ showModal: false })
   }
-  addDinnerToDay() {
-
+  addDinnerToDay(dinner) {
+    this.setState({
+      dinner: dinner
+    });
   }
   render() {
     let translateDays = this.props.translateDays
@@ -80,7 +82,7 @@ class DagForm extends React.Component {
             <Input ref='day' type='select'>
               {options}
             </Input>
-            { addDayMenu }
+            { this.state.dinner ? <div>tetst</div> : addDayMenu }
             <div className='Dagform-kommentar'>
               <p>Legg til kommentar (feks: 'Ta opp kjøtt fra frysern')</p>
               <Input ref='comment' type='text'/>

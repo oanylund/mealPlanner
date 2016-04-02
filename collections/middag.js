@@ -1,15 +1,26 @@
 Middager = new Mongo.Collection("middager")
 
-Middager.searchTitle = (query) => {
-  return Middager.find({
+Middager.searchTitle = (titleFilter, limit) => {
+
+  if( limit ) {
+    return Middager.find({
       title: {
-        $regex: RegExp.escape(query),
+        $regex: RegExp.escape(titleFilter),
         $options: 'i'
       }
     },
     {
-      limit: 20
+      limit: limit
     });
+  }
+  else {
+    return Middager.find({
+      title: {
+        $regex: RegExp.escape(titleFilter),
+        $options: 'i'
+      }
+    });
+  }
 }
 
 Middager.allow({
