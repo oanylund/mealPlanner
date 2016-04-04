@@ -2,14 +2,22 @@ import React, { PropTypes } from 'react'
 import Dag from './Dag.jsx'
 import { Row, Col } from 'react-bootstrap'
 import InfoAlert from '../../Reusable/InfoAlert.jsx'
+import DagDinnerWrapper from './DagDinnerWrapper.jsx'
 
 const DagListe = ({newWeek, deleteDay, translateDays}) => {
 
   const dayList = _.map(newWeek.days, (day,dayNumber) => {
-
-    if (day.dinnerId ) {
+    if ( day.dinnerId ) {
       return (
-        <div>Middag skal vises her. Id: {day.dinnerId}</div>
+        <Col key={dayNumber} md={6} lg={4}>
+          <DagDinnerWrapper
+            key={dayNumber}
+            day={translateDays[dayNumber]}
+            close={deleteDay.bind(null,dayNumber)}
+            comment={day.comment}
+            dinnerId={day.dinnerId}
+          />
+        </Col>
       )
     }
     else {
