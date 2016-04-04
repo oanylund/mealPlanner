@@ -58,16 +58,9 @@ DagerSchema = new SimpleSchema({
 })
 
 UkerSchema = new SimpleSchema({
-  _id: {
-    type: String, // WW( week etc 34) YYYY( year etc 2015) ---> _id: WWYYYY
-  },
-  year: {
-    type: Number,
-    label: 'År',
-  },
-  week: {
-    type: Number,
-    label: 'Ukenummer'
+  name: {
+    type: String,
+    label: 'Ukemenyens navn',
   },
   days: {
     type: DagerSchema
