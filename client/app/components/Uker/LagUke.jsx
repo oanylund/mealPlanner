@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Grid, Row, Col, Button } from 'react-bootstrap'
 import _ from 'underscore'
+import alt from '../../alt'
 
 import DagForm from './LagUke/DagForm.jsx'
 import DagListe from './LagUke/DagListe.jsx'
@@ -31,6 +32,9 @@ class LagUke extends React.Component {
     }
     this.showAddForm = this.showAddForm.bind(this)
     this.hideAddForm = this.hideAddForm.bind(this)
+  }
+  componentWillUnmount() {
+    alt.recycle(LagUkeStore);
   }
   showAddForm(state) {
     this.setState({showAddForm: true})
