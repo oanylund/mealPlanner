@@ -8,39 +8,20 @@ class DagForm extends React.Component {
     super(props)
     this.state = {
       dinner: null,
+      whynot: '',
+      comment: '',
       showModal: false
     }
     this.handleAddClick = this.handleAddClick.bind(this)
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.onCommentChange = this.onCommentChange.bind(this)
+    this.onWhyNotChange = this.onWhyNotChange.bind(this)
     this.addDinnerToDay = this.addDinnerToDay.bind(this)
     this.addDayMenu = this.addDayMenu.bind(this)
     this.dayAdded = this.dayAdded.bind(this)
     this.resetDinner = this.resetDinner.bind(this)
-  }
-  handleAddClick() {
-    let day = this.refs.day.getValue()
-    let whynot = this.refs.whynot.getValue()
-    let comment = this.refs.comment.getValue()
-    // TODO: Rewrite method
-    let payload = { day: day }
-
-    if ( comment !== '') {
-      payload.comment = comment
-    }
-
-    if (this.state.dinner) {
-
-    }
-    else {
-      if(whynot === '') {
-        alert('Når ingen middag er valgt, må det være en begrunnelse for hvorfor det ikke blir middag')
-      }
-      else {
-        payload.whynot = whynot
-        LagUkeActions.addDay(payload)
-      }
-    }
+    this.resetForm = this.resetForm.bind(this)
   }
   openModal() {
     this.setState({ showModal: true })
@@ -48,9 +29,31 @@ class DagForm extends React.Component {
   closeModal() {
     this.setState({ showModal: false })
   }
+  onCommentChange(e) {
+    this.setState({
+      comment: e.target.value
+    });
+  }
+  onWhyNotChange(e) {
+    this.setState({
+      whynot: e.target.value
+    });
+  }
   addDinnerToDay(dinner) {
     this.setState({
       dinner: dinner
+    });
+  }
+  resetDinner() {
+    this.setState({
+      dinner: null
+    });
+  }
+  resetForm() {
+    this.setState({
+      dinner: null,
+      comment: '',
+      whynot: '' 
     });
   }
   addDayMenu() {
@@ -62,7 +65,7 @@ class DagForm extends React.Component {
         </div>
         <div className='Dagform-whynot'>
           <p><strong>Eller</strong> skriv kort om hvorfor det ikke blir middag</p>
-          <Input ref='whynot' type='text'/>
+          <Input value={this.state.whynot} onChange={this.onWhyNotChange} type='text'/>
         </div>
       </div>
     )
@@ -76,10 +79,32 @@ class DagForm extends React.Component {
       </div>
     )
   }
-  resetDinner() {
-    this.setState({
-      dinner: null
-    });
+  handleAddClick() {
+    let day = this.refs.day.getValue();
+    let comment = this.state.comment;
+
+    let payload = { day: day }
+
+    if ( comment !== '') {
+      payload.comment = comment;
+    }
+
+    if (this.state.dinner) {
+      payload.dinnerId = this.state.dinner.dinnerId;
+      LagUkeActions.addDay(payload);
+      this.resetForm();
+    }
+    else {
+      let whynot = this.state.whynot;
+      if(whynot === '') {
+        alert('Når ingen middag er valgt, må det være en begrunnelse for hvorfor det ikke blir middag');
+      }
+      else {
+        payload.whynot = whynot;
+        LagUkeActions.addDay(payload);
+        this.resetForm();
+      }
+    }
   }
   render() {
     let translateDays = this.props.translateDays
@@ -105,7 +130,7 @@ class DagForm extends React.Component {
             { this.state.dinner ? this.dayAdded() : this.addDayMenu() }
             <div className='Dagform-kommentar'>
               <p>Legg til kommentar (feks: 'Ta opp kjøtt fra frysern')</p>
-              <Input ref='comment' type='text'/>
+              <Input value={this.state.comment} onChange={this.onCommentChange} type='text'/>
             </div>
             <div style={{textAlign:'right'}}>
               <Button bsStyle='primary' onClick={this.handleAddClick}>Legg til dag</Button>
