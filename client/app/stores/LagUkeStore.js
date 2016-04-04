@@ -5,38 +5,38 @@ import LagUkeActions from '../actions/LagUkeActions'
 class LagUkeStore {
   constructor() {
     this.newWeek = {
-      year: 0,
-      week: 0,
+      name: '',
       days: {}
     }
-    this.weekExists = false
-    this.bindActions(LagUkeActions)
+    this.validation = {
+      nameHasBeenChanged: false
+    }
+    this.bindActions(LagUkeActions);
   }
-  onWeekChange(weekYear) {
-    this.newWeek.year = weekYear.year
-    this.newWeek.week = weekYear.week
-  }
-  onWeekChangeResponse(exists) {
-    this.weekExists = exists
+  onWeekNameChanged(newName) {
+    this.newWeek.name = newName;
+    if ( !this.validation.nameHasBeenChanged ) {
+      this.validation.nameHasBeenChanged = true;
+    }
   }
   onDeleteDay(day) {
-    delete this.newWeek.days[day]
+    delete this.newWeek.days[day];
   }
   onDeleteDays() {
-    this.newWeek.days = {}
+    this.newWeek.days = {};
   }
   onAddDay(dayObj) {
-    let dayToAdd = {}
+    let dayToAdd = {};
     if ( dayObj.comment ) {
-      dayToAdd.comment = dayObj.comment
+      dayToAdd.comment = dayObj.comment;
     }
     if(dayObj.dinnerId) {
-      dayToAdd.dinnerId = dayObj.dinnerId
-      this.newWeek.days[dayObj.day] = dayToAdd
+      dayToAdd.dinnerId = dayObj.dinnerId;
+      this.newWeek.days[dayObj.day] = dayToAdd;
     }
     else {
-      dayToAdd.whynot = dayObj.whynot
-      this.newWeek.days[dayObj.day] = dayToAdd
+      dayToAdd.whynot = dayObj.whynot;
+      this.newWeek.days[dayObj.day] = dayToAdd;
     }
   }
 }
