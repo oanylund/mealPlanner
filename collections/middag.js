@@ -66,6 +66,13 @@ MiddagSchema = new SimpleSchema({
   },
   ingredients: {
     type: [IngrediensInDinner]
+  },
+  usedInWeek: {
+    type: Array,
+    optional: true
+  },
+  "usedInWeek.$": {
+    type: String
   }
 })
 
