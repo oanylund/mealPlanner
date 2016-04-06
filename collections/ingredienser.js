@@ -40,7 +40,6 @@ SingularPluralSchema = new SimpleSchema({
 })
 
 IngrediensSchema = new SimpleSchema({
-
   name: {
     type: SingularPluralSchema,
     label: 'Navn på ingrediens',
@@ -54,9 +53,14 @@ IngrediensSchema = new SimpleSchema({
     type: String,
     label: 'Kategori',
     index: 1
+  },
+  usedInDinners: {
+    type: Array,
+    optional: true
+  },
+  "usedInDinners.$": {
+    type: String
   }
-
-
 })
 
 Ingredienser.attachSchema(IngrediensSchema)

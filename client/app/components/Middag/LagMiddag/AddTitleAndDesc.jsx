@@ -29,13 +29,13 @@ class AddTitleAndDesc extends React.Component {
           <div className={titleValidationState}>
             <label className="control-label" htmlFor='newDinnerTitle'>Tittel</label>
             <input autoComplete='off' ref='title' id='newDinnerTitle' className='form-control'
-              onChange={(e)=>{this.props.titleFieldChanged(e.target.value)}} type='text' defaultValue={dinnerObj.title} required/>
+              onChange={(e)=>{this.props.titleFieldChanged(e.target.value)}} type='text' value={dinnerObj.title} required/>
             { emptyTitle ? <div className='help-block'>{emptyMsg}</div> : '' }
           </div>
           <div className={descValidationState}>
             <label className="control-label" htmlFor='newDinnerDesc'>Beskrivelse</label>
             <textarea ref='desc' id='newDinnerDesc' className='form-control'
-              onChange={(e)=>{this.props.descFieldChanged(e.target.value)}} defaultValue={dinnerObj.description} required></textarea>
+              onChange={(e)=>{this.props.descFieldChanged(e.target.value)}} value={dinnerObj.description} required></textarea>
             { emptyDesc ? <div className='help-block'>{emptyMsg}</div> : '' }
           </div>
           <div style={{textAlign:'right'}}>

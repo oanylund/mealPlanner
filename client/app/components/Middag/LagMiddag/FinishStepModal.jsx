@@ -15,7 +15,6 @@ class FinishStepModal extends React.Component {
     // If view is 1 when submitting, input fields retain their values. So render first 2 then one, ugly but working
     this.props.restartView(1);
     // TODO: Some way to restart all state smoothly with loader present more cleanly
-    alt.recycle(LagMiddagStore);
   }
   render () {
     const { steps, image } = this.props;

@@ -16,5 +16,10 @@ Meteor.methods({
         name: newName
       }
     })
+  },
+  addIngredDinnerDep: (ingredId,dinnerId) => {
+    Ingredienser.update(ingredId, {
+      $addToSet: { usedInDinners: dinnerId }
+    });
   }
 })

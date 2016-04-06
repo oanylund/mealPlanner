@@ -176,6 +176,13 @@ class LagMiddagStore {
     });
     return dbReady
   }
+  _insertDepsToIngredsAndResetStore(err, newDinnerId) {
+    if (err) throw err;
+    this.dinnerObj.ingredients.forEach( (ingred) => {
+      Meteor.call('addIngredDinnerDep', ingred._id, newDinnerId);
+    });
+    alt.recycle(thisStore);
+  }
   onAddDinnerToDb() {
     let newDinner = {
       title: this.dinnerObj.title,
@@ -191,13 +198,15 @@ class LagMiddagStore {
     if( this.validSteps.image.added ) {
        this._addThumbToDb().then( (id) => {
          newDinner.imageId = id;
-         Meteor.call('addDinner', newDinner);
+         Meteor.call('addDinner', newDinner, this._insertDepsToIngredsAndResetStore.bind(this));
        });
     }
     else {
-      Meteor.call('addDinner', newDinner);
+      Meteor.call('addDinner', newDinner, this._insertDepsToIngredsAndResetStore.bind(this));
     }
-
   }
 }
-export default alt.createStore(LagMiddagStore, 'LagMiddagStore')
+
+let thisStore = alt.createStore(LagMiddagStore, 'LagMiddagStore')
+
+export default thisStore

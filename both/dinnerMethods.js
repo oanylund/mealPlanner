@@ -1,5 +1,5 @@
 Meteor.methods({
   addDinner: (newDinner) => {
-    Middager.insert(newDinner);
+    return Middager.insert(newDinner);
   },
 });
