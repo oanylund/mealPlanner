@@ -33,9 +33,9 @@ class ShowDinner extends React.Component {
     });
   }
   render () {
-    const { _id, title, description, imageId, ingredients } = this.props.dinner;
+    const { _id, title, description, imageId, ingredients, usedInWeek } = this.props.dinner;
     let { steps } = this.props.dinner;
-
+    const cantDelete = !usedInWeek || usedInWeek.length === 0;
     let ingredWidth = steps ? 3 : 12;
     let stepWidth = 8;
     let stepOffset = 1;
@@ -49,7 +49,8 @@ class ShowDinner extends React.Component {
     }
     return (
       <div id='ShowDinner'>
-        <TopRightMenu {...this.state} changeMode={this.changeMode} deleteDinner={this.deleteDinner} />
+        <TopRightMenu {...this.state} changeMode={this.changeMode}
+          deleteDinner={this.deleteDinner} cantDelete={cantDelete} />
         <div className='showDinner-Separator'/>
         <div className='showDinner-Container'>
           <div className='showDinner-Header'>
