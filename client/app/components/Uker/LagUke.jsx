@@ -80,7 +80,11 @@ class LagUke extends React.Component {
           <Row>
             <div style={{marginTop:15}}>
               <Col sm={6}>
-                <Button disabled={addWeekDisabled} bsStyle='success' block>Lag uke</Button>
+                <Button disabled={addWeekDisabled} bsStyle='success'
+                  onClick={LagUkeActions.addWeek}
+                  block>
+                  Lag uke
+                </Button>
               </Col>
               <Col sm={6}>
                 <AlertBtn disabled={resetDisabled} />

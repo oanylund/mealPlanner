@@ -39,6 +39,25 @@ class LagUkeStore {
       this.newWeek.days[dayObj.day] = dayToAdd;
     }
   }
+  _addDinnerDepsAndResetStore(err, newWeekId) {
+    if (err) throw err;
+    _.each(this.newWeek.days, (day) => {
+      if (day.dinnerId) {
+        Meteor.call('addDinnerWeekDep', day.dinnerId, newWeekId);
+      }
+    });
+    alt.recycle(thisStore);
+  }
+  onAddWeek() {
+    if ( this.newWeek.name.length > 0 && Object.keys(this.newWeek.days).length > 0 ) {
+      Meteor.call('addWeek', this.newWeek, this._addDinnerDepsAndResetStore.bind(this));
+    }
+    else {
+      // TODO: Handle error with notification system osv
+    }
+  }
 }
 
-export default alt.createStore(LagUkeStore, 'LagUkeStore')
+let thisStore = alt.createStore(LagUkeStore, 'LagUkeStore');
+
+export default thisStore;
