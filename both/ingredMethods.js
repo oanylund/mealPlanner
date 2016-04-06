@@ -21,5 +21,10 @@ Meteor.methods({
     Ingredienser.update(ingredId, {
       $addToSet: { usedInDinners: dinnerId }
     });
+  },
+  removeIngredDinnerDep: (ingredId,dinnerId) => {
+    Ingredienser.update(ingredId, {
+      $pull: { usedInDinners: dinnerId }
+    });
   }
 })

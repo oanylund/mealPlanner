@@ -40,7 +40,10 @@ class EditIngredients extends React.Component {
       quantity: newIngredient.quantity,
       ingredientId: newIngredient._id
     }
-    Meteor.call('addIngredientToDinner', this.props.dinnerId, newIngredInDinner);
+    Meteor.call('addIngredientToDinner', this.props.dinnerId, newIngredInDinner, (err, res) => {
+      if(err) throw err;
+      Meteor.call('addIngredDinnerDep', newIngredient._id, this.props.dinnerId);
+    });
   }
   editQuantity({ index, quantity }) {
     Meteor.call('editIngredQuantityInDinner', this.props.dinnerId, index, quantity);
@@ -48,8 +51,12 @@ class EditIngredients extends React.Component {
   deleteIngred(delIndex) {
     if( this.props.ingredients.length > 1 ) {
       let tmpIngreds = this.props.ingredients;
+      const delIngredId = tmpIngreds[delIndex].ingredientId;
       tmpIngreds.splice(delIndex,1);
-      Meteor.call('deleteIngredFromDinner', this.props.dinnerId, tmpIngreds);
+      Meteor.call('deleteIngredFromDinner', this.props.dinnerId, tmpIngreds, (err,res) => {
+        if(err) throw err;
+        Meteor.call('removeIngredDinnerDep', delIngredId, this.props.dinnerId);
+      });
     }
     // TODO: Handle delete not allowed with notification
   }
