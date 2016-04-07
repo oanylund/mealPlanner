@@ -3,7 +3,7 @@ Ingredienser = new Mongo.Collection('ingredienser')
 // Add search method to collection class
 Ingredienser.searchName = (query) => {
   return Ingredienser.find({
-      'name.plural' : {
+      'name.singular' : {
         $regex: RegExp.escape(query),
         $options: 'i'
       }
