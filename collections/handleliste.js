@@ -41,7 +41,7 @@ HandlelisteSchema = new SimpleSchema({
   weekPlanId: {
     type: String,
     optional: true
-  }
+  },
   listItems: {
     type: [ListItemSchema]
   }
