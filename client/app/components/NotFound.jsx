@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 const NotFound = (props) => {
   return (
     <div className='marginSquare'>
-      <h3>The url specified cannot be found</h3>
+      <h3>URL adresse som er spesifisert finnes ikke</h3>
     </div>
   )
 }
