@@ -12,7 +12,7 @@ Handlelister.allow({
   },
 })
 
-listItemSchema = new SimpleSchema({
+ListItemSchema = new SimpleSchema({
   purchased: {
     type: Boolean,
     defaultValue: false
@@ -43,7 +43,7 @@ HandlelisteSchema = new SimpleSchema({
     optional: true
   }
   listItems: {
-    type: [listItemSchema]
+    type: [ListItemSchema]
   }
 });
 
