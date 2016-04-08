@@ -4,7 +4,8 @@
   "description": "",
   "main": "matPlanlegger.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 9001 -s ./public"
   },
   "author": "",
   "license": "ISC",
@@ -30,5 +31,8 @@
     "react-router": "^2.0.0",
     "react-selectize": "^0.8.1",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "@kadira/storybook": "^1.6.0"
   }
 }
