@@ -1,5 +1,11 @@
 // main: ../../matPlanlegger.scss
 
+.SL-ShowWeekList {
+  &>.panel {
+    margin-bottom: 5px;
+  }
+}
+
 .SL-ShowWeekItemHeader {
   position: relative;
   display: flex;
