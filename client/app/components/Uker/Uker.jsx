@@ -1,23 +1,18 @@
-import {composeWithTracker} from 'react-komposer';
 import React, { PropTypes } from 'react'
-// import BlazeTemplate from '../BlazeTemplate.jsx'
-import { Grid, Row, Col, Panel} from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
+import ListWeeks from '../../containers/ListWeeks.jsx'
 
-function composer(props, onData) {
-  const handle = Meteor.subscribe('uker')
-  if(handle.ready()) {
-    const uker = Uker.find({}).fetch()
-    onData(null, {uker})
-  }
-}
-
-const Uke = ({uker}) => {
+const Uke = (props) => {
   return (
     <Grid fluid>
       <Row>
         <Col md={12}>
             <h3>Lag ny ukeplan</h3>
-
+        </Col>
+      </Row>
+      <Row>
+        <Col md={12}>
+          <ListWeeks />
         </Col>
       </Row>
     </Grid>
@@ -25,7 +20,4 @@ const Uke = ({uker}) => {
   )
 }
 
-
-
-export default composeWithTracker(composer)(Uke)
-//   <BlazeTemplate templateName='ukeForm'/>
+export default Uke
