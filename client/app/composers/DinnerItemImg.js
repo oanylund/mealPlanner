@@ -2,7 +2,7 @@ export default function composer(props, onData) {
   const handle = Meteor.subscribe('middagImageThumbs')
   let noImage = false;
   if (handle.ready()) {
-    if( props.imageId) {
+    if( Match.test(props.imageId, String) ) {
       const thumb = DinnerThumbs.findOne({ _id: props.imageId });
       onData(null, {thumb, noImage});
     }
