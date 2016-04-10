@@ -5,7 +5,7 @@ const Header = ({headerTxt, headerTxtClick, btnTxt, btnClick}) => {
   return (
       <div className='SL-ShowWeekItemHeader'>
         <h4 onClick={headerTxtClick}>{headerTxt}</h4>
-        <button className='btn btn-info btn-xs' onClick={btnClick}>{btnTxt}</button>
+        { btnTxt ? <button className='btn btn-info btn-xs' onClick={btnClick}>{btnTxt}</button> : '' }
       </div>
   )
 }
@@ -28,7 +28,7 @@ class PanelList extends React.Component {
     const headerProps = {
       headerTxt: headerTxt,
       headerTxtClick: this.toggleExpand,
-      btnTxt: headerBtnTxt,
+      btnTxt: null || headerBtnTxt,
       btnClick: headerBtnClick,
     }
     const headerComponent = <Header {...headerProps} />;

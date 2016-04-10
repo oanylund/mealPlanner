@@ -16,3 +16,13 @@ storiesOf('Reusable.PanelList', module)
     }
     return <PanelList {...props} />
   })
+  .add('List with no btn. emmit btntxt', () => {
+
+    const listName = ['en', 'to', 'tre'];
+
+    const props = {
+      headerTxt: 'Test liste',
+      list: listName.map( (string, i) => <ListGroupItem>{string}</ListGroupItem> )
+    }
+    return <PanelList {...props} />
+  });
