@@ -1,20 +1,22 @@
 import React, { PropTypes } from 'react'
-import PanelList from '../../Reusable/PanelList.jsx'
+import PanelListAccordion from '../../Reusable/PanelListAccordion.jsx'
 
-const ShowWeekItem = (props) => {
-  const { name, btnTxt, useWeekClick, days } = props;
+const WeekPanelItem = (props) => {
+  const { name, btnTxt, useWeekClick, days, onSelect, expanded } = props;
 
   const data = {
     headerTxt: name,
+    headerTxtClick: onSelect,
     headerBtnTxt: btnTxt,
     headerBtnClick: useWeekClick,
-    list: days
+    list: days,
+    expanded: expanded
   }
 
   return (
-    <PanelList {...data} />
+    <PanelListAccordion {...data} />
   )
 }
 
 
-export default ShowWeekItem
+export default WeekPanelItem
