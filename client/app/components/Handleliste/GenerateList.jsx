@@ -17,7 +17,7 @@ class GenerateList extends React.Component {
       <Grid fluid>
         <Row>
           <Col md={12}>
-            <h2 style={{marginBottom:30}}>Generer ny handleliste</h2>
+            <h2 style={{marginBottom:30,marginTop:0}}>Generer ny handleliste</h2>
           </Col>
         </Row>
 

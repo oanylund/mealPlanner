@@ -4,18 +4,20 @@ import ListWeeks from '../../containers/ListWeeks.jsx'
 
 const Uke = (props) => {
   return (
-    <Grid fluid>
-      <Row>
-        <Col md={12}>
-            <h3>Lag ny ukeplan</h3>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={12}>
-          <ListWeeks />
-        </Col>
-      </Row>
-    </Grid>
+    <div className='marginSquare'>
+      <Grid fluid>
+        <Row>
+          <Col md={12}>
+            <h2 style={{marginTop:0}}>Ukeplaner</h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <ListWeeks />
+          </Col>
+        </Row>
+      </Grid>
+    </div>
 
   )
 }

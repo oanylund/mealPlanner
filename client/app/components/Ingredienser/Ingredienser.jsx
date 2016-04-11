@@ -27,7 +27,7 @@ class Ingredienser extends React.Component {
         <Grid fluid>
           <Row>
             <Col md={12}>
-              <h2>Ingredienser</h2>
+              <h2 style={{marginTop:0}}>Ingredienser</h2>
               {/* TODO: Add category filter
               */}
             </Col>
