@@ -53,6 +53,7 @@ class LagUke extends React.Component {
     const addForm = this.state.showAddForm ?
     <DagForm alreadyAdded={Object.keys(newWeek.days)}
       hideForm={this.hideAddForm}
+      addDay={LagUkeActions.addDay}
       translateDays={translateDays}/> :
     <PlusBtn click={this.showAddForm.bind(null,this.state.showAddForm)} /> ;
 
