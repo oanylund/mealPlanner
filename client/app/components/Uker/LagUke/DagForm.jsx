@@ -53,7 +53,7 @@ class DagForm extends React.Component {
     this.setState({
       dinner: null,
       comment: '',
-      whynot: '' 
+      whynot: ''
     });
   }
   addDayMenu() {
@@ -80,6 +80,7 @@ class DagForm extends React.Component {
     )
   }
   handleAddClick() {
+    const { addDay } = this.props;
     let day = this.refs.day.getValue();
     let comment = this.state.comment;
 
@@ -91,7 +92,7 @@ class DagForm extends React.Component {
 
     if (this.state.dinner) {
       payload.dinnerId = this.state.dinner.dinnerId;
-      LagUkeActions.addDay(payload);
+      addDay(payload);
       this.resetForm();
     }
     else {
@@ -101,7 +102,7 @@ class DagForm extends React.Component {
       }
       else {
         payload.whynot = whynot;
-        LagUkeActions.addDay(payload);
+        addDay(payload);
         this.resetForm();
       }
     }
