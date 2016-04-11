@@ -16,7 +16,7 @@ const ShowDinnerItem = (props) => {
   const { imageId, dinner, dinnerId } = props;
   return (
     <div className='SL-ShowDinnerItem'>
-      <DinnerImage imageId />
+      <DinnerImage imageId={imageId} />
       <div>
         <h3>{translateDays[day]}</h3>
         <h4>{dinner.title}</h4>
