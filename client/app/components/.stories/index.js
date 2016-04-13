@@ -4,3 +4,4 @@ import './Reusable.PanelList'
 
 import './Reusable.DinnerImage'
 import './Uke.WeekPanelItem'
+import './Uke.EndreDagForm'

@@ -52,6 +52,12 @@
     }
     .Dagform-whynot {
       flex: 1 0 auto;
+      .input-group {
+        width: 100%;
+        &>.input-group-btn {
+          width: 1px;
+        }
+      }
     }
 
   }
