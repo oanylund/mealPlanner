@@ -92,6 +92,7 @@ class DagForm extends React.Component {
 
     if (this.state.dinner) {
       payload.dinnerId = this.state.dinner.dinnerId;
+      payload.title = this.state.dinner.title;
       addDay(payload);
       this.resetForm();
     }

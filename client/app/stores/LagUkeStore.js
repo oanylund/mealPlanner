@@ -32,6 +32,7 @@ class LagUkeStore {
     }
     if(dayObj.dinnerId) {
       dayToAdd.dinnerId = dayObj.dinnerId;
+      dayToAdd.title = dayObj.title;
       this.newWeek.days[dayObj.day] = dayToAdd;
     }
     else {
@@ -50,6 +51,11 @@ class LagUkeStore {
   }
   onAddWeek() {
     if ( this.newWeek.name.length > 0 && Object.keys(this.newWeek.days).length > 0 ) {
+      _.each(this.newWeek.days, (day, dayName) => {
+        if( day.dinnerId ) {
+          delete this.newWeek.days[dayName].title;
+        }
+      });
       Meteor.call('addWeek', this.newWeek, this._addDinnerDepsAndResetStore.bind(this));
     }
     else {
