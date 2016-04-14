@@ -14,6 +14,7 @@
     "alt-container": "^1.0.2",
     "classnames": "^2.2.3",
     "cropperjs": "^0.6.0",
+    "formsy-react": "^0.17.0",
     "meteor-node-stubs": "^0.2.1",
     "moment": "^2.11.2",
     "react": "^0.14.7",
@@ -33,6 +34,6 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "@kadira/storybook": "^1.8.0"
+    "@kadira/storybook": "^1.12.0"
   }
 }
