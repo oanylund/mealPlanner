@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import LagUkeActions from '../../../actions/LagUkeActions'
 import { Input, Button, Glyphicon } from 'react-bootstrap'
 import ChoseDinnerModal from '../LagUke/ChoseDinnerModal.jsx'
+import { Form } from 'formsy-react'
+import { HOC } from 'formsy-react'
 
 const translateDays = {
   tuesday: 'Tirsdag',
@@ -13,30 +15,31 @@ const translateDays = {
   monday: 'Mandag',
 }
 
-const ChangeBtn = ({style}) => {
-  const btnStyle = style || 'primary';
+const FormsyInputElement = (props) => {
+  const style = props.isValid() ? null : 'error';
+  const placeholder = 'Hvorfor blir det ikke middag (påkrevd)';
   return (
-    <Button bsStyle={btnStyle} type='submit'><Glyphicon glyph='save' /></Button>
-  );
+      <Input type='text' bsStyle={style} onChange={(e) => props.setValue(e.target.value)}
+        value={props.getValue()} placeholder={placeholder} />
+  )
 }
+const FormsyInput = HOC(FormsyInputElement);
 
 class EndreDagForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       showModal: false,
-      whynotStatus: 'sameAsProp',
-      commentStatus: 'sameAsProp'
+      canSubmit: false,
+      dinner: props.dinner
     }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.onSubmitComment = this.onSubmitComment.bind(this);
-    this.onCommentChange = this.onCommentChange.bind(this);
-    this.onSubmitWhynot = this.onSubmitWhynot.bind(this);
-    this.onWhynotChange = this.onWhynotChange.bind(this);
+    this.enableBtn = this.enableBtn.bind(this);
+    this.disableBtn = this.disableBtn.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.addDinnerToDay = this.addDinnerToDay.bind(this);
     this.resetDinner = this.resetDinner.bind(this);
-    this.validateWhyNot = this.validateWhyNot.bind(this);
     this.addDayMenu = this.addDayMenu.bind(this);
     this.dayAdded = this.dayAdded.bind(this);
   }
@@ -46,65 +49,33 @@ class EndreDagForm extends React.Component {
   closeModal() {
     this.setState({ showModal: false });
   }
-  onSubmitComment(e) {
-    e.preventDefault();
-    if( this.state.commentStatus === 'changed' ) {
-      this.props.actions.changeComment(this.refs.comment.getValue());
-    }
+  enableBtn() {
+    this.setState({ canSubmit: true });
   }
-  onCommentChange(e) {
-    if( e.target.value === this.props.comment ) {
-      this.setState({ commentStatus: 'sameAsProp' });
+  disableBtn() {
+    this.setState({ canSubmit: false });
+  }
+  onSubmit(model) {
+    const dinner = this.state.dinner;
+    const { changeDay } = this.props.actions;
+    let payload = {};
+    if( model.comment.length > 0 ) {
+      payload.comment = model.comment;
+    }
+    if( dinner ) {
+      changeDay({ ...payload, dinnerId: dinner._id });
     }
     else {
-      this.setState({ commentStatus: 'changed' });
-    }
-  }
-  onSubmitWhynot(e) {
-    e.preventDefault();
-    if( this.state.whynotStatus === 'changed' ) {
-      this.props.actions.changeWhynot(this.refs.whynot.getValue());
-    }
-  }
-  onWhynotChange(e) {
-    if( e.target.value.length === 0 ) {
-      this.setState({ whynotStatus: 'empty' });
-    }
-    else if( e.target.value === this.props.whynot ) {
-      this.setState({ whynotStatus: 'sameAsProp' });
-    }
-    else {
-      this.setState({ whynotStatus: 'changed' });
+      changeDay({ ...payload, whynot: model.whynot });
     }
   }
   addDinnerToDay(dinner) {
-    this.props.actions.changeDinner(dinner);
+    this.setState({ dinner: dinner });
   }
   resetDinner() {
-    this.props.actions.deleteDinner();
-  }
-  validateWhyNot() {
-    if( this.state.whynotStatus === 'empty' ) {
-      return {
-        placeholder: 'Kan ikke være tomt her',
-        bsStyle: 'error',
-        btnStyle: 'danger'
-      }
-    }
-    else if( this.state.whynotStatus !== 'sameAsProp' ) {
-      return {
-        bsStyle: null,
-        btnStyle: 'warning'
-      }
-    }
-    return {
-      placeholder: '',
-      bsStyle: null
-    }
+    this.setState({ dinner: null });
   }
   addDayMenu() {
-    const { btnStyle, ...inputStyle } = this.validateWhyNot();
-    const btn = <ChangeBtn style={btnStyle} />
     return (
       <div className='Dagform-innerBox'>
         <div className='Dagform-addmiddag'>
@@ -113,17 +84,13 @@ class EndreDagForm extends React.Component {
         </div>
         <div className='Dagform-whynot'>
           <p><strong>Eller</strong> skriv kort om hvorfor det ikke blir middag</p>
-          <form onSubmit={this.onSubmitWhynot}>
-            <Input defaultValue={this.props.whynot} {...inputStyle}
-              ref='whynot' buttonAfter={btn}
-              onChange={this.onWhynotChange} type='text'/>
-          </form>
+          <FormsyInput name='whynot' value={this.props.whynot} required />
         </div>
       </div>
     )
   }
   dayAdded() {
-    const { dinner } = this.props;
+    const { dinner } = this.state;
     return (
       <div>
         <p>Middag valgt</p>
@@ -133,28 +100,27 @@ class EndreDagForm extends React.Component {
     )
   }
   render() {
-    const { dayToEdit, whynot, comment, dinner } = this.props;
-    const { closeEdit, changeComment } = this.props.actions;
-
-    const commentBtnStyle = this.state.commentStatus === 'sameAsProp' ? 'primary' : 'warning';
+    const { dayToEdit, whynot, comment } = this.props;
+    const { closeEdit, changeDay } = this.props.actions;
 
     return (
       <div className='Dagform-box'>
         <i className='fa fa-close fa-CloseBtn' onClick={closeEdit} />
-        <fieldset>
-          <legend className='Dagform-legend'>Endre {translateDays[dayToEdit]}</legend>
-          { dinner ? this.dayAdded() : this.addDayMenu() }
-          <div className='Dagform-kommentar'>
-            <p>Legg til kommentar (feks: 'Ta opp kjøtt fra frysern')</p>
-            <form onSubmit={this.onSubmitComment}>
-              <Input defaultValue={comment} ref='comment'
-                buttonAfter={<ChangeBtn style={commentBtnStyle} />}
-                onChange={this.onCommentChange} type='text'/>
-            </form>
-          </div>
-        </fieldset>
-        <ChoseDinnerModal show={this.state.showModal} close={this.closeModal}
-          addDinner={this.addDinnerToDay} />
+        <Form onValidSubmit={this.onSubmit} onValid={this.enableBtn} onInvalid={this.disableBtn}>
+          <fieldset>
+            <legend className='Dagform-legend'>Endre {translateDays[dayToEdit]}</legend>
+            { this.state.dinner ? this.dayAdded() : this.addDayMenu() }
+            <div className='Dagform-kommentar'>
+              <p>Legg til kommentar (feks: 'Ta opp kjøtt fra frysern')</p>
+              <FormsyInput name='comment' value={comment}/>
+            </div>
+            <div style={{textAlign:'right'}}>
+              <Button disabled={!this.state.canSubmit} bsStyle='primary' type='submit'>Endre dag</Button>
+            </div>
+          </fieldset>
+          <ChoseDinnerModal show={this.state.showModal} close={this.closeModal}
+            addDinner={this.addDinnerToDay} />
+        </Form>
       </div>
     )
   }

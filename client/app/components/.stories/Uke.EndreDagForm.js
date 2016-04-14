@@ -11,10 +11,7 @@ storiesOf('Uke.EndreDagForm', module)
       comment: 'Testkommentar',
       actions: {
         closeEdit: action('Done editing'),
-        changeWhynot: action('Change whynot'),
-        changeComment: action('Change comment'),
-        changeDinner: action('Change dinner'),
-        deleteDinner: action('Delete dinner')
+        changeDay: action('Day change')
       }
     }
     return <EndreDagForm {...props} />
@@ -25,13 +22,11 @@ storiesOf('Uke.EndreDagForm', module)
       comment: 'testing testing',
       dinner: {
         title: 'Taco',
+        _id: 'daefeg'
       },
       actions: {
         closeEdit: action('Done editing'),
-        changeWhynot: action('Change whynot'),
-        changeComment: action('Change comment'),
-        changeDinner: action('Change dinner'),
-        deleteDinner: action('Delete dinner')
+        changeDay: action('Day change')
       }
     }
     return <EndreDagForm {...props} />
