@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const showImgElement = (props) => {
+const Dag = (props) => {
   let img = props.imgUrl ? props.imgUrl : '/images/default-dinner.png'
   return (
     <div className='dashWidgetBox'>
@@ -18,7 +18,7 @@ const showImgElement = (props) => {
   )
 }
 
-showImgElement.propTypes = {
+Dag.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   descriptionGrey: PropTypes.string,
@@ -28,4 +28,4 @@ showImgElement.propTypes = {
 
 
 
-export default showImgElement;
+export default Dag;
