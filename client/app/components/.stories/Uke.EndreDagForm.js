@@ -1,5 +1,5 @@
 import React from 'react';
-import EndreDagForm from '../Uker/LagUke/EndreDagForm';
+import EndreDagForm from '../Uker/EndreUke/EndreDagForm';
 import { storiesOf, action } from '@kadira/storybook';
 
 
