@@ -30,19 +30,8 @@ class LagUkeStore {
     this.newWeek.days = {};
   }
   onAddDay(dayObj) {
-    let dayToAdd = {};
-    if ( dayObj.comment ) {
-      dayToAdd.comment = dayObj.comment;
-    }
-    if(dayObj.dinnerId) {
-      dayToAdd.dinnerId = dayObj.dinnerId;
-      dayToAdd.title = dayObj.title;
-      this.newWeek.days[dayObj.day] = dayToAdd;
-    }
-    else {
-      dayToAdd.whynot = dayObj.whynot;
-      this.newWeek.days[dayObj.day] = dayToAdd;
-    }
+    const { day, ...dayProps } = dayObj;
+    this.newWeek.days[day] = dayProps;
   }
   onOpenEditDay(dayName) {
     this.editDay = {
@@ -52,7 +41,7 @@ class LagUkeStore {
   }
   onSubmitEditDay(dayObject) {
     const { day, ...dayProperties } = dayObject;
-    this.newWeek.days[day] = dayProperties; 
+    this.newWeek.days[day] = dayProperties;
     this.onCloseEditDay();
   }
   onCloseEditDay() {
