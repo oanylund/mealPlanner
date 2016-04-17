@@ -4,9 +4,9 @@ import { Dropdown, MenuItem, Clearfix } from 'react-bootstrap'
 class Dag extends React.Component {
   renderTopMenu() {
     const { menu } = this.props;
-    const btns = menu.map( (btn) => {
+    const btns = menu.map( (btn, i) => {
       const { name, icon, handler } = btn;
-      return <button title={name} onClick={handler}><i className={`fa fa-${icon}`} /></button>
+      return <button key={i} title={name} onClick={handler}><i className={`fa fa-${icon}`} /></button>
     });
     return <div className='dashWidgetBtnField'>{ btns }</div>
   }
