@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Grid, Row, Col, Button } from 'react-bootstrap'
+import { Grid, Row, Col, Button, Modal } from 'react-bootstrap'
 import _ from 'underscore'
 import alt from '../../alt'
 
@@ -9,6 +9,7 @@ import WeekName from './LagUke/WeekName.jsx'
 import AlertBtn from './LagUke/AlertBtn.jsx'
 import InfoAlert from '../Reusable/InfoAlert.jsx'
 import PlusBtn from '../Reusable/PlusBtn.jsx'
+import EndreDag from './EndreUke/EndreDag.jsx'
 
 import AltContainer from 'alt-container'
 import LagUkeStore from '../../stores/LagUkeStore'
@@ -36,26 +37,30 @@ class LagUke extends React.Component {
   componentWillUnmount() {
     alt.recycle(LagUkeStore);
   }
-  showAddForm(state) {
+  showAddForm() {
     this.setState({showAddForm: true})
   }
-  hideAddForm(state) {
+  hideAddForm() {
     this.setState({showAddForm: false})
   }
+  renderAddForm() {
+    if( this.state.showAddForm ) {
+      return (
+        <DagForm alreadyAdded={Object.keys(this.props.newWeek.days)}
+          hideForm={this.hideAddForm}
+          addDay={LagUkeActions.addDay}
+          translateDays={translateDays}/>
+      )
+    }
+    return <PlusBtn click={this.showAddForm} />
+  }
   render() {
-    const { newWeek, validation } = this.props
+    const { newWeek, validation, editDay } = this.props
 
     const addDayEnabled = (Object.keys(newWeek.days).length < 7) ? true : false;
     const resetDisabled = Object.keys(newWeek.days).length === 0;
     const nameOk = newWeek.name.length > 0;
     const addWeekDisabled = resetDisabled || !nameOk;
-
-    const addForm = this.state.showAddForm ?
-    <DagForm alreadyAdded={Object.keys(newWeek.days)}
-      hideForm={this.hideAddForm}
-      addDay={LagUkeActions.addDay}
-      translateDays={translateDays}/> :
-    <PlusBtn click={this.showAddForm.bind(null,this.state.showAddForm)} /> ;
 
     return (
       <div className='marginSquare'>
@@ -72,10 +77,13 @@ class LagUke extends React.Component {
           <Row>
             <Col md={12}><p>Dager</p></Col>
           </Row>
-          <DagListe newWeek={newWeek} translateDays={translateDays} deleteDay={LagUkeActions.deleteDay} />
+          <DagListe newWeek={newWeek}
+            translateDays={translateDays}
+            editDay={LagUkeActions.openEditDay}
+            deleteDay={LagUkeActions.deleteDay} />
           <Row>
             <Col md={12}>
-              { addDayEnabled ? addForm : ''}
+              { addDayEnabled ? this.renderAddForm() : ''}
             </Col>
           </Row>
           <Row>
@@ -93,6 +101,12 @@ class LagUke extends React.Component {
             </div>
           </Row>
         </Grid>
+        <EndreDag showEditModal={editDay.status}
+          closeEditModal={LagUkeActions.closeEditDay}
+          submitEdit={LagUkeActions.submitEditDay}
+          dayName={editDay.dayName}
+          dayData={newWeek.days[editDay.dayName]}
+        />
       </div>
     )
   }

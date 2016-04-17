@@ -4,7 +4,7 @@ import DinnerItemImg from '../../../composers/DinnerItemImg'
 import GetDinnerShort from '../../../composers/GetDinnerShort'
 import Dag from './Dag.jsx'
 
-const DagDinnerWrapper = ({ noImage, thumb, day, comment, close, dinner }) => {
+const DagDinnerWrapper = ({ noImage, thumb, day, comment, deleteDay, editDay, dinner }) => {
   const imageSrc = noImage ? '/images/default-dinner.png' : thumb.url({ uploading: '/images/Img_Loading_Spinner.gif'});
   return (
     <Dag  imgUrl={imageSrc}
@@ -12,9 +12,14 @@ const DagDinnerWrapper = ({ noImage, thumb, day, comment, close, dinner }) => {
           description={dinner.title}
           descriptionGrey={comment}
           menu={[{
+            name: 'Endre dag',
+            icon: 'edit',
+            handler: editDay
+          },
+          {
             name: 'Slett dag',
             icon: 'close',
-            handler: close
+            handler: deleteDay
           }]}
           />
   )

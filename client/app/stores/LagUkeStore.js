@@ -11,6 +11,10 @@ class LagUkeStore {
     this.validation = {
       nameHasBeenChanged: false
     }
+    this.editDay = {
+      status: false,
+      dayName: null
+    }
     this.bindActions(LagUkeActions);
   }
   onWeekNameChanged(newName) {
@@ -38,6 +42,23 @@ class LagUkeStore {
     else {
       dayToAdd.whynot = dayObj.whynot;
       this.newWeek.days[dayObj.day] = dayToAdd;
+    }
+  }
+  onOpenEditDay(dayName) {
+    this.editDay = {
+      status: true,
+      dayName: dayName
+    }
+  }
+  onSubmitEditDay(dayObject) {
+    const { day, ...dayProperties } = dayObject;
+    this.newWeek.days[day] = dayProperties; 
+    this.onCloseEditDay();
+  }
+  onCloseEditDay() {
+    this.editDay = {
+      status: false,
+      dayName: null
     }
   }
   _addDinnerDepsAndResetStore(err, newWeekId) {

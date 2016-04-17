@@ -13,6 +13,15 @@ class LagUkeActions {
   addDay(dayObject) {
     return dayObject
   }
+  openEditDay(dayName) {
+    return dayName
+  }
+  submitEditDay(dayObject) {
+    return dayObject
+  }
+  closeEditDay() {
+    return true
+  }
   addWeek() {
     return true
   }

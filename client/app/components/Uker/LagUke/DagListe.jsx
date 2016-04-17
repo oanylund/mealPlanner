@@ -4,16 +4,17 @@ import { Row, Col } from 'react-bootstrap'
 import InfoAlert from '../../Reusable/InfoAlert.jsx'
 import DagDinnerWrapper from './DagDinnerWrapper.jsx'
 
-const DagListe = ({newWeek, deleteDay, translateDays}) => {
+const DagListe = ({newWeek, deleteDay, editDay, translateDays}) => {
 
-  const dayList = _.map(newWeek.days, (day,dayNumber) => {
+  const dayList = _.map(newWeek.days, (day,dayName) => {
     if ( day.dinnerId ) {
       return (
-        <Col key={dayNumber} md={6} lg={4}>
+        <Col key={dayName} md={6} lg={4}>
           <DagDinnerWrapper
-            key={dayNumber}
-            day={translateDays[dayNumber]}
-            close={deleteDay.bind(null,dayNumber)}
+            key={dayName}
+            day={translateDays[dayName]}
+            deleteDay={deleteDay.bind(null,dayName)}
+            editDay={editDay.bind(null,dayName)}
             comment={day.comment}
             dinnerId={day.dinnerId}
           />
@@ -22,14 +23,19 @@ const DagListe = ({newWeek, deleteDay, translateDays}) => {
     }
     else {
       return (
-        <Col key={dayNumber} md={6} lg={4}>
-          <Dag key={dayNumber} title={translateDays[dayNumber]} description={day.whynot}
+        <Col key={dayName} md={6} lg={4}>
+          <Dag key={dayName} title={translateDays[dayName]} description={day.whynot}
             descriptionGrey={day.comment}
             imgUrl='/images/hungry.jpg'
             menu={[{
+              name: 'Endre dag',
+              icon: 'edit',
+              handler: editDay.bind(null,dayName)
+            },
+            {
               name: 'Slett dag',
               icon: 'close',
-              handler: deleteDay.bind(null,dayNumber)
+              handler: deleteDay.bind(null,dayName)
             }]}
           />
         </Col>
