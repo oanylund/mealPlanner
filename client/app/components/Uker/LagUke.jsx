@@ -15,15 +15,7 @@ import AltContainer from 'alt-container'
 import LagUkeStore from '../../stores/LagUkeStore'
 import LagUkeActions from '../../actions/LagUkeActions'
 
-const translateDays = {
-  tuesday: 'Tirsdag',
-  wednesday: 'Onsdag',
-  thursday:  'Torsdag',
-  friday:    'Fredag',
-  saturday:  'Lørdag',
-  sunday:   'Søndag',
-  monday: 'Mandag',
-}
+import translateDays from './translateDays'
 
 class LagUke extends React.Component {
   constructor(props) {
@@ -48,8 +40,7 @@ class LagUke extends React.Component {
       return (
         <DagForm alreadyAdded={Object.keys(this.props.newWeek.days)}
           hideForm={this.hideAddForm}
-          addDay={LagUkeActions.addDay}
-          translateDays={translateDays}/>
+          addDay={LagUkeActions.addDay} />
       )
     }
     return <PlusBtn click={this.showAddForm} />
@@ -78,7 +69,6 @@ class LagUke extends React.Component {
             <Col md={12}><p>Dager</p></Col>
           </Row>
           <DagListe newWeek={newWeek}
-            translateDays={translateDays}
             editDay={LagUkeActions.openEditDay}
             deleteDay={LagUkeActions.deleteDay} />
           <Row>

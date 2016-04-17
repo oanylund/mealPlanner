@@ -1,14 +1,5 @@
 import React, { PropTypes } from 'react'
-
-const translateDays = {
-  tuesday: 'Tirsdag',
-  wednesday: 'Onsdag',
-  thursday:  'Torsdag',
-  friday:    'Fredag',
-  saturday:  'Lørdag',
-  sunday:   'Søndag',
-  monday: 'Mandag',
-}
+import translateDays from '../translateDays'
 
 const ShowDinnerItem = (props) => {
   const {day, comment, whynot} = props;

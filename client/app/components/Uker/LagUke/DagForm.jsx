@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import LagUkeActions from '../../../actions/LagUkeActions'
 import { Input, Button } from 'react-bootstrap'
 import ChoseDinnerModal from './ChoseDinnerModal.jsx'
+import translateDays from '../translateDays'
 
 class DagForm extends React.Component {
   constructor(props) {
@@ -109,7 +110,6 @@ class DagForm extends React.Component {
     }
   }
   render() {
-    let translateDays = this.props.translateDays
     const daysLeft = Object.keys(translateDays).filter( (day) => {
       return !this.props.alreadyAdded.includes(day)
     })

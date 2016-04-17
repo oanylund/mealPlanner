@@ -3,8 +3,9 @@ import Dag from './Dag.jsx'
 import { Row, Col } from 'react-bootstrap'
 import InfoAlert from '../../Reusable/InfoAlert.jsx'
 import DagDinnerWrapper from './DagDinnerWrapper.jsx'
+import translateDays from '../translateDays'
 
-const DagListe = ({newWeek, deleteDay, editDay, translateDays}) => {
+const DagListe = ({newWeek, deleteDay, editDay}) => {
 
   const dayList = _.map(newWeek.days, (day,dayName) => {
     if ( day.dinnerId ) {

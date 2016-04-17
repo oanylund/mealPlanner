@@ -5,15 +5,7 @@ import ChoseDinnerModal from '../LagUke/ChoseDinnerModal.jsx'
 import { Form } from 'formsy-react'
 import { HOC } from 'formsy-react'
 
-const translateDays = {
-  tuesday: 'Tirsdag',
-  wednesday: 'Onsdag',
-  thursday:  'Torsdag',
-  friday:    'Fredag',
-  saturday:  'Lørdag',
-  sunday:   'Søndag',
-  monday: 'Mandag',
-}
+import translateDays from '../translateDays'
 
 const FormsyInputElement = (props) => {
   const style = props.isValid() ? null : 'error';
