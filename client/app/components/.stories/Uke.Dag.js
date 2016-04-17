@@ -23,26 +23,34 @@ const CenterModule = ({children,width, bgColor}) => {
 }
 
 storiesOf('Uke.Dag', module)
-  .add('Sample day, no link, no img no Close', () => {
+  .add('Sample day, no link, no img, no menu', () => {
     const props = {
       title: 'Onsdag',
       description: 'Taco',
-      descriptionGrey: 'Kjempegodt',
-      // linkUrl: PropTypes.string,
-      // imgUrl: PropTypes.string,
-      // closeHandler: closeFunction
+      descriptionGrey: 'Kjempegodt'
     }
 
     return <CenterModule width={350} bgColor='#e6e6e6'><Dag {...props} /></CenterModule>
   })
-  .add('Sample day, link and img', () => {
+  .add('Sample day, link, img, two menu items', () => {
     const props = {
       title: 'Onsdag',
       description: 'Taco',
       descriptionGrey: 'Kjempegodt',
       linkUrl: 'test',
       imgUrl: '/images/taco.jpg',
-      closeHandler: action('Close window')
+      menu: [
+        {
+          name: 'Edit day',
+          icon: 'edit',
+          handler: action('Edit day')
+        },
+        {
+          name: 'Delete',
+          icon: 'close',
+          handler: action('Close window')
+        },
+      ]
     }
 
     return <CenterModule width={350} bgColor='#e6e6e6'><Dag {...props} /></CenterModule>

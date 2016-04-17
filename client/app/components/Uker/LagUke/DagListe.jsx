@@ -25,8 +25,13 @@ const DagListe = ({newWeek, deleteDay, translateDays}) => {
         <Col key={dayNumber} md={6} lg={4}>
           <Dag key={dayNumber} title={translateDays[dayNumber]} description={day.whynot}
             descriptionGrey={day.comment}
-            closeHandler={deleteDay.bind(null,dayNumber)}
-            imgUrl='/images/hungry.jpg' />
+            imgUrl='/images/hungry.jpg'
+            menu={[{
+              name: 'Slett dag',
+              icon: 'close',
+              handler: deleteDay.bind(null,dayNumber)
+            }]}
+          />
         </Col>
       )
     }

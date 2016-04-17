@@ -11,7 +11,12 @@ const DagDinnerWrapper = ({ noImage, thumb, day, comment, close, dinner }) => {
           title={day}
           description={dinner.title}
           descriptionGrey={comment}
-          closeHandler={close}  />
+          menu={[{
+            name: 'Slett dag',
+            icon: 'close',
+            handler: close
+          }]}
+          />
   )
 }
 
