@@ -65,7 +65,7 @@ class LagUke extends React.Component {
     return (
       <div className='marginSquare'>
         <Grid fluid>
-          <Row><Col><h2 style={{marginBottom:30,marginTop:0}}>Lag ny ukeplan</h2></Col></Row>
+          <Row><Col md={12}><h2 style={{marginBottom:30,marginTop:0}}>Lag ny ukeplan</h2></Col></Row>
           <Row>
             <Col md={6}>
               <WeekName weekName={newWeek.name}
