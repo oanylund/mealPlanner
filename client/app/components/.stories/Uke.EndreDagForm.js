@@ -22,7 +22,7 @@ storiesOf('Uke.EndreDagForm', module)
       comment: 'testing testing',
       dinner: {
         title: 'Taco',
-        _id: 'daefeg'
+        dinnerId: 'daefeg'
       },
       actions: {
         closeEdit: action('Done editing'),

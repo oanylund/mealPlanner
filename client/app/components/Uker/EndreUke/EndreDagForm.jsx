@@ -17,7 +17,7 @@ const translateDays = {
 
 const FormsyInputElement = (props) => {
   const style = props.isValid() ? null : 'error';
-  const placeholder = 'Hvorfor blir det ikke middag (påkrevd)';
+  const placeholder = props.isValid() ? '' : 'Hvorfor blir det ikke middag (påkrevd)';
   return (
       <Input type='text' bsStyle={style} onChange={(e) => props.setValue(e.target.value)}
         value={props.getValue()} placeholder={placeholder} />
@@ -58,12 +58,12 @@ class EndreDagForm extends React.Component {
   onSubmit(model) {
     const dinner = this.state.dinner;
     const { changeDay } = this.props.actions;
-    let payload = {};
+    let payload = { day: this.props.dayToEdit };
     if( model.comment.length > 0 ) {
       payload.comment = model.comment;
     }
     if( dinner ) {
-      changeDay({ ...payload, dinnerId: dinner._id });
+      changeDay({ ...payload, dinnerId: dinner.dinnerId });
     }
     else {
       changeDay({ ...payload, whynot: model.whynot });
