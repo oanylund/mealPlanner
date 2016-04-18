@@ -20,7 +20,7 @@ class GenerateList extends React.Component {
             <h2 style={{marginBottom:30,marginTop:0}}>Generer ny handleliste</h2>
           </Col>
         </Row>
-        
+
         <AltContainer store={GenerateHandlelisteStore} actions={{ Actions: GenerateHandlelisteActions }}>
           <StepController />
         </AltContainer>
@@ -31,8 +31,3 @@ class GenerateList extends React.Component {
 }
 
 export default GenerateList;
-
-// <AltContainer store={GenerateHandlelisteStore} actions={{ Actions: GenerateHandlelisteActions }}>
-//   <GenerateListName />
-//   <GenerateListDate />
-// </AltContainer>
