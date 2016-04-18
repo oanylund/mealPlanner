@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
-import GenerateListName from './GenerateList/GenerateListName.jsx'
-import GenerateListDate from './GenerateList/GenerateListDate.jsx'
+
+import StepController from './GenerateList/StepController.jsx'
 
 import alt from '../../alt'
 import AltContainer from 'alt-container'
@@ -20,10 +20,9 @@ class GenerateList extends React.Component {
             <h2 style={{marginBottom:30,marginTop:0}}>Generer ny handleliste</h2>
           </Col>
         </Row>
-
+        
         <AltContainer store={GenerateHandlelisteStore} actions={{ Actions: GenerateHandlelisteActions }}>
-          <GenerateListName />
-          <GenerateListDate />
+          <StepController />
         </AltContainer>
 
       </Grid>
@@ -32,3 +31,8 @@ class GenerateList extends React.Component {
 }
 
 export default GenerateList;
+
+// <AltContainer store={GenerateHandlelisteStore} actions={{ Actions: GenerateHandlelisteActions }}>
+//   <GenerateListName />
+//   <GenerateListDate />
+// </AltContainer>

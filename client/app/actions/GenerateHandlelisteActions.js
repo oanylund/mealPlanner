@@ -1,14 +1,14 @@
 import alt from "../alt"
 import moment from 'moment'
 
+
 class GenerateHandlelisteActions {
-  nameChange(e) {
-    return e.target.value;
-  }
-  dateChange(e) {
+  submitNameDate(values) {
+    const { name, ...weekYear } = values;
     return {
-      week: +e.target.value.slice(-2),
-      year: +e.target.value.slice(0,4)
+      name: name,
+      week: +weekYear.date.slice(-2),
+      year: +weekYear.date.slice(0,4),
     }
   }
   initDate() {
@@ -16,6 +16,21 @@ class GenerateHandlelisteActions {
       week: moment().locale('nb').format('WW'),
       year: moment().locale('nb').format('YYYY')
     }
+  }
+  setWeekPlan(pickedWeek) {
+    return pickedWeek
+  }
+  gotoPreviousStep() {
+    return true
+  }
+  serverLoading() {
+    return true
+  }
+  generateListSuccess(newListId) {
+    return newListId
+  }
+  generateListError(err) {
+    return err
   }
 }
 

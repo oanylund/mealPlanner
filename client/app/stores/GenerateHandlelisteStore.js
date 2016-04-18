@@ -1,5 +1,6 @@
 import alt from '../alt'
 import GenerateHandlelisteActions from '../actions/GenerateHandlelisteActions'
+import GenerateListSource from './sources/GenerateHandleliste'
 
 class GenerateHandlelisteStore {
   constructor() {
@@ -8,26 +9,36 @@ class GenerateHandlelisteStore {
       week: '',
       year: ''
     }
-    this.validation = {
-      nameHasBeenChanged: false
-    }
-    this.bindActions(GenerateHandlelisteActions)
+    this.pickedWeekPlan = null;
+    this.currentStep = 1;
+    this.bindActions(GenerateHandlelisteActions);
+    this.registerAsync(GenerateListSource);
   }
-  onNameChange(newName) {
-    this.newShoppingList.name = newName;
-    if( !this.validation.nameHasBeenChanged ) {
-      this.validation.nameHasBeenChanged = true;
-    }
+  onSubmitNameDate(newVals) {
+    this.newShoppingList = newVals;
+    this.currentStep = 2;
   }
-  onDateChange(dateObj) {
-    this._handleDateChange(dateObj);
+  onInitDate(defaultDates) {
+    this.newShoppingList.week = defaultDates.week;
+    this.newShoppingList.year = defaultDates.year;
   }
-  onInitDate(dateObj) {
-    this._handleDateChange(dateObj);
+  onSetWeekPlan(pickedWeek) {
+    this.pickedWeekPlan = pickedWeek;
+    this.currentStep = 3;
   }
-  _handleDateChange(dateObj) {
-    this.newShoppingList.week = dateObj.week;
-    this.newShoppingList.year = dateObj.year;
+  onGotoPreviousStep() {
+    this.currentStep = this.currentStep - 1;
+  }
+  onServerLoading() {
+    this.currentStep = 4;
+  }
+  onGenerateListSuccess(newListId) {
+    debugger
+    // TODO: Push url to new list
+  }
+  onGenerateListError(err) {
+    debugger
+    // TODO: Notification with error message
   }
 }
 
