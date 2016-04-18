@@ -1,6 +1,7 @@
 import alt from '../alt'
 import GenerateHandlelisteActions from '../actions/GenerateHandlelisteActions'
 import GenerateListSource from './sources/GenerateHandleliste'
+import { browserHistory } from 'react-router'
 
 class GenerateHandlelisteStore {
   constructor() {
@@ -33,8 +34,8 @@ class GenerateHandlelisteStore {
     this.currentStep = 4;
   }
   onGenerateListSuccess(newListId) {
-    debugger
-    // TODO: Push url to new list
+    // TODO: Notification shoppinglist succesfully created
+    browserHistory.push(`/uker/vis/${newListId}`);
   }
   onGenerateListError(err) {
     debugger
