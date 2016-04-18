@@ -33,14 +33,22 @@ HandlelisteSchema = new SimpleSchema({
     type: Number
   },
   active: {
-    type: Boolean
+    type: Boolean,
+    defaultValue: false
   },
   archived: {
-    type: Boolean
+    type: Boolean,
+    defaultValue: false
   },
-  weekPlanId: {
-    type: String,
+  weekPlan: {
+    type: Object,
     optional: true
+  },
+  "weekPlan.id": {
+    type: String
+  },
+  "weekPlan.name": {
+    type: String
   },
   listItems: {
     type: [ListItemSchema]
