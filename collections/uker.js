@@ -64,6 +64,13 @@ UkerSchema = new SimpleSchema({
   },
   days: {
     type: DagerSchema
+  },
+  usedInShopList: {
+    type: Array,
+    optional: true
+  },
+  "usedInShopList.$": {
+    type: String
   }
 })
 
