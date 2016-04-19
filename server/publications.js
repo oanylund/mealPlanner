@@ -34,3 +34,6 @@ Meteor.publish("ingrediensSearch", function (query) {
 
   return Ingredienser.searchName(query);
 });
+Meteor.publish("handlelister", function () {
+    return Handlelister.find({});
+});
