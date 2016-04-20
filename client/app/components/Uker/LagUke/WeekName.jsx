@@ -11,7 +11,7 @@ class WeekName extends React.Component {
   validationStateStyle() {
     const nameLength = this.props.weekName.length;
     if( !this.props.hasBeenChanged ) {
-      return 'primary'
+      return null
     }
     else if( nameLength > 0 ) {
       return 'success'
