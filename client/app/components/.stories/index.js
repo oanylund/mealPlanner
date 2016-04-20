@@ -8,3 +8,4 @@ import './Uke.EndreDagForm'
 import './Uke.Dag'
 
 import './Handleliste.ShopListRow'
+import './Handleliste.ShopListItem'
