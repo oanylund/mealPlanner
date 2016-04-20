@@ -13,7 +13,7 @@ const RequiredInput = (props) => {
   const type = props.type || 'text';
   return (
     <FormGroup validationState={style}>
-      <ControlLabel>{props.label}</ControlLabel>
+      { props.label ? <ControlLabel>{props.label}</ControlLabel> : '' }
       <FormControl
         value={props.getValue()}
         type={type}
