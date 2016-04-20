@@ -16,6 +16,7 @@ import ShowDinner from './app/components/Middag/ShowDinner.jsx'
 import LagMiddag from './app/components/Middag/LagMiddag/LagMiddag.jsx'
 
 import ShoppingListMain from './app/components/Handleliste/ShoppingListMain.jsx'
+import ShowShoppingLists from './app/components/Handleliste/ShowShoppingLists.jsx'
 import GenerateList from './app/components/Handleliste/GenerateList.jsx'
 
 export default () => {
@@ -37,6 +38,7 @@ export default () => {
         <Route path='ingrediens' component={IngrediensListe}/>
 
         <Route path='handleliste' component={ShoppingListMain}>
+          <IndexRoute component={ShowShoppingLists} />
           <Route path='generer' component={GenerateList}/>
         </Route>
 
