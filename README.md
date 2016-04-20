@@ -18,12 +18,13 @@ meteor
 ```
 
 ### How to use
-1. Add some ingredient categories, then some ingredients.
+1. Add some ingredient categories, then some ingredients
 2. Add some dinners, using the ingredients you just created
-3. Add week plans, using the dinners you just created.
-4. Generate shopping lists based on one of the week plans.
-5. Edit the shopping list.
-6. Repeat.
+3. Add week plans, using the dinners you just created
+4. Generate shopping lists based on one of the week plans
+5. Edit the shopping list for as you want
+7. Use the list and go shopping
+6. Repeat next week
 
 ### Dependencies
 - Meteor ^1.3, Node and Npm must be installed
