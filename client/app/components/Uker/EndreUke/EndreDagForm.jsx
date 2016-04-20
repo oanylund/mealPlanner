@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import LagUkeActions from '../../../actions/LagUkeActions'
-import { Input, Button, Glyphicon } from 'react-bootstrap'
+import { Button, Glyphicon, FormGroup, FormControl } from 'react-bootstrap'
 import ChoseDinnerModal from '../LagUke/ChoseDinnerModal.jsx'
 import { Form } from 'formsy-react'
 import { HOC } from 'formsy-react'
@@ -11,8 +11,13 @@ const FormsyInputElement = (props) => {
   const style = props.isValid() ? null : 'error';
   const placeholder = props.isValid() ? '' : 'Hvorfor blir det ikke middag (påkrevd)';
   return (
-      <Input type='text' bsStyle={style} onChange={(e) => props.setValue(e.target.value)}
-        value={props.getValue()} placeholder={placeholder} />
+    <FormGroup validationState={style}>
+      <FormControl
+        value={props.getValue()}
+        placeholder={placeholder}
+        onChange={(e) => props.setValue(e.target.value)}
+      />
+    </FormGroup>
   )
 }
 const FormsyInput = HOC(FormsyInputElement);
@@ -51,8 +56,10 @@ class EndreDagForm extends React.Component {
     const dinner = this.state.dinner;
     const { changeDay } = this.props.actions;
     let payload = { day: this.props.dayToEdit };
-    if( model.comment.length > 0 ) {
-      payload.comment = model.comment;
+    if( model.comment ) {
+      if( model.comment.length > 0 ) {
+        payload.comment = model.comment;
+      }
     }
     if( dinner ) {
       changeDay({ ...payload, dinnerId: dinner.dinnerId });
