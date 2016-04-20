@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Input } from 'react-bootstrap'
+import { FormGroup, FormControl, HelpBlock } from 'react-bootstrap'
 
 class WeekName extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class WeekName extends React.Component {
   validationStateStyle() {
     const nameLength = this.props.weekName.length;
     if( !this.props.hasBeenChanged ) {
-      return 'primary'
+      return null
     }
     else if( nameLength > 0 ) {
       return 'success'
@@ -38,13 +38,14 @@ class WeekName extends React.Component {
     return (
       <div style={{marginBottom:30}}>
         <p>Navn på ukemeny</p>
-        <Input type='text'
-          value={weekName}
-          bsStyle={this.validationStateStyle()}
-          help={this.validationStateHelpTxt()}
-          onChange={this.onNameChange}
-          hasFeedback
-        />
+        <FormGroup validationState={this.validationStateStyle()}>
+          <FormControl
+            value={weekName}
+            onChange={this.onNameChange}
+          />
+          <FormControl.Feedback />
+          <HelpBlock>{this.validationStateHelpTxt()}</HelpBlock>
+        </FormGroup>
       </div>
     )
   }

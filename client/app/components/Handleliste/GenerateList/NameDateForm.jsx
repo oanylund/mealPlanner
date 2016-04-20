@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Form, HOC } from 'formsy-react'
-import { Row, Col, Input, Button } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
 import FormsyInput from '../../Reusable/Formsy/RequiredInput.jsx'
 
 class NameDateForm extends React.Component {

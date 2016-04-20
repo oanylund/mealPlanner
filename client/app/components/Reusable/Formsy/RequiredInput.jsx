@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { HOC } from 'formsy-react'
-import { Input } from 'react-bootstrap'
+import { FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
 
 const RequiredInput = (props) => {
   let style = props.showRequired() ? 'error' : 'success';
@@ -12,8 +12,15 @@ const RequiredInput = (props) => {
   }
   const type = props.type || 'text';
   return (
-      <Input type={type} bsStyle={style} onChange={(e) => props.setValue(e.target.value)}
-        value={props.getValue()} help={help} label={props.label} />
+    <FormGroup validationState={style}>
+      <ControlLabel>{props.label}</ControlLabel>
+      <FormControl
+        value={props.getValue()}
+        type={type}
+        onChange={(e) => props.setValue(e.target.value)}
+      />
+      <HelpBlock>{help}</HelpBlock>
+    </FormGroup>
   )
 }
 export default HOC(RequiredInput);
