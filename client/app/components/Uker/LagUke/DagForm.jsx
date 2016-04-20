@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
 import LagUkeActions from '../../../actions/LagUkeActions'
-import { Input, Button } from 'react-bootstrap'
+import { Button, FormGroup, FormControl } from 'react-bootstrap'
 import ChoseDinnerModal from './ChoseDinnerModal.jsx'
 import translateDays from '../translateDays'
 
@@ -66,7 +67,9 @@ class DagForm extends React.Component {
         </div>
         <div className='Dagform-whynot'>
           <p><strong>Eller</strong> skriv kort om hvorfor det ikke blir middag</p>
-          <Input value={this.state.whynot} onChange={this.onWhyNotChange} type='text'/>
+          <FormGroup>
+            <FormControl value={this.state.whynot} onChange={this.onWhyNotChange} />
+          </FormGroup>
         </div>
       </div>
     )
@@ -82,7 +85,7 @@ class DagForm extends React.Component {
   }
   handleAddClick() {
     const { addDay } = this.props;
-    let day = this.refs.day.getValue();
+    let day = findDOMNode(this.dayPicker).value;
     let comment = this.state.comment;
 
     let payload = { day: day }
@@ -126,13 +129,17 @@ class DagForm extends React.Component {
           <fieldset>
             <legend className='Dagform-legend'>Legg til dag</legend>
             <p>Velg dagen det gjelder</p>
-            <Input ref='day' type='select'>
-              {options}
-            </Input>
+            <FormGroup>
+              <FormControl componentClass='select' ref={ref => this.dayPicker = ref}>
+                {options}
+              </FormControl>
+            </FormGroup>
             { this.state.dinner ? this.dayAdded() : this.addDayMenu() }
             <div className='Dagform-kommentar'>
               <p>Legg til kommentar (feks: 'Ta opp kjøtt fra frysern')</p>
-              <Input value={this.state.comment} onChange={this.onCommentChange} type='text'/>
+              <FormGroup>
+                <FormControl value={this.state.comment} onChange={this.onCommentChange} />
+              </FormGroup>
             </div>
             <div style={{textAlign:'right'}}>
               <Button bsStyle='primary' onClick={this.handleAddClick}>Legg til dag</Button>
