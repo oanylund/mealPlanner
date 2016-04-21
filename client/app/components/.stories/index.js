@@ -9,3 +9,4 @@ import './Uke.Dag'
 
 import './Handleliste.ShopListRow'
 import './Handleliste.ShopListItem'
+import './Handleliste.ActiveArchived'
