@@ -7,7 +7,8 @@ export default function composer(props, onData) {
         week: 1,
         year: 1,
         active: 1,
-        archived: 1
+        archived: 1,
+        weekPlan: 1
       }
     }).fetch();
     onData(null, {shoplists});

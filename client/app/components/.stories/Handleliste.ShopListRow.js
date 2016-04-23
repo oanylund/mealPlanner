@@ -9,7 +9,8 @@ storiesOf('Handleliste.ShopListRow', module)
     const props = {
       name: 'Test uke middagplan',
       week: 16,
-      year: 2016
+      year: 2016,
+      deleteList: action('Delete list')
     }
 
     return (
@@ -25,7 +26,8 @@ storiesOf('Handleliste.ShopListRow', module)
     const props = {
       name: 'Test uke middagplan',
       week: 16,
-      year: 2016
+      year: 2016,
+      deleteList: action('Delete list')
     }
 
     return (
@@ -41,7 +43,8 @@ storiesOf('Handleliste.ShopListRow', module)
     const props = {
       name: 'Test uke middagplan',
       week: 16,
-      year: 2016
+      year: 2016,
+      deleteList: action('Delete list')
     }
 
     return (

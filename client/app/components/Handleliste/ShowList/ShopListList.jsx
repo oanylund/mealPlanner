@@ -2,30 +2,44 @@ import React, { PropTypes } from 'react'
 import { ListGroup } from 'react-bootstrap'
 import _ from 'underscore'
 import ShopListRow from './ShopListRow.jsx'
+import InfoAlert from '../../Reusable/InfoAlert.jsx'
 
 class ShopListList extends React.Component {
   render () {
     const { shoplists } = this.props;
+    let notArchivedList = [];
+    let archivedList = [];
 
-    const groupedLists = _.groupBy(shoplists, ({archived}) => {
-      return archived ? 'archived' : 'notArchived';
-    });
-
-    const ShoppingLists = groupedLists.notArchived.map( (list, i) => {
-      return <ShopListRow key={i} {...list} />
-    });
-
-    const ArchivedShoppingLists = groupedLists.archived.map( (list, i) => {
-      return <ShopListRow key={i} {...list} />
+    shoplists.forEach( (list,i) => {
+      if( list.archived ) {
+        archivedList.push(
+          <ShopListRow key={i} {...list}
+            deleteList={this.deleteShopList.bind(this,list._id, list.weekPlan.id)} />
+        );
+      }
+      else {
+        notArchivedList.push(
+          <ShopListRow key={i} {...list}
+            deleteList={this.deleteShopList.bind(this,list._id, list.weekPlan.id)} />
+        );
+      }
     });
 
     return (
       <div>
-      <ListGroup>{ShoppingLists}</ListGroup>
-      <h5>Arkiverte lister</h5>
-      <ListGroup>{ArchivedShoppingLists}</ListGroup>
+      { notArchivedList.length === 0 && archivedList.length === 0 ? <InfoAlert txt='Ingen handlelister finnes' /> : null }
+      { notArchivedList.length > 0 ? <ListGroup>{notArchivedList}</ListGroup> : null }
+      { archivedList.length > 0 ? <div><h5>Arkiverte lister</h5>
+      <ListGroup>{archivedList}</ListGroup></div> : null }
       </div>
     );
+  }
+  deleteShopList(listId, weekPlanId, e) {
+    e.stopPropagation();
+    e.preventDefault();
+    Meteor.call('removeShopList', listId, (err, res) => {
+      Meteor.call('removeWeekShopListDep', weekPlanId, listId);
+    });
   }
 }
 

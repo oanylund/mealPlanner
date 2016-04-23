@@ -6,3 +6,25 @@
     margin-bottom: 3px;
   }
 }
+
+.ShopListItem-Row {
+  display: flex;
+  flex-flow: row nowrap;
+  &>div {
+    flex: 1 0 auto;
+  }
+  &>i {
+    display: inline;
+    border:none;
+    outline: none;
+    border-left: 1px solid #b3b3b3;
+    font-size: 1.7rem;
+    flex: 0 0 40px;
+    cursor: pointer;
+    @extend %flexCenterChild;
+    &:hover {
+      color: $fontHoverColor;
+      background-color: white;
+    }
+  }
+}
