@@ -84,5 +84,33 @@ if( Meteor.isServer ) {
       });
 
     },
+    setShopListActiveState: (id, state) => {
+      Handlelister.update({ active: true }, {
+        $set: { active: false }
+      });
+      Handlelister.update({ _id: id }, {
+        $set: { active: state }
+      });
+    },
+    setShopListArchivedState: (id, state) => {
+      Handlelister.update({ _id: id }, {
+        $set: { archived: state }
+      });
+    },
+    setShopListItemPurchased: (id, index) => {
+      Handlelister.update({ _id: id }, {
+        $set: { [`listItems.${index}.purchased`]: true }
+      });
+    },
+    setShopListItemNotPurchased: (id, index) => {
+      Handlelister.update({ _id: id }, {
+        $set: { [`listItems.${index}.purchased`]: false }
+      });
+    },
+    deleteShopListItem: (id, newList) => {
+      Handlelister.update({ _id: id }, {
+        $set: { listItems: newList }
+      });
+    }
   });
 }
