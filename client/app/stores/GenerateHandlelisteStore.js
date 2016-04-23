@@ -35,7 +35,7 @@ class GenerateHandlelisteStore {
   }
   onGenerateListSuccess(newListId) {
     // TODO: Notification shoppinglist succesfully created
-    browserHistory.push(`/uker/vis/${newListId}`);
+    browserHistory.push(`/handleliste/vis/${newListId}`);
   }
   onGenerateListError(err) {
     debugger
