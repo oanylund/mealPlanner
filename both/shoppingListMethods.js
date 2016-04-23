@@ -121,6 +121,11 @@ if( Meteor.isServer ) {
       Handlelister.update({ _id: id }, {
         $set: { listItems: newList }
       });
+    },
+    reorderShopList: (id, reorderedList) => {
+      Handlelister.update({ _id: id }, {
+        $set: { listItems: reorderedList }
+      });
     }
   });
 }

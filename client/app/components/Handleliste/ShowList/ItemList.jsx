@@ -13,10 +13,12 @@ class ItemList extends React.Component {
 
       if( !item.purchased ) {
         const props = {
+          index: i,
           itemString: item.itemString,
           purchasedClick: this.setPurchased.bind(this, i),
           removeClick: this.deleteItem.bind(this,i),
-          changeItemTxt: this.changeItem.bind(this,i)
+          changeItemTxt: this.changeItem.bind(this,i),
+          moveItem: this.moveItem.bind(this)
         }
         notPurchasedList.push(<ShopListItem key={i} {...props} />);
       }
@@ -80,6 +82,13 @@ class ItemList extends React.Component {
   changeItem(index, changedItem) {
     const { _id } = this.props;
     Meteor.call('changedShopListItem', _id, changedItem, index);
+  }
+  moveItem(indexes) {
+    const { _id, listItems } = this.props;
+    let tmp = listItems;
+    let tmpItem = listItems.splice(indexes.old,1);
+    tmp.splice(indexes.new,0,tmpItem[0]);
+    Meteor.call('reorderShopList', _id, tmp);
   }
 }
 

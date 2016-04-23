@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import { FormGroup, FormControl, InputGroup, Glyphicon, Button } from 'react-bootstrap'
 import FormsyInput from './ShopListItemForm.jsx'
 import { Form } from 'formsy-react'
+import { DragSource, DropTarget } from 'react-dnd';
+import { itemSource, itemTarget, dropCollect, dragCollect } from './ShopListItem-dnd'
 
 class ShopListItem extends React.Component {
   constructor(props) {
@@ -46,31 +48,38 @@ class ShopListItem extends React.Component {
   }
   render () {
     const { itemString, size, purchasedClick, removeClick } = this.props;
+    const { connectDropTarget, connectDragSource, isDragging } = this.props;
     const bssize = size || null;
-    return (
-      <Form onValidSubmit={this.changeItemTxt} ref='itemForm' className='ShopListItem-Form'>
-        <FormGroup bsSize={bssize}>
-          <InputGroup bsSize={bssize}>
-            <InputGroup.Button>
-              <Button title='Dra for å flytte opp eller ned'>
-                <Glyphicon glyph='sort' />
-              </Button>
-            </InputGroup.Button>
-            {this.renderField()}
-            <InputGroup.Button>
-              <Button title='Endre status til kjøpt' onClick={purchasedClick}>
-                <Glyphicon glyph='ok-circle' />
-              </Button>
-              <Button title='Slett artikkel' onClick={removeClick}>
-                <Glyphicon glyph='remove-circle' />
-              </Button>
-            </InputGroup.Button>
-          </InputGroup>
-        </FormGroup>
-      </Form>
+    const opacity = isDragging ? 0 : 1;
+
+    return connectDropTarget(
+      <div>
+        <Form onValidSubmit={this.changeItemTxt} ref='itemForm' style={{opacity}} className='ShopListItem-Form'>
+          <FormGroup bsSize={bssize}>
+            <InputGroup bsSize={bssize}>
+              <InputGroup.Addon>
+                { connectDragSource(
+                    <div style={{cursor:'move'}}>
+                      <Glyphicon glyph='sort' />
+                    </div>
+                )}
+                </InputGroup.Addon>
+                {this.renderField()}
+                <InputGroup.Button>
+                  <Button title='Endre status til kjøpt' onClick={purchasedClick}>
+                    <Glyphicon glyph='ok-circle' />
+                  </Button>
+                  <Button title='Slett artikkel' onClick={removeClick}>
+                    <Glyphicon glyph='remove-circle' />
+                  </Button>
+                </InputGroup.Button>
+              </InputGroup>
+            </FormGroup>
+          </Form>
+      </div>
     )
   }
 }
 
-export default ShopListItem
+export default DropTarget('shopListItem', itemTarget, dropCollect)(DragSource('shopListItem', itemSource, dragCollect)(ShopListItem) );
 //
