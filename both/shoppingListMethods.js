@@ -107,6 +107,16 @@ if( Meteor.isServer ) {
         $set: { [`listItems.${index}.purchased`]: false }
       });
     },
+    addShopListItem: (id, newItem) => {
+      Handlelister.update({ _id: id }, {
+        $addToSet: { listItems: { purchased: false, itemString: newItem} }
+      });
+    },
+    changedShopListItem: (id, changedItem, index) => {
+      Handlelister.update({ _id: id }, {
+        $set: { [`listItems.${index}.itemString`]: changedItem }
+      });
+    },
     deleteShopListItem: (id, newList) => {
       Handlelister.update({ _id: id }, {
         $set: { listItems: newList }

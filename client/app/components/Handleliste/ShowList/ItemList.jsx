@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import ShopListItem from './ShopListItem.jsx'
-import PlusBtn from '../../Reusable/PlusBtn.jsx'
+import InsertItem from './InsertItem.jsx'
 import { Grid, Row, Col, Button } from 'react-bootstrap'
 
 class ItemList extends React.Component {
@@ -16,7 +16,7 @@ class ItemList extends React.Component {
           itemString: item.itemString,
           purchasedClick: this.setPurchased.bind(this, i),
           removeClick: this.deleteItem.bind(this,i),
-          changeItemTxt: alert.bind(null,'endre text')
+          changeItemTxt: this.changeItem.bind(this,i)
         }
         notPurchasedList.push(<ShopListItem key={i} {...props} />);
       }
@@ -40,6 +40,11 @@ class ItemList extends React.Component {
             </Col>
           </Row>
           : '' }
+          <Row>
+            <Col md={12}>
+              <InsertItem onNewItem={this.insertItem.bind(this)} />
+            </Col>
+          </Row>
           { purchasedList.length > 0 ?
           <Row>
             <Col md={12}>
@@ -62,8 +67,19 @@ class ItemList extends React.Component {
   }
   deleteItem(index) {
     const { _id, listItems } = this.props;
-    const newList = listItems.splice(index, 1);
-    Meteor.call('deleteShopListItem', _id, newList);
+    const newList = listItems;
+    newList.splice(index, 1);
+    if( newList.length > 0 ) {
+      Meteor.call('deleteShopListItem', _id, newList);
+    }
+  }
+  insertItem(newItem) {
+    const { _id } = this.props;
+    Meteor.call('addShopListItem', _id, newItem);
+  }
+  changeItem(index, changedItem) {
+    const { _id } = this.props;
+    Meteor.call('changedShopListItem', _id, changedItem, index);
   }
 }
 

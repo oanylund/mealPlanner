@@ -29,10 +29,11 @@ const InputField = HOC(FormsyElement);
 class InsertItem extends React.Component {
   onSubmit({newItem}) {
     this.props.onNewItem(newItem);
+    this.refs.form.reset();
   }
   render () {
     return (
-      <Form onValidSubmit={this.onSubmit.bind(this)}>
+      <Form onValidSubmit={this.onSubmit.bind(this)} ref='form'>
         <InputField name='newItem' required />
       </Form>
     )
