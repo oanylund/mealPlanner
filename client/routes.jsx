@@ -9,6 +9,7 @@ import Uker from './app/components/Uker/Uker.jsx'
 import LagUke from './app/components/Uker/LagUke.jsx'
 
 import IngrediensListe from './app/components/Ingredienser/Ingredienser.jsx'
+import AddIngredientForm from './app/components/Ingredienser/AddIngredientForm.jsx'
 
 import MiddagMain from './app/components/Middag/MiddagMain.jsx'
 import ShowDinners from './app/components/Middag/ShowDinners.jsx'
@@ -36,7 +37,10 @@ export default () => {
           <Route path='lag-ny' component={LagMiddag}/>
         </Route>
 
-        <Route path='ingrediens' component={IngrediensListe}/>
+        <Route path='ingrediens' component={MiddagMain}>
+          <IndexRoute component={IngrediensListe} />
+          <Route path='lag-ny' component={AddIngredientForm}/>
+        </Route>
 
         <Route path='handleliste' component={ShoppingListMain}>
           <IndexRoute component={ShowShoppingLists} />
