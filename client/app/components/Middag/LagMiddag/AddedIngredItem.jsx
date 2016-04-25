@@ -15,7 +15,7 @@ const itemSource = {
 }
 
 const itemTarget = {
-  hover(props, monitor, component) {
+  drop(props,monitor) {
     const dragIndex = monitor.getItem().index;
     const hoverIndex = props.index;
 
@@ -23,13 +23,7 @@ const itemTarget = {
       return;
     }
 
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    const clientOffset = monitor.getClientOffset();
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
     props.moveIngred({ old: dragIndex , new: hoverIndex });
-    monitor.getItem().index = hoverIndex;
   }
 }
 
@@ -61,7 +55,7 @@ class AddIngredItem extends React.Component {
     this.props.moveIngredDown(this.props.index)
   }
   render () {
-    const { ingred, connectDragSource, connectDropTarget, isDragging } = this.props;
+    const { ingred, connectDragSource, connectDropTarget, isDragging, isHovered } = this.props;
 
     const singularUnit = ingred.unit.singular || ingred.unit.plural;
     const pluralUnit = ingred.unit.plural || ingred.unit.singular;
@@ -71,7 +65,7 @@ class AddIngredItem extends React.Component {
     const unitShown = ingred.quantity > 1 ? pluralUnit : singularUnit;
     const nameShown = ingred.quantity > 1 ? pluralName : singularName;
 
-    const opacity = isDragging ? 0 : 1;
+    const opacity = isHovered ? 0.5 : (isDragging ? 0 : 1);
 
     return connectDragSource(connectDropTarget(
       <div style={{ opacity }}>
@@ -89,9 +83,10 @@ class AddIngredItem extends React.Component {
   }
 }
 
-const dropCollect = (connect) => {
+const dropCollect = (connect,monitor) => {
   return {
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
+    isHovered: monitor.isOver()
   }
 }
 
