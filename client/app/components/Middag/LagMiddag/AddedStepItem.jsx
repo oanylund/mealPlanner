@@ -16,7 +16,7 @@ const stepSource = {
 }
 
 const stepTarget = {
-  hover(props, monitor, component) {
+  drop(props,monitor) {
     const dragIndex = monitor.getItem().index;
     const hoverIndex = props.index;
 
@@ -24,19 +24,7 @@ const stepTarget = {
       return;
     }
 
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    const clientOffset = monitor.getClientOffset();
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-      return;
-    }
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-      return;
-    }
     props.moveStep({ old: dragIndex , new: hoverIndex });
-    monitor.getItem().index = hoverIndex;
   }
 }
 
@@ -84,7 +72,7 @@ class AddedStepItem extends React.Component {
   }
   render () {
     const { addStep, deleteStep, moveStep, moveStepUp, moveStepDown, stepTxt, index } = this.props;
-    const { connectDragSource, connectDropTarget, isDragging } = this.props;
+    const { connectDragSource, connectDropTarget, isDragging, isHovered } = this.props;
 
     const stepClass = ClassNames('addDinner-addedStep', {
       editTrue: this.state.editMode
@@ -100,7 +88,7 @@ class AddedStepItem extends React.Component {
                       onChange={this.onTxtChange}  defaultValue={stepTxt} />;
     const descView = this.state.editMode ? editView : <p className='addedStep-Desc'>{stepTxt}</p>;
     const saveChangeBtnTitle = this.state.emptyErr ? 'Steget kan ikke være tomt' : 'Lagre endring';
-    const opacity = isDragging ? 0 : 1;
+    const opacity = isHovered ? 0.5 : (isDragging ? 0 : 1);
 
     return connectDragSource(connectDropTarget(
         <div className={stepClass} style={{ opacity }}>
@@ -125,9 +113,10 @@ class AddedStepItem extends React.Component {
   }
 }
 
-const dropCollect = (connect) => {
+const dropCollect = (connect, monitor) => {
   return {
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
+    isHovered: monitor.isOver()
   }
 }
 
