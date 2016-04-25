@@ -29,22 +29,24 @@ const ChosenDinnerView = ({dinner, addDinner}) => {
   // TODO: style view
   return (
     <div className='addWeek-ChooseDinnerView'>
-      <ChoseDinnerItemImg imageId={dinner.imageId} />
-      <h4>{dinner.title}</h4>
-      <p>{dinner.description}</p>
-      <Accordion>
-        <Panel header='Ingredienser' eventKey={1}>
-          <ListGroup fill>
-            {ingredientList}
-          </ListGroup>
-        </Panel>
-        { stepsList !== '' ?
-        <Panel header='Steg' eventKey={2}>
-          <ListGroup fill>
-            {stepsList}
-          </ListGroup>
-        </Panel> : '' }
-      </Accordion>
+      <div className='ChooseDinnerView-scrollarea'>
+        <ChoseDinnerItemImg imageId={dinner.imageId} />
+        <h4>{dinner.title}</h4>
+        <p>{dinner.description}</p>
+        <Accordion>
+          <Panel header='Ingredienser' eventKey={1}>
+            <ListGroup fill>
+              {ingredientList}
+            </ListGroup>
+          </Panel>
+          { stepsList !== '' ?
+            <Panel header='Steg' eventKey={2}>
+              <ListGroup fill>
+                {stepsList}
+              </ListGroup>
+            </Panel> : '' }
+          </Accordion>
+      </div>
       <Button bsStyle='primary' onClick={addDinner.bind(null,addDinnerProps)}>Legg middag til dag</Button>
     </div>
   );
