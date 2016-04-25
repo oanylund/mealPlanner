@@ -16,4 +16,8 @@ const ShowIngredItem = ({ quantity, ingredient }) => {
   )
 }
 
-export default composeWithTracker(GetDinnerIngred)(ShowIngredItem)
+const Loading = () => {
+  return <i style={{fontSize:10}} className="fa fa-cog fa-spin"/>;
+}
+
+export default composeWithTracker(GetDinnerIngred, Loading)(ShowIngredItem)
