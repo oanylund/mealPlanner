@@ -15,7 +15,7 @@ const itemSource = {
 export {itemSource}
 
 const itemTarget = {
-  hover(props, monitor, component) {
+  drop(props,monitor) {
     const dragIndex = monitor.getItem().index;
     const hoverIndex = props.index;
 
@@ -23,21 +23,16 @@ const itemTarget = {
       return;
     }
 
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    const clientOffset = monitor.getClientOffset();
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
     props.moveItem({ old: dragIndex , new: hoverIndex });
-    monitor.getItem().index = hoverIndex;
   }
 }
 
 export {itemTarget}
 
-const dropCollect = (connect) => {
+const dropCollect = (connect, monitor) => {
   return {
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
+    isHovered: monitor.isOver()
   }
 }
 

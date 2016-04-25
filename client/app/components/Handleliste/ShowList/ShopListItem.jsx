@@ -48,9 +48,9 @@ class ShopListItem extends React.Component {
   }
   render () {
     const { itemString, size, purchasedClick, removeClick } = this.props;
-    const { connectDropTarget, connectDragSource, isDragging } = this.props;
+    const { connectDropTarget, connectDragSource, isDragging, isHovered } = this.props;
     const bssize = size || null;
-    const opacity = isDragging ? 0 : 1;
+    const opacity = isHovered ? 0.5 : (isDragging ? 0 : 1);
 
     return connectDropTarget(
       <div>
