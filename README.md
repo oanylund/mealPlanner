@@ -3,7 +3,7 @@ Meal Planner
 Meteor SPA to generate shopping lists to make life easier and less repetitive.
 The code contains 98% English comments and variables, but the UI is Norwegian.  
 
-Pull request are always welcome.
+Pull request would be much appreciated.
 
 ### Install
 Clone repository  
@@ -25,6 +25,13 @@ meteor
 5. Edit the shopping list for as you want
 7. Use the list and go shopping
 6. Repeat next week
+
+### Storybook
+Some components have stories. If you are unfamiliar with storybook, check out this awesome  [repo](https://github.com/kadirahq/react-storybook). To view the components in storybook, run:
+```bash
+npm run storybook
+```
+Then, go to http://localhost:9001/ and browse the stories. Make sure you have installed the devDependencies as well.
 
 ### Dependencies
 - Meteor ^1.3, Node and Npm must be installed
