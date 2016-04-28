@@ -22,7 +22,7 @@ meteor
 2. Add some dinners, using the ingredients you just created
 3. Add week plans, using the dinners you just created
 4. Generate shopping lists based on one of the week plans
-5. Edit the shopping list for as you want
+5. Edit the shopping list based on the current situation in the fridge
 7. Use the list and go shopping
 6. Repeat next week
 
