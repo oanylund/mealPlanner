@@ -12,9 +12,11 @@
   "dependencies": {
     "alt": "^0.18.2",
     "alt-container": "^1.0.2",
+    "apollo-server": "^0.1.5",
     "classnames": "^2.2.3",
     "cropperjs": "^0.6.0",
     "formsy-react": "^0.17.0",
+    "graphql": "^0.6.1",
     "meteor-node-stubs": "^0.2.1",
     "moment": "^2.11.2",
     "react": "^0.14.7",
