@@ -1,4 +1,4 @@
-
+import { Meteor } from 'meteor/meteor';
 
 Meteor.publish("uker", function () {
     return Uker.find({});

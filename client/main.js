@@ -1,6 +1,8 @@
-import React from 'react'
-import { render } from 'react-dom'
-import Routes from './routes.jsx'
+import React from 'react';
+import { render } from 'react-dom';
+import Routes from '../imports/ui/routes.jsx';
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
 
 Meteor.startup(function () {
   render(Routes(),document.getElementById('root'));
