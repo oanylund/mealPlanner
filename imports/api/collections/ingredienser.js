@@ -29,7 +29,7 @@ Ingredienser.allow({
   },
 })
 
-SingularPluralSchema = new SimpleSchema({
+const SingularPluralSchema = new SimpleSchema({
   singular: {
     type: String,
     label: 'Entall',
@@ -42,7 +42,7 @@ SingularPluralSchema = new SimpleSchema({
   },
 })
 
-IngrediensSchema = new SimpleSchema({
+const IngrediensSchema = new SimpleSchema({
   name: {
     type: SingularPluralSchema,
     label: 'Navn på ingrediens',

@@ -3,7 +3,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 const Uker = new Mongo.Collection("uker");
 
-DagSchema = new SimpleSchema({
+const DagSchema = new SimpleSchema({
   dinnerId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
@@ -22,7 +22,7 @@ DagSchema = new SimpleSchema({
   }
 })
 
-DagerSchema = new SimpleSchema({
+const DagerSchema = new SimpleSchema({
   tuesday: {
     type: DagSchema,
     label: 'tirsdag',
@@ -60,7 +60,7 @@ DagerSchema = new SimpleSchema({
   }
 })
 
-UkerSchema = new SimpleSchema({
+const UkerSchema = new SimpleSchema({
   name: {
     type: String,
     label: 'Ukemenyens navn',

@@ -1,14 +1,14 @@
 import { Meteor } from 'meteor/meteor';
-import { _ } from 'meteor/underscore';
 import { check } from 'meteor/check';
+import _ from 'underscore';
 
 // collections
-import Ingredienser from '../collections/ingredienser.js';
-import IngrediensKat from '../collections/ingrediensKategori.js';
-import Middager from '../collections/middag.js';
-import DinnerThumbs from '../collections/DinnerThumb.js';
-import Uker from '../collections/uker.js';
-import Handlelister from '../collections/Handleliste.js';
+import Ingredienser from './collections/ingredienser.js';
+import IngrediensKat from './collections/IngrediensKategori.js';
+import Middager from './collections/middag.js';
+import DinnerThumbs from './collections/DinnerThumb.js';
+import Uker from './collections/uker.js';
+import Handlelister from './collections/handleliste.js';
 
 Meteor.publish('uker', function () {
     return Uker.find({});

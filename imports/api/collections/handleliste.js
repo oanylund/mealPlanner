@@ -15,7 +15,7 @@ Handlelister.allow({
   },
 })
 
-ListItemSchema = new SimpleSchema({
+const ListItemSchema = new SimpleSchema({
   purchased: {
     type: Boolean,
     defaultValue: false
@@ -25,7 +25,7 @@ ListItemSchema = new SimpleSchema({
   }
 });
 
-HandlelisteSchema = new SimpleSchema({
+const HandlelisteSchema = new SimpleSchema({
   name: {
     type: String
   },

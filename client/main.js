@@ -4,6 +4,8 @@ import Routes from '../imports/ui/routes.jsx';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 
+import '../imports/startup/client';
+
 Meteor.startup(function () {
   render(Routes(),document.getElementById('root'));
 });

@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import IngrediensKat from '../../../api/collections/IngrediensKategori'
-import Ingredienser from '../../../api/collections/Ingredienser'
+import Ingredienser from '../../../api/collections/ingredienser'
 import _ from 'underscore'
 
 export default function composer(props, onData) {

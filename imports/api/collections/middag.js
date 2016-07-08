@@ -38,7 +38,7 @@ Middager.allow({
   },
 })
 
-IngrediensInDinner = new SimpleSchema({
+const IngrediensInDinner = new SimpleSchema({
   quantity: {
     type: Number
   },
@@ -47,7 +47,7 @@ IngrediensInDinner = new SimpleSchema({
   }
 })
 
-MiddagSchema = new SimpleSchema({
+const MiddagSchema = new SimpleSchema({
   title: {
     type: String,
     label: 'tittel'
