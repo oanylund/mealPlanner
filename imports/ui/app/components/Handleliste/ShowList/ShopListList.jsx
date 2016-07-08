@@ -3,6 +3,7 @@ import { ListGroup } from 'react-bootstrap'
 import _ from 'underscore'
 import ShopListRow from './ShopListRow.jsx'
 import InfoAlert from '../../Reusable/InfoAlert.jsx'
+import { Meteor } from 'meteor/meteor'
 
 class ShopListList extends React.Component {
   render () {

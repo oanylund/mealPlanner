@@ -1,3 +1,6 @@
+import { Meteor } from 'meteor/meteor';
+import Uker from '../collections/uker';
+
 Meteor.methods({
   addWeek: (newWeek) => {
     return Uker.insert(newWeek);

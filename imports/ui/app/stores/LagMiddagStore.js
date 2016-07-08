@@ -1,5 +1,7 @@
 import alt from "../alt"
 import LagMiddagActions from '../actions/LagMiddagActions'
+import { Meteor } from 'meteor/meteor'
+import DinnerThumbs from '../../../api/collections/DinnerThumb'
 
 class LagMiddagStore {
   constructor() {

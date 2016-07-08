@@ -3,7 +3,7 @@ import AddStepsForm from '../../LagMiddag/AddStepsForm.jsx'
 import ShowStepsAdded from '../../LagMiddag/ShowStepsAdded.jsx'
 import InfoAlert from '../../../Reusable/InfoAlert.jsx'
 import PlusBtn from '../../../Reusable/PlusBtn.jsx'
-
+import { Meteor } from 'meteor/meteor'
 
 class EditSteps extends React.Component {
   constructor(props) {

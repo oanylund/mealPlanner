@@ -1,4 +1,7 @@
-Handlelister = new Mongo.Collection('handlelister');
+import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
+const Handlelister = new Mongo.Collection('handlelister');
 
 Handlelister.allow({
   insert: (userId,doc) => {
@@ -56,3 +59,5 @@ HandlelisteSchema = new SimpleSchema({
 });
 
 Handlelister.attachSchema(HandlelisteSchema);
+
+export default Handlelister;

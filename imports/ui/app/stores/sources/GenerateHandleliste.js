@@ -1,4 +1,5 @@
 import Actions from '../../actions/GenerateHandlelisteActions'
+import { Meteor } from 'meteor/meteor'
 
 const generateShoppingList = {
   generateList: {

@@ -1,3 +1,7 @@
+import { Meteor } from 'meteor/meteor';
+import Middager from '../collections/middag';
+import DinnerThumbs from '../collections/DinnerThumb';
+
 Meteor.methods({
   deleteDinner: (id, imageId) => {
     DinnerThumbs.remove({ _id: imageId }, () => {

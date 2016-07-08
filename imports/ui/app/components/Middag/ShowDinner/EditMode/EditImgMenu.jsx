@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import EditImgModal from './EditImgModal.jsx'
+import { Meteor } from 'meteor/meteor'
 
 class EditImgMenu extends React.Component {
   constructor(props) {

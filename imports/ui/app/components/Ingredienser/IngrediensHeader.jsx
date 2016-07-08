@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Badge } from 'react-bootstrap'
 import IngrediensHeaderEdit from './IngrediensHeaderEdit.jsx'
+import { Meteor } from 'meteor/meteor'
 
 class IngrediensHeader extends React.Component {
   constructor(props) {

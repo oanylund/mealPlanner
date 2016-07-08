@@ -1,4 +1,7 @@
-IngrediensKat = new Mongo.Collection('ingrediensKat')
+import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
+const IngrediensKat = new Mongo.Collection('ingrediensKat');
 
 IngrediensKat.allow({
   insert: (userId,doc) => {
@@ -21,3 +24,5 @@ IngrediensKatSchema = new SimpleSchema({
 })
 
 IngrediensKat.attachSchema(IngrediensKatSchema)
+
+export default IngrediensKat;

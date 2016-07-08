@@ -1,3 +1,6 @@
+import { Meteor } from 'meteor/meteor';
+import Ingredienser from '../collections/ingredienser';
+
 Meteor.methods({
   removeIngredient: (id) => {
     Ingredienser.remove(id)

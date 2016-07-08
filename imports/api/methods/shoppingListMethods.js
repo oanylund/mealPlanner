@@ -1,3 +1,7 @@
+import { Meteor } from 'meteor/meteor';
+import Ingredienser from '../collections/ingredienser';
+import Uker from '../collections/uker';
+import Handlelister from '../collections/handleliste';
 import _ from 'underscore'
 
 if( Meteor.isServer ) {

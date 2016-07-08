@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import _ from 'underscore'
 import ActiveArchived from './ShowList/ActiveArchived.jsx'
 import ItemList from './ShowList/ItemList.jsx'
+import { Meteor } from 'meteor/meteor'
 
 class ShowShoppingList extends React.Component {
   render () {

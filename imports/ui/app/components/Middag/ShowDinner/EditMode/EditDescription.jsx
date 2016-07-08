@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import EditDescriptionForm from './EditDescriptionForm.jsx'
+import { Meteor } from 'meteor/meteor'
 
 class EditDescription extends React.Component {
   constructor(props) {

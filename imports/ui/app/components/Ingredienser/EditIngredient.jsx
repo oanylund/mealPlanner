@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Meteor } from 'meteor/meteor'
 
 class EditIngredient extends React.Component {
   constructor(props) {

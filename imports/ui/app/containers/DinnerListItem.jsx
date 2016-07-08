@@ -1,5 +1,7 @@
 import { composeWithTracker } from 'react-komposer'
 import DinnerListItem from '../components/Uker/VisUke/DinnerListItem.jsx'
+import { Meteor } from 'meteor/meteor'
+import Middager from '../../../api/collections/middag'
 
 function composer(props, onData) {
   const handle = Meteor.subscribe('middagsListe')

@@ -1,4 +1,7 @@
-Uker = new Mongo.Collection("uker");
+import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
+const Uker = new Mongo.Collection("uker");
 
 DagSchema = new SimpleSchema({
   dinnerId: {
@@ -74,4 +77,6 @@ UkerSchema = new SimpleSchema({
   }
 })
 
-Uker.attachSchema(UkerSchema)
+Uker.attachSchema(UkerSchema);
+
+export default Uker;

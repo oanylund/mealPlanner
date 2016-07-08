@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import ClassName from 'classnames'
+import { Meteor } from 'meteor/meteor'
 
 import IngrediensBoxExtended from './IngrediensBoxExtended.jsx'
 import IngrediensBoxMinimal from './IngrediensBoxMinimal.jsx'

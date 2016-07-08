@@ -1,3 +1,8 @@
+import { Meteor } from 'meteor/meteor'
+import IngrediensKat from '../../../api/collections/IngrediensKategori'
+import Ingredienser from '../../../api/collections/Ingredienser'
+import _ from 'underscore'
+
 export default function composer(props, onData) {
   const handleIngs = Meteor.subscribe('ingrediensSearch', props.query)
   if (handleIngs.ready()) {

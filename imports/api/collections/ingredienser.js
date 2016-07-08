@@ -1,4 +1,7 @@
-Ingredienser = new Mongo.Collection('ingredienser')
+import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
+const Ingredienser = new Mongo.Collection('ingredienser');
 
 // Add search method to collection class
 Ingredienser.searchName = (query) => {
@@ -64,3 +67,5 @@ IngrediensSchema = new SimpleSchema({
 })
 
 Ingredienser.attachSchema(IngrediensSchema)
+
+export default Ingredienser;

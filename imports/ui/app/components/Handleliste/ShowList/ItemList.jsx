@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import ShopListItem from './ShopListItem.jsx'
 import InsertItem from './InsertItem.jsx'
 import { Grid, Row, Col, Button } from 'react-bootstrap'
+import { Meteor } from 'meteor/meteor'
 
 class ItemList extends React.Component {
   render () {

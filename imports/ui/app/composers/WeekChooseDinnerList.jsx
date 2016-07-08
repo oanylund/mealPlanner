@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor'
+
 export default function composer({ titleFilter, limit }, onData) {
   const totalCount = Middager.searchTitle(titleFilter).count();
   const handleDinners = Meteor.subscribe('dinnerSearch', titleFilter);

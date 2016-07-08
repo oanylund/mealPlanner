@@ -1,4 +1,7 @@
-Middager = new Mongo.Collection("middager")
+import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
+const Middager = new Mongo.Collection("middager");
 
 Middager.searchTitle = (titleFilter, limit) => {
 
@@ -76,4 +79,6 @@ MiddagSchema = new SimpleSchema({
   }
 })
 
-Middager.attachSchema(MiddagSchema)
+Middager.attachSchema(MiddagSchema);
+
+export default Middager;

@@ -3,6 +3,7 @@ import AddIngredientForm from '../../LagMiddag/AddIngredientForm.jsx'
 import EditIngredsList from './EditIngredsList.jsx'
 import InfoAlert from '../../../Reusable/InfoAlert.jsx'
 import PlusBtn from '../../../Reusable/PlusBtn.jsx'
+import { Meteor } from 'meteor/meteor'
 
 class EditIngredients extends React.Component {
   constructor(props) {

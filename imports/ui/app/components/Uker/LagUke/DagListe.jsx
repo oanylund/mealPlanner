@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap'
 import InfoAlert from '../../Reusable/InfoAlert.jsx'
 import DagDinnerWrapper from './DagDinnerWrapper.jsx'
 import translateDays from '../translateDays'
+import _ from 'underscore'
 
 const DagListe = ({newWeek, deleteDay, editDay}) => {
 

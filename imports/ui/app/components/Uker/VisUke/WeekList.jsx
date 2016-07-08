@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import DinnerListItem from '../../../containers/DinnerListItem.jsx'
 import WeekPanelItem from './WeekPanelItem.jsx'
 import NoDinnerListItem from './NoDinnerListItem.jsx'
+import _ from 'underscore'
 
 class WeekList extends React.Component {
   constructor(props) {

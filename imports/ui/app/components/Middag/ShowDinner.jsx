@@ -10,6 +10,7 @@ import ShowDescription from './ShowDinner/ShowDescription.jsx'
 import ShowDinnerImage from './ShowDinner/ShowDinnerImage.jsx'
 import ShowIngreds from './ShowDinner/ShowIngreds.jsx'
 import ShowSteps from './ShowDinner/ShowSteps.jsx'
+import { Meteor } from 'meteor/meteor'
 
 class ShowDinner extends React.Component {
   constructor(props) {

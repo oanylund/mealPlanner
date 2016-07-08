@@ -1,3 +1,6 @@
+import { Meteor } from 'meteor/meteor'
+import DinnerThumbs from '../../../api/collections/DinnerThumb' 
+
 export default function composer(props, onData) {
   const handle = Meteor.subscribe('middagImageThumbs')
   let noImage = false;
