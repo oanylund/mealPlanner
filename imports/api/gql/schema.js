@@ -25,24 +25,25 @@ var typeDefinitions = `
 type Day {
     day: String
     dinnerId: String
-    dinner: Middag
+    dinner: Dinner
     whynot: String
     comment: String
 }
 
 type Week {
+  _id: String
   name: String
   days: [Day]
   usedInShopList: [String]
 }
 
-type Middag {
+type Dinner {
   _id: String
   title: String
   description: String
   steps: [String]
   image: Image
-  usedInWeek: [String]
+  usedInWeek: [Week]
   ingredients: [IngredInDinner]
 }
 
@@ -54,21 +55,21 @@ type Image {
 type IngredInDinner {
   quantity: Int
   ingredientId: String
-  ingredient: Ingrediens
+  ingredient: Ingredient
 }
 
-type Ingrediens {
+type Ingredient {
   _id: String
   name: SingPlur
   unit: SingPlur
   category: IngredientCategory
-  usedInDinners: [String]
+  usedInDinners: [Dinner]
 }
 
 type IngredientCategory {
   _id: String
   name: String
-  ingredients(limit: Int, skip: Int): [Ingrediens]
+  ingredients(limit: Int, skip: Int): [Ingredient]
 }
 
 type SingPlur {
@@ -77,11 +78,12 @@ type SingPlur {
 }
 
 type Query {
+  week(id: String): Week
   weeks(limt: Int, skip: Int): [Week]
-  dinners(limit: Int, skip: Int): [Middag]
-  dinner(id: String): Middag
-  ingredients(limit: Int, skip: Int): [Ingrediens]
-  ingredient(id: String): Ingrediens
+  dinners(limit: Int, skip: Int): [Dinner]
+  dinner(id: String): Dinner
+  ingredients(limit: Int, skip: Int): [Ingredient]
+  ingredient(id: String): Ingredient
   ingredientCategory(id: String): IngredientCategory
   ingredientCategories(limit: Int, Skip: Int): [IngredientCategory]
 }

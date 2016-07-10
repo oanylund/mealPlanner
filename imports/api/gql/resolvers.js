@@ -11,6 +11,9 @@ import _ from 'underscore'
 
 var resolvers = {
   Query: {
+    week(_, args) {
+      return uker.findOne(args.id);
+    },
     weeks(_, args) {
       return uker.find({}, args).fetch();
     },
@@ -45,9 +48,9 @@ var resolvers = {
       return middag.findOne(day.dinnerId);
     }
   },
-  Middag: {
-    ingredients(middag) {
-      const ingreds = middag.ingredients.map( (ingred) => {
+  Dinner: {
+    ingredients(dinner) {
+      const ingreds = dinner.ingredients.map( (ingred) => {
         return ingred;
       });
       return ingreds
@@ -64,6 +67,9 @@ var resolvers = {
         id: null,
         url: '/images/default-dinner.png'
       }
+    },
+    usedInWeek(week) {
+      return uker.find({ _id: { $in: week.usedInWeek } }).fetch();
     }
   },
   IngredInDinner: {
@@ -71,7 +77,7 @@ var resolvers = {
       return ingrediens.findOne(ingInDin.ingredientId);
     }
   },
-  Ingrediens: {
+  Ingredient: {
     name(ing) {
       return ing.name;
     },
@@ -83,6 +89,9 @@ var resolvers = {
         id: ing.categoryId,
         name: ingrediensKategori.findOne(ing.categoryId).name
       }
+    },
+    usedInDinners(ing) {
+      return middag.find({ _id: { $in: ing.usedInDinners } }).fetch();
     }
   },
   IngredientCategory: {
