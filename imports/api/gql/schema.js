@@ -1,26 +1,19 @@
-// type ShoppingList {
-//   name: String
-//   week: Int
-//   year: Int
-//   active: Boolean
-//   archived: Boolean
-//   weekPlan: ShoppingListWeek
-//   listItems: [ShoppingListItem]
-// }
-//
-// type ShoppingListWeek {
-//   id: String
-//   name: String
-// }
-//
-// type ShoppingListItem {
-//   purchased: Boolean
-//   itemString: String
-// }
-//
-
-
 var typeDefinitions = `
+
+type ShoppingList {
+  name: String
+  week: Int
+  year: Int
+  active: Boolean
+  archived: Boolean
+  weekPlan: Week
+  listItems: [ShoppingListItem]
+}
+
+type ShoppingListItem {
+  purchased: Boolean
+  itemString: String
+}
 
 type Day {
     day: String
@@ -34,7 +27,7 @@ type Week {
   _id: String
   name: String
   days: [Day]
-  usedInShopList: [String]
+  usedInShopList: [ShoppingList]
 }
 
 type Dinner {
@@ -78,6 +71,7 @@ type SingPlur {
 }
 
 type Query {
+  shoppingLists(limt: Int, skip: Int): [ShoppingList]
   week(id: String): Week
   weeks(limt: Int, skip: Int): [Week]
   dinners(limit: Int, skip: Int): [Dinner]

@@ -11,6 +11,9 @@ import _ from 'underscore'
 
 var resolvers = {
   Query: {
+    shoppingLists(_, args) {
+      return handleliste.find({}, args).fetch();
+    },
     week(_, args) {
       return uker.findOne(args.id);
     },
@@ -36,11 +39,22 @@ var resolvers = {
       return ingrediensKategori.find({}, args).fetch();
     }
   },
+  ShoppingList: {
+    weekPlan({ weekPlan }) {
+      return uker.findOne(weekPlan.id);
+    },
+    listItems(week) {
+      return week.listItems;
+    }
+  },
   Week: {
     days(week) {
       return _.map(week.days, (day, dayName) => {
         return { day: dayName, ...day}
       });
+    },
+    usedInShopList(week) {
+      return handleliste.find({ _id: { $in: week.usedInShopList } }).fetch();
     }
   },
   Day: {
@@ -68,8 +82,8 @@ var resolvers = {
         url: '/images/default-dinner.png'
       }
     },
-    usedInWeek(week) {
-      return uker.find({ _id: { $in: week.usedInWeek } }).fetch();
+    usedInWeek(dinner) {
+      return uker.find({ _id: { $in: dinner.usedInWeek } }).fetch();
     }
   },
   IngredInDinner: {
