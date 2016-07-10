@@ -71,9 +71,9 @@ type SingPlur {
 }
 
 type Query {
-  shoppingLists(limt: Int, skip: Int): [ShoppingList]
+  shoppingLists(limit: Int, skip: Int): [ShoppingList]
   week(id: String): Week
-  weeks(limt: Int, skip: Int): [Week]
+  weeks(limit: Int, skip: Int): [Week]
   dinners(limit: Int, skip: Int): [Dinner]
   dinner(id: String): Dinner
   ingredients(limit: Int, skip: Int): [Ingredient]
