@@ -64,10 +64,7 @@ var resolvers = {
   },
   Dinner: {
     ingredients(dinner) {
-      const ingreds = dinner.ingredients.map( (ingred) => {
-        return ingred;
-      });
-      return ingreds
+      return dinner.ingredients;
     },
     image(dinner) {
       if (dinner.imageId) {
