@@ -18,29 +18,23 @@
 //   itemString: String
 // }
 //
-// type Day {
-//     dinnerId: String
-//     whynot: String
-//     comment: String
-// }
-//
-// type Days {
-//   tuesday: Day
-//   wednesday: Day
-//   thursday: Day
-//   friday: Day
-//   saturday: Day
-//   sunday: Day
-//   monday: Day
-// }
-//
-// type Week {
-//   name: String
-//   days: Days
-//   usedInShopList: [String]
-// }
+
 
 var typeDefinitions = `
+
+type Day {
+    day: String
+    dinnerId: String
+    dinner: Middag
+    whynot: String
+    comment: String
+}
+
+type Week {
+  name: String
+  days: [Day]
+  usedInShopList: [String]
+}
 
 type Middag {
   _id: String
@@ -83,6 +77,7 @@ type SingPlur {
 }
 
 type Query {
+  weeks(limt: Int, skip: Int): [Week]
   dinners(limit: Int, skip: Int): [Middag]
   dinner(id: String): Middag
   ingredients(limit: Int, skip: Int): [Ingrediens]

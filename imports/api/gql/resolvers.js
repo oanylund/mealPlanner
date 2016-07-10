@@ -5,10 +5,15 @@ import DinnerThumbs from '../collections/DinnerThumb';
 import uker from '../collections/uker';
 import handleliste from '../collections/handleliste';
 
+import _ from 'underscore'
+
 // TODO: Nested Async find requests. not working for sub fields..
 
 var resolvers = {
   Query: {
+    weeks(_, args) {
+      return uker.find({}, args).fetch();
+    },
     dinners(_, args) {
       return middag.find({}, args).fetch();
     },
@@ -26,6 +31,18 @@ var resolvers = {
     },
     ingredientCategories(_, args) {
       return ingrediensKategori.find({}, args).fetch();
+    }
+  },
+  Week: {
+    days(week) {
+      return _.map(week.days, (day, dayName) => {
+        return { day: dayName, ...day}
+      });
+    }
+  },
+  Day: {
+    dinner(day) {
+      return middag.findOne(day.dinnerId);
     }
   },
   Middag: {
