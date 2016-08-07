@@ -3,6 +3,7 @@ import DinnerListItem from '../../../containers/DinnerListItem.jsx'
 import WeekPanelItem from './WeekPanelItem.jsx'
 import NoDinnerListItem from './NoDinnerListItem.jsx'
 import _ from 'underscore'
+import { browserHistory } from 'react-router'
 
 class WeekList extends React.Component {
   constructor(props) {
@@ -36,8 +37,16 @@ class WeekList extends React.Component {
         return <NoDinnerListItem key={dayName} day={dayName} {...day} />;
       });
 
-      return <WeekPanelItem expanded={i === this.state.activeKey} key={i} {...weekProps}
-          days={daysList} onSelect={this.changeActive.bind(null,i)} />;
+      return <WeekPanelItem
+              expanded={i === this.state.activeKey}
+              key={i} {...weekProps}
+              days={daysList}
+              onSelect={this.changeActive.bind(null,i)}
+              btnTxt='Se uke'
+              useWeekClick={ () => {
+                browserHistory.push(`uker/vis/${week._id}`)
+              }}
+              />;
     });
   }
   render() {
