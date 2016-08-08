@@ -1,6 +1,7 @@
 var typeDefinitions = `
 
 type ShoppingList {
+  _id: String
   name: String
   week: Int
   year: Int
