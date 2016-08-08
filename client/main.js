@@ -3,11 +3,18 @@ import { render } from 'react-dom';
 import Routes from '../imports/ui/routes.jsx';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
+import ApolloClient from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
+import { meteorClientConfig } from 'meteor/apollo';
+
+const client = new ApolloClient(meteorClientConfig());
 
 import '../imports/startup/client';
 
 Meteor.startup(function () {
-  render(Routes(),document.getElementById('root'));
+  render(<ApolloProvider client={client}>
+          {Routes()}
+        </ApolloProvider>,document.getElementById('root'));
 });
 
 Tracker.autorun(function () {
