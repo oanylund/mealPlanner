@@ -21,7 +21,7 @@ const DisplayWeekWithData = connect({
                   url
                 }
               }
-          }
+            }
           }
         }
       `,
