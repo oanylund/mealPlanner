@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Dropdown, MenuItem, Clearfix } from 'react-bootstrap'
+import { Link } from 'react-router'
 
 class Dag extends React.Component {
   renderTopMenu() {
@@ -11,7 +11,7 @@ class Dag extends React.Component {
     return <div className='dashWidgetBtnField'>{ btns }</div>
   }
   render () {
-    const { title, description, descriptionGrey, imgUrl, linkUrl, menu } = this.props;
+    const { title, description, descriptionGrey, imgUrl, linkUrl, linkTxt, menu } = this.props;
     const img = imgUrl ? imgUrl : '/images/default-dinner.png';
     return (
       <div className='dashWidgetBox'>
@@ -21,7 +21,9 @@ class Dag extends React.Component {
           <h3>{title}</h3>
           <span>{description}</span><br/>
           { descriptionGrey ? <span className='grey'>{descriptionGrey}</span> : '' }
-          { linkUrl ? <a href={linkUrl}>Les mer...</a> : '' }
+          { linkUrl ?
+          <Link to={linkUrl}>{linkTxt}</Link>
+          : '' }
         </div>
       </div>
     )

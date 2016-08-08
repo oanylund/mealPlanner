@@ -19,6 +19,7 @@ storiesOf('Uke.Dag', module)
       description: 'Taco',
       descriptionGrey: 'Kjempegodt',
       linkUrl: 'test',
+      linkTxt: 'test',
       imgUrl: '/images/taco.jpg',
       menu: [
         {
