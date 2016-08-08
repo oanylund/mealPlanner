@@ -6,6 +6,7 @@ import NotFound from './app/components/NotFound.jsx'
 
 import UkeMain from './app/components/Uker/UkeMain.jsx'
 import Uker from './app/components/Uker/Uker.jsx'
+import VisUke from './app/containers/DisplayWeekWithData.js'
 import LagUke from './app/components/Uker/LagUke.jsx'
 
 import IngrediensListe from './app/components/Ingredienser/Ingredienser.jsx'
@@ -28,6 +29,7 @@ export default () => {
 
         <Route path='uker' component={UkeMain}>
           <IndexRoute component={Uker} />
+          <Route path='vis/:ukeId' component={VisUke}/>
           <Route path='lag-ny' component={LagUke}/>
         </Route>
 
