@@ -1,11 +1,19 @@
 import { Meteor } from 'meteor/meteor';
 import Middager from '../collections/middag';
 import DinnerThumbs from '../collections/DinnerThumb';
+import Ingredienser from '../collections/ingredienser';
 
 Meteor.methods({
   deleteDinner: (id, imageId) => {
     DinnerThumbs.remove({ _id: imageId }, () => {
-      Middager.remove({ _id: id });
+      Middager.remove({ _id: id }, () => {
+        Ingredienser.update({}, {
+          $pull: { usedInDinners: id }
+        },
+        {
+          multi: true
+        });
+      });
     })
   },
   // Title
