@@ -9,7 +9,9 @@ storiesOf('Reusable.Changeline', module)
 
     const props = {
       txt: 'Testing text',
-      submitChange: action('newChange')
+      submitChange: action('newChange'),
+      editBtnTitle: 'Endre tekst',
+      closeBtnTitle: 'Stopp redigering'
     }
 
     return (
@@ -22,7 +24,9 @@ storiesOf('Reusable.Changeline', module)
 
     const props = {
       txt: 'aesting text',
-      submitChange: action('newChange')
+      submitChange: action('newChange'),
+      editBtnTitle: 'Endre tekst',
+      closeBtnTitle: 'Stopp redigering'
     }
 
     return (
