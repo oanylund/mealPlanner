@@ -1,0 +1,57 @@
+// main: ../../matPlanlegger.scss
+
+.changeline-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:hover {
+    &>.changeline-btnBox>button.changeline-editButton {
+      visibility: visible;
+    }
+  }
+  .changeline-txtBox-normal {
+    flex: 0 0 auto;
+  }
+  .changeline-txtBox-edit {
+    flex: 4 0 auto;
+  }
+  .changeline-txtBox {
+    &>h2 {
+      display: inline;
+      margin: 0;
+      padding: 0;
+    }
+    &>form {
+      input {
+        width: 100%;
+        padding: 0;
+        background-color: rgba(255, 255, 255, 0);
+        font-size: 32px;
+        font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-weight: 300;
+        line-height: 1.1;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+  .changeline-btnBox {
+    flex: 1 0 auto;
+    .changeline-editButton {
+      visibility: hidden;
+    }
+    .changeline-closeButton {
+    }
+    button {
+      background-color:rgba(255, 255, 255, 0);
+      outline: none;
+      border: none;
+      font-size: 18px;
+      margin-left: 10px;
+      &:hover {
+        color: $fontHoverColor;
+      }
+    }
+  }
+}
