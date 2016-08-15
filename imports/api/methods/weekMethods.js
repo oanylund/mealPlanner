@@ -17,6 +17,17 @@ Meteor.methods({
 
     });
   },
+  editWeekTitle: (id, newName) => {
+    Uker.update({ _id: id }, {
+      $set: { name: newName }
+    });
+  },
+  editDay: (id, changedDay) => {
+    const { day, ...dayProperties } = changedDay;
+    Uker.update({ _id: id }, {
+      $set: { [`days.${day}`]: dayProperties }
+    });
+  },
   deleteDay: (day, weekId) => {
     Uker.update(weekId, {
       $unset: { [`days.${day}`]: '' }

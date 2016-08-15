@@ -5,8 +5,46 @@ import translateDays from '../../../../../utils/translateDays.js'
 import { Meteor } from 'meteor/meteor'
 import LoadingCog from '../../Reusable/LoadingCog.jsx'
 import { browserHistory } from 'react-router'
+import ChangeLine from '../../Reusable/Formsy/ChangeLine.jsx'
+import EndreDag from '../EndreUke/EndreDag.jsx'
+import _ from 'underscore';
 
 class DisplayWeek extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showEditModal: false,
+      dayToEdit: null
+    }
+    this.generateDayData = this.generateDayData.bind(this);
+  }
+  openEditModal(day) {
+    this.setState({
+      showEditModal: true,
+      dayToEdit: day
+    });
+  }
+  closeEditDay() {
+    this.setState({
+      showEditModal: false,
+      dayToEdit: null
+    });
+  }
+  generateDayData() {
+    const { days } = this.props.data.week;
+    const dayToEdit = this.state.dayToEdit;
+    if (dayToEdit) {
+      const groupedDays = _.indexBy(days, 'day');
+      const day = groupedDays[dayToEdit];
+      return {
+        dinnerId: day.dinner ? day.dinner._id : null,
+        title: day.dinner ? day.dinner.title : null,
+        whynot: day.whynot,
+        comment: day.comment
+      }
+    }
+    return {}
+  }
   deleteWeek() {
     const weekId = this.props.routeParams.ukeId;
     Meteor.call('deleteWeek', weekId, (err, res) => {
@@ -25,6 +63,37 @@ class DisplayWeek extends React.Component {
       refetch();
     });
   }
+  editDay(newData) {
+    const weekId = this.props.routeParams.ukeId;
+    const { refetch, week } = this.props.data;
+    const { days } = week;
+    const groupedDays = _.indexBy(days, 'day');
+    const prevDinner = groupedDays[newData.day].dinner;
+
+    Meteor.call('editDay', weekId, newData, (err, res) => {
+      if(err) throw err;
+      if(newData.dinnerId) {
+        Meteor.call('addDinnerWeekDep', newData.dinnerId, weekId);
+      }
+      if(prevDinner && (prevDinner !== newData.dinnerId)) {
+        Meteor.call('removeDinnerWeekDep', prevDinner._id, weekId);
+      }
+      this.setState({
+        showEditModal: false,
+        dayToEdit: null
+      }, () => {
+        refetch();
+      });
+    });
+  }
+  editTitle(changedTitle) {
+    const weekId = this.props.routeParams.ukeId;
+    const refetch = this.props.data.refetch;
+    Meteor.call('editWeekTitle', weekId, changedTitle, (err, res) => {
+      if(err) throw err;
+      refetch();
+    })
+  }
   render () {
     const self = this;
     if(this.props.data.loading) {
@@ -32,20 +101,25 @@ class DisplayWeek extends React.Component {
     }
 
     const { name, days } = this.props.data.week;
-
     return (
       <div className='marginSquare'>
         <Grid fluid>
           <Row>
             <Col md={12}>
-              <h2 style={{marginTop:0}}>{name}</h2>
+              <ChangeLine
+                txt={name}
+                submitChange={this.editTitle.bind(this)}
+                editBtnTitle='Rediger uketittel'
+                />
             </Col>
           </Row>
           <Row>
             <Col md={12}>
-              <Button bsStyle='primary'
-                bsSize='sm'
-                onClick={this.deleteWeek.bind(this)}>Slett uke</Button>
+              <div style={{marginTop:20, marginBottom:20}}>
+                <Button
+                  bsSize='sm'
+                  onClick={this.deleteWeek.bind(this)}>Slett uke</Button>
+              </div>
               <h4 style={{marginTop:0}}>Dager:</h4>
             </Col>
           </Row>
@@ -63,7 +137,7 @@ class DisplayWeek extends React.Component {
                     {
                       name: 'Endre dag',
                       icon: 'edit',
-                      handler: alert
+                      handler: this.openEditModal.bind(this, day)
                     }
                   ]
                 }
@@ -83,6 +157,12 @@ class DisplayWeek extends React.Component {
             }
           </Row>
       </Grid>
+      <EndreDag showEditModal={this.state.showEditModal}
+        closeEditModal={this.closeEditDay.bind(this)}
+        submitEdit={this.editDay.bind(this)}
+        dayName={this.state.dayToEdit}
+        dayData={this.generateDayData()}
+      />
     </div>
     )
   }

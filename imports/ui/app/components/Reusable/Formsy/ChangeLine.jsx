@@ -108,7 +108,10 @@ class ChangeLine extends React.Component {
 ChangeLine.defaultProps = {
   txt: 'Tekstfelt',
   editBtnTitle: 'Endre tekst',
-  closeBtnTitle: 'Stopp redigering'
+  closeBtnTitle: 'Stopp redigering',
+  submitChange(line) {
+    console.log('Missing "submitChange" prop to handle submit.');
+  }
 }
 
 export default ChangeLine;
