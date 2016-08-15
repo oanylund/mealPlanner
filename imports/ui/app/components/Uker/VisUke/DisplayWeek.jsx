@@ -8,15 +8,20 @@ import { browserHistory } from 'react-router'
 import ChangeLine from '../../Reusable/Formsy/ChangeLine.jsx'
 import EndreDag from '../EndreUke/EndreDag.jsx'
 import _ from 'underscore';
+import PlusBtn from '../../Reusable/PlusBtn.jsx';
+import DagForm from '../LagUke/DagForm.jsx';
 
 class DisplayWeek extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showAddForm: false,
       showEditModal: false,
       dayToEdit: null
     }
     this.generateDayData = this.generateDayData.bind(this);
+    this.renderAddForm = this.renderAddForm.bind(this);
+    this.renderDays = this.renderDays.bind(this);
   }
   openEditModal(day) {
     this.setState({
@@ -94,8 +99,64 @@ class DisplayWeek extends React.Component {
       refetch();
     })
   }
+  addDay(newDay) {
+    const weekId = this.props.routeParams.ukeId;
+    const { refetch, week } = this.props.data;
+
+    Meteor.call('editDay', weekId, newDay, (err, res) => {
+      if(err) throw err;
+      if(newDay.dinnerId) {
+        Meteor.call('addDinnerWeekDep', newDay.dinnerId, weekId);
+      }
+        refetch();
+    });
+  }
+  renderDays() {
+    const { days } = this.props.data.week;
+    return days.map( ({day, comment, whynot, dinner}, i) => {
+      let props = {
+        title: translateDays[day],
+        description: dinner ? dinner.title : whynot,
+        descriptionGrey: comment,
+        imgUrl: dinner ? dinner.image.url : null,
+        linkUrl: dinner ? `/middag/vis/${dinner._id}` : null,
+        linkTxt: 'Se middag...',
+        menu: [
+          {
+            name: 'Endre dag',
+            icon: 'edit',
+            handler: this.openEditModal.bind(this, day)
+          }
+        ]
+      }
+      if ( days.length > 1 ) {
+        props.menu.push({
+          name: 'Slett dag',
+          icon: 'close',
+          handler: this.deleteDay.bind(this, day, dinner ? dinner._id : null)
+        });
+      }
+      return (
+        <Col key={i} md={6} lg={4}>
+          <Dag {...props} />
+        </Col>
+      )
+    });
+  }
+  renderAddForm() {
+    if( this.state.showAddForm ) {
+      return (
+        <DagForm
+          alreadyAdded={this.props.data.week.days.map( ({day}) => {
+            return day;
+          })}
+          hideForm={() => { this.setState({ showAddForm: false }); }}
+          addDay={this.addDay.bind(this)} />
+      )
+    }
+    return <PlusBtn click={() => { this.setState({ showAddForm: true }); }} />
+  }
   render () {
-    const self = this;
     if(this.props.data.loading) {
       return <div className='marginSquare'><Grid fluid><LoadingCog size={40} /></Grid></div>
     }
@@ -120,41 +181,16 @@ class DisplayWeek extends React.Component {
                   bsSize='sm'
                   onClick={this.deleteWeek.bind(this)}>Slett uke</Button>
               </div>
-              <h4 style={{marginTop:0}}>Dager:</h4>
+              <h4 style={{marginTop:0}}>Dager</h4>
             </Col>
           </Row>
           <Row>
-            {
-              days.map( ({day, comment, whynot, dinner}, i) => {
-                let props = {
-                  title: translateDays[day],
-                  description: dinner ? dinner.title : whynot,
-                  descriptionGrey: comment,
-                  imgUrl: dinner ? dinner.image.url : null,
-                  linkUrl: dinner ? `/middag/vis/${dinner._id}` : null,
-                  linkTxt: 'Se middag...',
-                  menu: [
-                    {
-                      name: 'Endre dag',
-                      icon: 'edit',
-                      handler: this.openEditModal.bind(this, day)
-                    }
-                  ]
-                }
-                if ( days.length > 1 ) {
-                  props.menu.push({
-                    name: 'Slett dag',
-                    icon: 'close',
-                    handler: this.deleteDay.bind(self, day, dinner ? dinner._id : null)
-                  });
-                }
-                return (
-                  <Col key={i} md={4}>
-                    <Dag {...props} />
-                  </Col>
-                )
-              })
-            }
+            { this.renderDays() }
+          </Row>
+          <Row>
+            <Col md={12}>
+              { days.length < 7 ? this.renderAddForm() : '' }
+            </Col>
           </Row>
       </Grid>
       <EndreDag showEditModal={this.state.showEditModal}
