@@ -4,10 +4,15 @@ import middag from '../collections/middag';
 import DinnerThumbs from '../collections/DinnerThumb';
 import uker from '../collections/uker';
 import handleliste from '../collections/handleliste';
+import sorter from '../../utils/sortDays.js';
 
 import _ from 'underscore'
 
 // TODO: Nested Async find requests. not working for sub fields..
+
+const sortByDay = (a, b) => {
+  return sorter[a.day] > sorter[b.day];
+}
 
 var resolvers = {
   Query: {
@@ -51,7 +56,7 @@ var resolvers = {
     days(week) {
       return _.map(week.days, (day, dayName) => {
         return { day: dayName, ...day}
-      });
+      }).sort(sortByDay);
     },
     usedInShopList(week) {
       return handleliste.find({ _id: { $in: week.usedInShopList } }).fetch();
