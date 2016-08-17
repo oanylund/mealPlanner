@@ -17,6 +17,7 @@
     "classnames": "^2.2.3",
     "cropperjs": "^0.6.0",
     "formsy-react": "^0.17.0",
+    "formsy-react-components": "^0.8.1",
     "graphql": "^0.6.1",
     "graphql-tag": "^0.1.11",
     "meteor-node-stubs": "^0.2.1",
