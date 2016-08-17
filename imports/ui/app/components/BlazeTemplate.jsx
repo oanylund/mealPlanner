@@ -1,6 +1,8 @@
 /* global Template, Blaze */
 import React, {propTypes} from 'react';
 import ReactDOM from 'react-dom';
+import { Blaze } from 'meteor/blaze';
+import { Template } from 'meteor/templating';
 
 export default class BlazeTemplate extends React.Component {
   // we don't want to re-render this component if parent changes
