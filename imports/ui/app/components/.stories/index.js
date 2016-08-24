@@ -12,6 +12,8 @@ import './Handleliste.ShopListItem'
 import './Handleliste.ActiveArchived'
 import './Handleliste.InsertItem'
 
+import './Ingredienser.AddIngredientForm.js'
+
 // TODO: Storybook components that are not pure.
 // These two are currently breaking webpack build because they contain containers meteor core, and are not pure
 // import './Uke.WeekPanelItem'

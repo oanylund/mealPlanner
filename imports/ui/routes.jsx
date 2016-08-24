@@ -10,7 +10,7 @@ import VisUke from './app/containers/DisplayWeekWithData.js'
 import LagUke from './app/components/Uker/LagUke.jsx'
 
 import IngrediensListe from './app/components/Ingredienser/Ingredienser.jsx'
-import AddIngredientForm from './app/components/Ingredienser/AddIngredientForm.jsx'
+import AddIngredientForm from './app/components/Ingredienser/AddIngredientAndCategoryForm.jsx'
 
 import MiddagMain from './app/components/Middag/MiddagMain.jsx'
 import ShowDinners from './app/components/Middag/ShowDinners.jsx'
