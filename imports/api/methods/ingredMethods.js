@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import Ingredienser from '../collections/ingredienser';
+import IngrediensKat from '../collections/IngrediensKategori';
 
 Meteor.methods({
   removeIngredient: (id) => {
