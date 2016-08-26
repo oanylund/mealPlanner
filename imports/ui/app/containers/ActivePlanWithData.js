@@ -32,6 +32,11 @@ const ACTIVE_PLAN_QUERY = gql`
 `;
 
 const ActivePlanWithData = graphql(ACTIVE_PLAN_QUERY, {
+  options() {
+    return {
+      pollInterval: 2000
+    }
+  },
   props({ data: { loading, activeShoppingList } }) {
     return { loading, activePlan: activeShoppingList }
   }
