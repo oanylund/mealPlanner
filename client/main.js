@@ -17,11 +17,11 @@ Meteor.startup(function () {
         </ApolloProvider>,document.getElementById('root'));
 });
 
-Tracker.autorun(function () {
-  if (Meteor.status().connected) {
-      console.log("Vi er connected");
-      // TODO: Add notification system to alert user of status
-  } else {
-      console.log("Vi er disconnected");
-  }
-});
+// Tracker.autorun(function () {
+//   if (Meteor.status().connected) {
+//       console.log("Vi er connected");
+//       // TODO: Add notification system to alert user of status
+//   } else {
+//       console.log("Vi er disconnected");
+//   }
+// });
