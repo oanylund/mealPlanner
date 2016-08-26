@@ -22,10 +22,14 @@ import ShowShoppingLists from './app/components/Handleliste/ShowShoppingLists.js
 import ShowShoppingList from './app/containers/ShowShoppingList.jsx'
 import GenerateList from './app/components/Handleliste/GenerateList.jsx'
 
+import ActivePlan from './app/containers/ActivePlanWithData.js'
+
 export default () => {
   return (
     <Router history={browserHistory}>
       <Route path='/' component={App}>
+
+        <IndexRoute component={ActivePlan} />
 
         <Route path='uker' component={UkeMain}>
           <IndexRoute component={Uker} />
