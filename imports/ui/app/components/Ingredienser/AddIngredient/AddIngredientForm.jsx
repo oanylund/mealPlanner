@@ -20,7 +20,7 @@ const AddIngredientForm = (props) => {
           <fieldset>
             <h4>Navn på ingrediens</h4>
             <Input
-              name='ingred-singular'
+              name='ingredSingular'
               label='Entall'
               required
               validations='isSpecialWords'
@@ -29,7 +29,7 @@ const AddIngredientForm = (props) => {
               }}
             />
             <Input
-              name='ingred-plural'
+              name='ingredPlural'
               label='Flertall'
               validations='isSpecialWords'
               validationErrors={{
@@ -42,7 +42,7 @@ const AddIngredientForm = (props) => {
           <fieldset>
             <h4>Enhet</h4>
             <Input
-              name='unit-singular'
+              name='unitSingular'
               label='Entall'
               required
               validations='isSpecialWords'
@@ -51,7 +51,7 @@ const AddIngredientForm = (props) => {
               }}
             />
             <Input
-              name='unit-plural'
+              name='unitPlural'
               label='Flertall'
               validations='isSpecialWords'
               validationErrors={{

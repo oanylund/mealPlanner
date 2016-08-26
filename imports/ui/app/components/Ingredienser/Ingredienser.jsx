@@ -3,8 +3,6 @@ import { composeWithTracker } from 'react-komposer'
 import { Grid, Row, Col } from 'react-bootstrap'
 import Catrender from './IngrediensCategory.jsx'
 import IngredCats from '../../composers/IngredCats'
-import AddIngredient from './AddIngredient.jsx'
-import AddIngredientCategory from './AddIngredientCategory.jsx'
 import Spinner from '../spinner.jsx'
 
 class Ingredienser extends React.Component {

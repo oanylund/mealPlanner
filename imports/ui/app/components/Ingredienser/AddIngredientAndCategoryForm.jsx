@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
-import AddIngredient from './AddIngredient.jsx'
+import AddIngAndCatForm from '../../containers/AddIngAndCatFormWithDataAndMethod.js';
 
 class AddIngredientForm extends React.Component {
   render () {
@@ -14,7 +14,7 @@ class AddIngredientForm extends React.Component {
           </Row>
           <Row>
             <Col md={12}>
-              <AddIngredient categoryOptions={catOptions} />
+              <AddIngAndCatForm/>
             </Col>
           </Row>
         </Grid>

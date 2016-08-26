@@ -13,6 +13,7 @@ class AddIngredientCategoryForm extends React.Component {
   onSubmit() {
     if(this.state.value.length > 0) {
       this.props.onSubmit(this.state.value);
+      this.setState({ value: '' });
     }
   }
   handleChange(e) {
