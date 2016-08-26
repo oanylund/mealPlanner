@@ -82,8 +82,14 @@ type Query {
   ingredientCategory(id: String): IngredientCategory
   ingredientCategories(limit: Int, Skip: Int): [IngredientCategory]
 }
+
+type Mutation {
+  addIngredientCategory(categoryName: String!): IngredientCategory
+}
+
 schema {
   query: Query
+  mutation: Mutation
 }
 `;
 

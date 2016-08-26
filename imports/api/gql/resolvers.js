@@ -44,6 +44,16 @@ var resolvers = {
       return ingrediensKategori.find({}, args).fetch();
     }
   },
+  Mutation: {
+    addIngredientCategory(_, { categoryName }) {
+      return {
+        _id: ingrediensKategori.insert({
+          name: categoryName
+        }),
+        name: categoryName
+      };
+    }
+  },
   ShoppingList: {
     weekPlan({ weekPlan }) {
       return uker.findOne(weekPlan.id);
