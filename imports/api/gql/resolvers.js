@@ -19,6 +19,9 @@ var resolvers = {
     shoppingLists(_, args) {
       return handleliste.find({}, args).fetch();
     },
+    activeShoppingList(_, args) {
+      return handleliste.findOne({ active: true });
+    },
     week(_, args) {
       return uker.findOne(args.id);
     },
