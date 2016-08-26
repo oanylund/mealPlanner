@@ -14,10 +14,24 @@
     justify-content: flex-start;
     align-items: center;
   }
-  header {
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 3px;
-    padding: 5px;
+}
+
+#headerLogo {
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+  line-height: 22px;
+  letter-spacing: 3px;
+  padding: 5px;
+  &:visited {
+    text-decoration: none;
+    color: black;
   }
+  &:hover {
+    text-decoration: none;
+    color: $fontHoverColor;
+  }
+}
+.headerActive {
+  color: #006080 !important;
 }

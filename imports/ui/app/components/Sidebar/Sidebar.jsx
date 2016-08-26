@@ -1,11 +1,17 @@
 import React from 'react'
 import VerticalNav from './VerticalNav.jsx'
+import { Link } from 'react-router'
 
 const SideBar = (props) => {
   return (
     <aside id='leftNav'>
       <div className='fixedNav'>
-        <header>Middags<br/><strong>Planlegger</strong></header>
+        <Link
+          id='headerLogo'
+          activeClassName='headerActive'
+          onlyActiveOnIndex
+          to='/'
+          >Middags<br/><strong>Planlegger</strong></Link>
         <VerticalNav/>
       </div>
     </aside>
