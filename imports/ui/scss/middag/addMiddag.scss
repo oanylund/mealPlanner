@@ -100,21 +100,24 @@
     align-items:flex-end;
     margin: 11px 10px;
   }
-  i {
-    font-size: 20px;
-    color: white;
-    -webkit-text-stroke: 1px #666;
-    // @include stroke(1,#818181);
-    margin-left: 10px;
-    margin-bottom: 12px;
-    bottom: 0;
-    position: absolute;
-  }
-  &>.addIngredBtn {
-    height: 39px;
-    bottom: 0;
-    position: absolute;
-    margin-left: 20px;
+  .addDinner-ButtonField {
+    display: flex;
+    i {
+      font-size: 20px;
+      color: white;
+      -webkit-text-stroke: 1px #666;
+      // @include stroke(1,#818181);
+      margin-left: 10px;
+      margin-bottom: 12px;
+      bottom: 0;
+      position: absolute;
+    }
+    &>.addIngredBtn {
+      height: 39px;
+      bottom: 0;
+      position: absolute;
+      margin-left: 20px;
+    }
   }
 }
 .addDinner-Modal {
