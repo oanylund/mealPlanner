@@ -80,8 +80,10 @@ class AddIngredientForm extends React.Component {
             selectVal={this.onSelectVal}
             />
         </div>
-        { valSelected ? <input ref='addIngredBtn' onClick={this.onAdd} className='btn btn-primary addIngredBtn' type='button' value='Legg til'/> :
-        <i onClick={this._resetForm} className='fa fa-close'/> }
+        <div className='addDinner-ButtonField'>
+          { valSelected ? <input ref='addIngredBtn' onClick={this.onAdd} className='btn btn-primary addIngredBtn' type='button' value='Legg til'/> :
+          <i onClick={this._resetForm} className='fa fa-close'/> }
+        </div>
       </div>
     )
   }
