@@ -8,7 +8,7 @@ const Uke = (props) => {
       <Grid fluid>
         <Row>
           <Col md={12}>
-            <h2 style={{marginTop:0}}>Ukeplaner</h2>
+            <h2 className='mainHeader'>Ukeplaner</h2>
           </Col>
         </Row>
         <Row>
