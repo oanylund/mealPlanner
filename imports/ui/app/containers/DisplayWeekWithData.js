@@ -19,6 +19,10 @@ const WEEK_QUERY = gql`
           }
         }
       }
+      usedInShopList {
+        _id
+        name
+      }
     }
   }
 `;
@@ -26,6 +30,7 @@ const WEEK_QUERY = gql`
 const DisplayWeekWithData = graphql(WEEK_QUERY, {
     options(ownProps) {
       return {
+        pollInterval: 2000,
         variables: {
           id: ownProps.routeParams.ukeId
         }
