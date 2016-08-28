@@ -3,7 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
 import { composeWithTracker } from 'react-komposer'
 import GetDinner from '../../composers/GetDinner'
-import Spinner from '../spinner.jsx'
+import Spinner from '../Reusable/LoadingCog.jsx'
 import TopRightMenu from './ShowDinner/TopRightMenu.jsx'
 import ShowTitle from './ShowDinner/ShowTitle.jsx'
 import ShowDescription from './ShowDinner/ShowDescription.jsx'
@@ -73,4 +73,12 @@ class ShowDinner extends React.Component {
   }
 }
 
-export default composeWithTracker(GetDinner, Spinner)(ShowDinner)
+const Loading = () => {
+  return (
+    <div className="marginSquare">
+      <Spinner size={40} />
+    </div>
+  )
+}
+
+export default composeWithTracker(GetDinner, Loading)(ShowDinner)

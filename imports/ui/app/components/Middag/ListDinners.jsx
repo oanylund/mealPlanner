@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import { composeWithTracker } from 'react-komposer'
 import DinnerItem from './DinnerItem.jsx'
 import DinnersListData from '../../composers/DinnersListData'
-import Spinner from '../spinner.jsx'
+import Spinner from '../Reusable/LoadingCog.jsx'
 
 const ListDinners = ({dinners}) => {
 
@@ -23,4 +23,8 @@ const ListDinners = ({dinners}) => {
   )
 }
 
-export default composeWithTracker(DinnersListData, Spinner)(ListDinners)
+const Loading = () => {
+  return <Spinner size={40}/>
+}
+
+export default composeWithTracker(DinnersListData, Loading)(ListDinners)

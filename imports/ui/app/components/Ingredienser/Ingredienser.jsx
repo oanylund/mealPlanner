@@ -3,7 +3,7 @@ import { composeWithTracker } from 'react-komposer'
 import { Grid, Row, Col } from 'react-bootstrap'
 import Catrender from './IngrediensCategory.jsx'
 import IngredCats from '../../composers/IngredCats'
-import Spinner from '../spinner.jsx'
+import Spinner from '../Reusable/LoadingCog.jsx'
 
 class Ingredienser extends React.Component {
   constructor(props) {
@@ -39,4 +39,20 @@ class Ingredienser extends React.Component {
   }
 }
 
-export default composeWithTracker(IngredCats, Spinner)(Ingredienser)
+const Loading = () => {
+  return (
+    <div className="marginSquare">
+      <Grid fluid>
+        <Row>
+          <Col md={12}>
+            <h2 className='mainHeader'>Ingredienser</h2>
+          </Col>
+        </Row>
+        <Spinner size={40} />
+      </Grid>
+    </div>
+  )
+}
+
+
+export default composeWithTracker(IngredCats, Loading)(Ingredienser)
