@@ -72,6 +72,7 @@ var resolvers = {
       }).sort(sortByDay);
     },
     usedInShopList(week) {
+      if(!week.usedInShopList) return null;
       return handleliste.find({ _id: { $in: week.usedInShopList } }).fetch();
     }
   },
@@ -98,6 +99,7 @@ var resolvers = {
       }
     },
     usedInWeek(dinner) {
+      if(!dinner.usedInWeek) return null;
       return uker.find({ _id: { $in: dinner.usedInWeek } }).fetch();
     }
   },
@@ -120,6 +122,7 @@ var resolvers = {
       }
     },
     usedInDinners(ing) {
+      if(!ing.usedInDinners) return null;
       return middag.find({ _id: { $in: ing.usedInDinners } }).fetch();
     }
   },
