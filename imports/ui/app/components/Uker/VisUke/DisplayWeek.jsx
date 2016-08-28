@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
 import Dag from '../LagUke/Dag.jsx'
-import { Grid, Row, Col, Button } from 'react-bootstrap'
+import { Grid, Row, Col, Button, Popover, OverlayTrigger } from 'react-bootstrap'
 import translateDays from '../../../../../utils/translateDays.js'
 import { Meteor } from 'meteor/meteor'
 import LoadingCog from '../../Reusable/LoadingCog.jsx'
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
 import ChangeLine from '../../Reusable/Formsy/ChangeLine.jsx'
 import EndreDag from '../EndreUke/EndreDag.jsx'
 import _ from 'underscore';
@@ -21,6 +21,7 @@ class DisplayWeek extends React.Component {
     }
     this.generateDayData = this.generateDayData.bind(this);
     this.renderAddForm = this.renderAddForm.bind(this);
+    this.renderDeleteBtn = this.renderDeleteBtn.bind(this);
     this.renderDays = this.renderDays.bind(this);
   }
   openEditModal(day) {
@@ -156,6 +157,48 @@ class DisplayWeek extends React.Component {
     }
     return <PlusBtn click={() => { this.setState({ showAddForm: true }); }} />
   }
+  renderDeleteBtn() {
+    const { usedInShopList } = this.props.data.week;
+    if ( usedInShopList && usedInShopList.length > 0 ) {
+      const popover = (
+        <Popover
+          id='DeleteWarning'
+          title='Kan ikke slettes'>
+          <strong>Ukeplan brukes i handlelister og kan ikke slettes</strong>
+          <br/>
+          Brukes i følgende handlelister:<br/>
+          <ul>
+            { usedInShopList.map( (shoplist, i) => {
+              return (
+                <li key={i}>
+                  <Link to={`/handleliste/vis/${shoplist._id}`}>{shoplist.name}</Link>
+                </li>
+              );
+            })}
+          </ul>
+        </Popover>
+      );
+
+      return (
+        <OverlayTrigger
+          trigger='click'
+          placement='bottom'
+          overlay={popover}
+          rootClose
+        >
+          <Button
+            bsSize='sm'
+            >Slett uke</Button>
+        </OverlayTrigger>
+      );
+    }
+
+    return (
+      <Button
+        bsSize='sm'
+        onClick={this.deleteWeek.bind(this)}>Slett uke</Button>
+    );
+  }
   render () {
     if(this.props.data.loading) {
       return <div className='marginSquare'><Grid fluid><LoadingCog size={40} /></Grid></div>
@@ -177,9 +220,7 @@ class DisplayWeek extends React.Component {
           <Row>
             <Col md={12}>
               <div style={{marginTop:20, marginBottom:20}}>
-                <Button
-                  bsSize='sm'
-                  onClick={this.deleteWeek.bind(this)}>Slett uke</Button>
+                { this.renderDeleteBtn() }
               </div>
               <h4 style={{marginTop:0}}>Dager</h4>
             </Col>
